@@ -1,0 +1,35 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["tsconfig.json"],
+    "createDefaultProgram": true
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "@typescript-eslint/parser",
+    "plugin:react/recommended",
+    "prettier",
+    "react-app",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  },
+  "rules": {
+    "no-console": 1,
+    "no-alert": 0,
+    "no-unused-vars": 1,
+    "no-unused-expressions": 0,
+    "consistent-return": 0,
+    "import/prefer-default-export": 0,
+    "import/first": 0
+  },
+  "root": true
+}
