@@ -5,10 +5,13 @@ import { Header } from "@components/common/Header";
 import { Button } from "@components/common/Button";
 import { user } from "../../../test-data/get-user.json";
 import axios from "axios";
+import Loading from "./common/Loading";
 
 export const ShareLink = () => {
+  const key = localStorage.getItem("UserKey");
+
   useEffect(() => {
-    fetch("/api/users/ABEDF12RFe", {
+    fetch(`/api/users/${key}`, {
       method: "GET",
     })
       .then((response: any) => response.json())
@@ -30,10 +33,9 @@ export const ShareLink = () => {
 
   // 복사링크 div
   const [url, setUrl] = useState<string>(
-    `https://mbti-detective.vercel.app/${"key"}`,
+    `https://mbti-detective.vercel.app/${key}`,
   );
   //복사링크 핸들러
-
   const copyTextUrl = () => {
     navigator.clipboard.writeText(url).then(() => {
       alert("링크 복사 성공");
@@ -41,7 +43,7 @@ export const ShareLink = () => {
   };
 
   if (isLoading) {
-    return <div>로딩중</div>;
+    return <Loading />;
   } else {
     return (
       <StyledContainer>
