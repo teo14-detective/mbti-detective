@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import userJSONData from "../../../../test-data/get-user.json";
 
@@ -30,6 +30,7 @@ const StyledTitleBox = styled.div`
   top: 60px;
   background: url("src/assets/images/logo.png") no-repeat;
   background-size: contain;
+  cursor: pointer;
 `;
 
 const StyledImagesBox = styled.div`
@@ -103,6 +104,9 @@ const StyledButton = styled.button`
   flex: none;
   order: 0;
   flex-grow: 0;
+  &:hover {
+    background-color: #ff9c4f;
+  }
 `;
 const StyledParagraph = styled.p`
   font-family: "blackHanSans";
@@ -150,6 +154,7 @@ const StyledAnchorBox = styled.div`
 `;
 
 function ParticipantResult() {
+  const navigate = useNavigate();
   type MbtiVariablesType = {
     participant: string;
     user: string;
@@ -190,7 +195,7 @@ function ParticipantResult() {
     <StyledBackgroundBox>
       <StyledContainBox>
         <StyledTitleContainBox>
-          <StyledTitleBox />
+          <StyledTitleBox onClick={() => navigate("/")} />
         </StyledTitleContainBox>
 
         {isLoading ? (
