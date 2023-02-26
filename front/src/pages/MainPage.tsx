@@ -13,10 +13,9 @@ import {
 } from "@components/common/Container";
 
 import useMakeName from "@hooks/useMakeName";
-import { Header } from "@components/mainPage/Header";
-import ShareToKakao from "@components/mainPage/ShareToKakao";
-import ShareToLink from "@components/mainPage/ShareToLink";
 import ImageSlide from "@components/mainPage/ImageSlide";
+import { Header } from "@components/mainPage/Header";
+import { Footer } from "@components/mainPage/Footer";
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -169,20 +168,7 @@ export default function MainPage() {
           className={"bottom"}
         />
 
-        <StyledLableDiv>
-          <StyledBoldLable>방문수</StyledBoldLable>
-          <StyledCountLable>{hitCount}</StyledCountLable>
-          <StyledBoldLable>공유수</StyledBoldLable>
-          <StyledCountLable>{shareCount}</StyledCountLable>
-        </StyledLableDiv>
-        <StyledSnsContainerBox>
-          <StyledSnsContainerCircleBox>
-            <ShareToKakao />
-          </StyledSnsContainerCircleBox>
-          <StyledSnsContainerCircleBox>
-            <ShareToLink />
-          </StyledSnsContainerCircleBox>
-        </StyledSnsContainerBox>
+        <Footer />
       </StyledContainBox>
     </StyledBackgroundBox>
   );

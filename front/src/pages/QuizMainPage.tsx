@@ -11,11 +11,9 @@ import useMakeName from "@hooks/useMakeName";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import styled from "styled-components";
-import useCounterFetch from "./../hooks/useCounterFetch";
 import { Header } from "@components/mainPage/Header";
-import ShareToKakao from "@components/mainPage/ShareToKakao";
-import ShareToLink from "@components/mainPage/ShareToLink";
 import ImageSlide from "@components/mainPage/ImageSlide";
+import { Footer } from "@components/mainPage/Footer";
 
 export default function QuizMainPage() {
   const { id } = useParams();
@@ -33,7 +31,6 @@ export default function QuizMainPage() {
   }, []);
 
   const { name, changeName } = useMakeName();
-  const { hitCount, shareCount } = useCounterFetch();
 
   function clickStartButton() {
     if (!name) return alert("이름를 입력해주세요!");
@@ -61,16 +58,7 @@ export default function QuizMainPage() {
 
         <Button onclick={clickStartButton} text={"start"} className="button" />
 
-        <StyledLableDiv>
-          <StyledBoldLable>방문수</StyledBoldLable>
-          <StyledCountLable>{hitCount}</StyledCountLable>
-          <StyledBoldLable>공유수</StyledBoldLable>
-          <StyledCountLable>{shareCount}</StyledCountLable>
-        </StyledLableDiv>
-        <StyledSnsContainerBox>
-          <ShareToKakao />
-          <ShareToLink />
-        </StyledSnsContainerBox>
+        <Footer />
       </StyledContainBox>
     </StyledBackgroundBox>
   );
