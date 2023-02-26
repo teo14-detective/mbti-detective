@@ -10,10 +10,12 @@ import ShareToKakao from "@components/ShareToKakao";
 import ShareToLink from "@components/ShareToLink";
 import useMakeName from "@hooks/useMakeName";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import styled, { createGlobalStyle } from "styled-components";
 import useMakeMBTI from "./../hooks/useMakeMBTI";
 
 export default function MainPage() {
+  const navigate = useNavigate();
   useEffect(() => {
     fetch("https://mbti-detective-back.vercel.app/api/share/plus")
       .then((response) => response.json())
@@ -56,25 +58,25 @@ export default function MainPage() {
 
   const { MBTIResultArray, isClick, clickMBTIButton } = useMakeMBTI();
   const { name, changeName } = useMakeName();
-  console.log(
-    JSON.stringify({
-      name,
-      mbti: MBTIResultArray.join(""),
-    }),
-  );
+
   function clickStartButton() {
     if (MBTIResultArray.includes("")) return alert("MBTI를 완성해주세요!");
 
-    fetch("https://mbti-detective-back.vercel.app/api/users", {
+    const response = fetch("/api/users", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
-        name,
+        name: name,
         mbti: MBTIResultArray.join(""),
       }),
     })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+      .then(async (res) => await res.json())
+      .then(async (data) => {
+        await localStorage.setItem("UserKey", `${data.key}`);
+        await navigate("/share");
+      });
   }
 
   return (

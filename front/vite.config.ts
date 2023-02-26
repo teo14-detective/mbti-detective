@@ -6,4 +6,13 @@ import svgr from "vite-plugin-svgr";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths(), svgr()],
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://mbti-detective-back.vercel.app",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 });
