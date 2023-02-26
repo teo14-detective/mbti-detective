@@ -1,8 +1,9 @@
 import React from "react";
+import styled, { createGlobalStyle } from "styled-components";
 
 export default function MainPage() {
   return (
-    <div>
+    <Container>
       <img src="src/assets/images/logo.png" alt="로고" />
       <div>슬라이드</div>
       <label>이름을 입력해주세요</label>
@@ -14,6 +15,12 @@ export default function MainPage() {
       <label>공유수</label> <label>0</label>
       <button>카카오톡</button>
       <button>링크</button>
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  padding: 16px;
+  margin: 16px auto;
+  max-width: 430px;
+`;
