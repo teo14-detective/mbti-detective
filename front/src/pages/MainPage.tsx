@@ -1,4 +1,11 @@
-import { Button } from "@components/common/Button";
+import { Button } from "@components/common/Button2";
+import {
+  StyledBackgroundBox,
+  StyledContainBox,
+  StyledSnsContainerCircleBox,
+  StyledSnsContainerBox,
+  StyledMBTIButtonContainerBox,
+} from "@components/common/Container";
 import ShareToKakao from "@components/ShareToKakao";
 import ShareToLink from "@components/ShareToLink";
 import useMakeName from "@hooks/useMakeName";
@@ -62,13 +69,14 @@ export default function MainPage() {
   }
 
   return (
-    <StyledBackground>
-      <StyledLogoImage src="src/assets/images/logo.png" alt="로고" />
-      <div>슬라이드</div>
-      <StyledLable>이름을 입력해주세요</StyledLable>
-      <StyledNameInput type="text" value={name} onChange={changeName} />
-      <StyledLable>MBTI는 무엇인가요?</StyledLable>
-      {/* <div>
+    <StyledBackgroundBox>
+      <StyledContainBox>
+        <StyledLogoImage src="src/assets/images/logo.png" alt="로고" />
+        <div>슬라이드</div>
+        <StyledLable>이름을 입력해주세요</StyledLable>
+        <StyledNameInput type="text" value={name} onChange={changeName} />
+        <StyledLable>MBTI는 무엇인가요?</StyledLable>
+        {/* <div>
         {MBTIFirstRow.map((mbtiObject) => (
           <StyledMBTIButton
             onClick={clickMBTIButton}
@@ -92,80 +100,71 @@ export default function MainPage() {
           </StyledMBTIButton>
         ))}
       </div> */}
-      <StyledLableDiv>
-        <div>
-          {MBTIIE.map((mbtiObject) => (
-            <StyledMBTIButton2
-              onClick={clickMBTIButton}
-              id={mbtiObject.id}
-              value={mbtiObject.mbti}
-            >
-              {mbtiObject.mbti}
-            </StyledMBTIButton2>
-          ))}
-        </div>
-        <div>
-          {MBTINS.map((mbtiObject) => (
-            <StyledMBTIButton2
-              onClick={clickMBTIButton}
-              id={mbtiObject.id}
-              value={mbtiObject.mbti}
-            >
-              {mbtiObject.mbti}
-            </StyledMBTIButton2>
-          ))}
-        </div>
-        <div>
-          {MBTIFT.map((mbtiObject) => (
-            <StyledMBTIButton2
-              onClick={clickMBTIButton}
-              id={mbtiObject.id}
-              value={mbtiObject.mbti}
-            >
-              {mbtiObject.mbti}
-            </StyledMBTIButton2>
-          ))}
-        </div>
-        <div>
-          {MBTIPJ.map((mbtiObject) => (
-            <StyledMBTIButton2
-              onClick={clickMBTIButton}
-              id={mbtiObject.id}
-              value={mbtiObject.mbti}
-            >
-              {mbtiObject.mbti}
-            </StyledMBTIButton2>
-          ))}
-        </div>
-      </StyledLableDiv>
-      <Button onclick={clickStartButton} text={"start"} />
+        <StyledLableDiv>
+          <div>
+            {MBTIIE.map((mbtiObject) => (
+              <StyledMBTIButton2
+                onClick={clickMBTIButton}
+                id={mbtiObject.id}
+                value={mbtiObject.mbti}
+              >
+                {mbtiObject.mbti}
+              </StyledMBTIButton2>
+            ))}
+          </div>
+          <div>
+            {MBTINS.map((mbtiObject) => (
+              <StyledMBTIButton2
+                onClick={clickMBTIButton}
+                id={mbtiObject.id}
+                value={mbtiObject.mbti}
+              >
+                {mbtiObject.mbti}
+              </StyledMBTIButton2>
+            ))}
+          </div>
+          <div>
+            {MBTIFT.map((mbtiObject) => (
+              <StyledMBTIButton2
+                onClick={clickMBTIButton}
+                id={mbtiObject.id}
+                value={mbtiObject.mbti}
+              >
+                {mbtiObject.mbti}
+              </StyledMBTIButton2>
+            ))}
+          </div>
+          <div>
+            {MBTIPJ.map((mbtiObject) => (
+              <StyledMBTIButton2
+                onClick={clickMBTIButton}
+                id={mbtiObject.id}
+                value={mbtiObject.mbti}
+              >
+                {mbtiObject.mbti}
+              </StyledMBTIButton2>
+            ))}
+          </div>
+        </StyledLableDiv>
+        <Button onclick={clickStartButton} text={"start"} />
 
-      <StyledLableDiv>
-        <StyledBoldLable>방문수</StyledBoldLable>
-        <StyledCountLable>0</StyledCountLable>
-        <StyledBoldLable>공유수</StyledBoldLable>
-        <StyledCountLable>0</StyledCountLable>
-      </StyledLableDiv>
-      <div>
-        <ShareToKakao />
-        <ShareToLink />
-      </div>
-    </StyledBackground>
+        <StyledLableDiv>
+          <StyledBoldLable>방문수</StyledBoldLable>
+          <StyledCountLable>0</StyledCountLable>
+          <StyledBoldLable>공유수</StyledBoldLable>
+          <StyledCountLable>0</StyledCountLable>
+        </StyledLableDiv>
+        <StyledSnsContainerBox>
+          <ShareToKakao />
+          <ShareToLink />
+        </StyledSnsContainerBox>
+      </StyledContainBox>
+    </StyledBackgroundBox>
   );
 }
 
 const StyledLableDiv = styled.div`
   display: flex;
-`;
-
-const StyledBackground = styled.div`
-  background-color: #dcbc8c;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
 
 const StyledLable = styled.label`
@@ -203,15 +202,24 @@ const StyledCountLable = styled.div`
   text-align: center;
 `;
 
-const StyledMBTIButton = styled.button`
-  margin: 4px;
-  width: 50px;
-  height: 50px;
-
-  border: 1px solid;
-  /* background-color: ${(props) => (props.isClick ? `black` : `white`)}; */
+const StyledButton = styled.button`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 8px 20px;
+  gap: 10px;
+  width: 340px;
+  height: 56px;
+  background: #ffcd5d;
+  box-shadow: 5px 5px;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  &:hover {
+    background-color: #ff9c4f;
+  }
 `;
-
 const StyledMBTIButton2 = styled.button`
   display: flex;
   margin: 4px;
