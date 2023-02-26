@@ -3,6 +3,6 @@ export type User = {
   name?: string;
 };
 
-export type Logs = {
+export type UsageLogs = {
   type: number;
 };
