@@ -4,30 +4,33 @@ import { ReactComponent as PasteButton } from "/src/assets/svgs/paste-button.svg
 import { Header } from "@components/common/Header";
 import { Button } from "@components/common/Button";
 import { user } from "../../../test-data/get-user.json";
+import axios from "axios";
 
 export const ShareLink = () => {
   useEffect(() => {
-    // fetch()
-    //   .then((response: any) => response.json())
-    //   .then((data: any) => {
-    //     setIsLoading(true);
-    //     setMbti(data.mbti);
-    //     setCount(data.participantCount);
-    //   })
-    //   .catch((error) => alert("데이터를 불러오는데 실패했습니다!"));
+    fetch("/api/users/ABEDF12RFe", {
+      method: "GET",
+    })
+      .then((response: any) => response.json())
+      .then((data: any) => {
+        setIsLoading(false);
+        setMbti(data.mbti);
+        setCount(data.participants.length);
+      })
+      .catch((error) => alert("데이터를 불러오는데 실패했습니다!"));
   }, []);
 
   //로딩
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // 유저가 설정한 MBTI
-  const [mbti, setMbti] = useState<string>("INTJ");
+  const [mbti, setMbti] = useState<string>("");
   // 유저에게 답변해준 사람들
-  const [count, setCount] = useState<number>(12);
+  const [count, setCount] = useState<number>();
 
   // 복사링크 div
   const [url, setUrl] = useState<string>(
-    "https://www.figma.com/file/QmLCywemGgYQ3WB9SQtjur/MBTI-%EB%AA%85%ED%83%90%EC%A0%95?node-id=5%3A186&t=Gejc0T5t1QIPxOmR-0",
+    `https://mbti-detective.vercel.app/${"key"}`,
   );
   //복사링크 핸들러
 
@@ -56,7 +59,7 @@ export const ShareLink = () => {
           현재 <StyledCountSpan>{count}</StyledCountSpan> 명에게 <br />
           답변을 받았어요!
         </StyledReplySpan>
-        <Button text={"답변 보러가기"} />
+        <Button onclick={} text={"답변 보러가기"} />
       </StyledContainer>
     );
   }
