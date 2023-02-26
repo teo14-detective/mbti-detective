@@ -10,8 +10,7 @@ import {
 import useMakeName from "@hooks/useMakeName";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import styled, { createGlobalStyle } from "styled-components";
-import useMakeMBTI from "./../hooks/useMakeMBTI";
+import styled from "styled-components";
 import useCounterFetch from "./../hooks/useCounterFetch";
 import { Header } from "@components/mainPage/Header";
 import ShareToKakao from "@components/mainPage/ShareToKakao";
@@ -22,14 +21,12 @@ export default function QuizMainPage() {
   const navigate = useNavigate();
 
   const [serverName, setServerName] = useState("");
-  const [mbti, setMbti] = useState("");
 
   useEffect(() => {
     fetch(`/api/users/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setServerName(data.name);
-        setMbti(data.mbti);
       })
       .catch((err) => console.log("사용자에러", err));
   }, []);

@@ -1,3 +1,8 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import styled from "styled-components";
+import useMakeMBTI from "./../hooks/useMakeMBTI";
+import useCounterFetch from "./../hooks/useCounterFetch";
 import { Button } from "@components/common/Button2";
 import {
   StyledBackgroundBox,
@@ -8,14 +13,10 @@ import {
 } from "@components/common/Container";
 
 import useMakeName from "@hooks/useMakeName";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import styled, { createGlobalStyle } from "styled-components";
-import useMakeMBTI from "./../hooks/useMakeMBTI";
-import useCounterFetch from "./../hooks/useCounterFetch";
 import { Header } from "@components/mainPage/Header";
 import ShareToKakao from "@components/mainPage/ShareToKakao";
 import ShareToLink from "@components/mainPage/ShareToLink";
+import ImageSlide from "@components/mainPage/ImageSlide";
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -84,7 +85,7 @@ export default function MainPage() {
     <StyledBackgroundBox>
       <StyledContainBox>
         <Header />
-        <div>슬라이드</div>
+        <ImageSlide />
         <StyledLable>이름을 입력해주세요</StyledLable>
         <StyledNameInput type="text" value={name} onChange={changeName} />
         <StyledLable>MBTI는 무엇인가요?</StyledLable>
