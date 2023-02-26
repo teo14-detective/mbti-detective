@@ -1,3 +1,4 @@
+import ShareToKakao from "@components/ShareToKakao";
 import React, { useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 
@@ -73,7 +74,7 @@ export default function MainPage() {
       <label>방문수</label> <label>0</label>
       <label>공유수</label> <label>0</label>
       <StyledFlexGrid>
-        <button>카카오톡</button>
+        <ShareToKakao />
         <button>링크</button>
       </StyledFlexGrid>
     </Container>
