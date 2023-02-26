@@ -1,6 +1,7 @@
 import { Button } from "@components/common/Button";
 import ShareToKakao from "@components/ShareToKakao";
 import ShareToLink from "@components/ShareToLink";
+import useMakeName from "@hooks/useMakeName";
 import React, { useEffect, useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import useMakeMBTI from "./../hooks/useMakeMBTI";
@@ -40,11 +41,20 @@ export default function MainPage() {
   // ];
 
   const { MBTIResultArray, isClick, clickMBTIButton } = useMakeMBTI();
+  const { name, changeName } = useMakeName();
 
   function clickStartButton() {
-    MBTIResultArray.includes("")
-      ? alert("MBTI를 완성해주세요!")
-      : console.log(MBTIResultArray.join(""));
+    if (MBTIResultArray.includes("")) return alert("MBTI를 완성해주세요!");
+
+    fetch("/api/users", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        mbti: MBTIResultArray.join(""),
+      }),
+    }).then((response) => console.log(response));
   }
 
   return (
@@ -52,7 +62,7 @@ export default function MainPage() {
       <StyledLogoImage src="src/assets/images/logo.png" alt="로고" />
       <div>슬라이드</div>
       <StyledLable>이름을 입력해주세요</StyledLable>
-      <StyledNameInput type="text" />
+      <StyledNameInput type="text" value={name} onChange={changeName} />
       <StyledLable>MBTI는 무엇인가요?</StyledLable>
       {/* <div>
         {MBTIFirstRow.map((mbtiObject) => (
