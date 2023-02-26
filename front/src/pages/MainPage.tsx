@@ -14,6 +14,13 @@ import styled, { createGlobalStyle } from "styled-components";
 import useMakeMBTI from "./../hooks/useMakeMBTI";
 
 export default function MainPage() {
+  useEffect(() => {
+    fetch("https://mbti-detective-back.vercel.app/api/share/plus")
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log("공유/방문자수 받아오는 err", err));
+  }, []);
+
   const MBTIIE = [
     { id: "0", mbti: "I" },
     { id: "0", mbti: "E" },
@@ -49,15 +56,17 @@ export default function MainPage() {
 
   const { MBTIResultArray, isClick, clickMBTIButton } = useMakeMBTI();
   const { name, changeName } = useMakeName();
-
+  console.log(
+    JSON.stringify({
+      name,
+      mbti: MBTIResultArray.join(""),
+    }),
+  );
   function clickStartButton() {
     if (MBTIResultArray.includes("")) return alert("MBTI를 완성해주세요!");
 
-    fetch("http://localhost:3000/api/users", {
+    fetch("https://mbti-detective-back.vercel.app/api/users", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: JSON.stringify({
         name,
         mbti: MBTIResultArray.join(""),
