@@ -46,7 +46,8 @@ export default function MainPage() {
   function clickStartButton() {
     if (MBTIResultArray.includes("")) return alert("MBTI를 완성해주세요!");
 
-    fetch("/api/users", {
+    fetch("http://localhost:3000/api/users", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -54,7 +55,10 @@ export default function MainPage() {
         name,
         mbti: MBTIResultArray.join(""),
       }),
-    }).then((response) => console.log(response));
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   }
 
   return (
