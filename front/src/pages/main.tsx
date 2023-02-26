@@ -9,7 +9,18 @@ export default function MainPage() {
       <label>이름을 입력해주세요</label>
       <input type="text" />
       <label>MBTI는 무엇인가요?</label>
-      <div>버튼</div>
+      <StyledButtonGrid>
+        <StyledMBTIButton>I</StyledMBTIButton>
+        <StyledMBTIButton>N</StyledMBTIButton>
+        <StyledMBTIButton>F</StyledMBTIButton>
+        <StyledMBTIButton>P</StyledMBTIButton>
+      </StyledButtonGrid>
+      <StyledButtonGrid>
+        <StyledMBTIButton>E</StyledMBTIButton>
+        <StyledMBTIButton>S</StyledMBTIButton>
+        <StyledMBTIButton>T</StyledMBTIButton>
+        <StyledMBTIButton>J</StyledMBTIButton>
+      </StyledButtonGrid>
       <button>start</button>
       <label>방문수</label> <label>0</label>
       <label>공유수</label> <label>0</label>
@@ -23,4 +34,15 @@ const Container = styled.div`
   padding: 16px;
   margin: 16px auto;
   max-width: 430px;
+`;
+
+const StyledButtonGrid = styled.div`
+  display: flex;
+`;
+
+const StyledMBTIButton = styled.button`
+  width: 50px;
+  height: 50px;
+
+  border: 1px solid;
 `;
