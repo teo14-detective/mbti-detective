@@ -37,6 +37,7 @@ export const ShareLink = () => {
     });
   };
 
+
   if (isLoading) {
     return <div>로딩중</div>;
   } else {
@@ -60,6 +61,7 @@ export const ShareLink = () => {
       </StyledContainer>
     );
   }
+
 };
 
 const StyledContainer = styled.div`
