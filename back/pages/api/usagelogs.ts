@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createClient } from "@supabase/supabase-js";
+import { UsageLogs } from "../../interfaces";
 
 // Create a single supabase client for interacting with your database
 const supabase = createClient(
@@ -16,23 +17,13 @@ export default async function userHandler(
   switch (method) {
     case "GET":
       let { data, error, count, status, statusText } = await supabase
-        .from("users")
+        .from("usage_logs")
         .select(
           `
-          uid,
-          key,
-          name,
-          mbti,
-          create_timestamp,
-          participants (
-            uid,
-            user_mbti,
-            user_key,
-            name
-          )
+        type
         `
         )
-        .range(0, 1);
+        .neq("type", 0);
 
       if (error) {
         console.log(error);
@@ -40,21 +31,14 @@ export default async function userHandler(
         break;
       }
 
-      if (count === 0) {
-        res.status(404).json({ message: "User not found" });
-        break;
-      }
+      let hit = data.filter((data: UsageLogs) => data.type === 1).length;
+      let share = data.filter((data: UsageLogs) => data.type === 2).length;
 
-      const user = data[0];
       console.log(data);
-      res.status(status).json(user);
-      break;
-    case "PUT":
-      // Update or create data in your database
-      res.status(200).json({ id, name: name || `User ${id}` });
+      res.status(status).json({ hit, share });
       break;
     default:
-      res.setHeader("Allow", ["GET", "PUT"]);
+      res.setHeader("Allow", ["GET"]);
       res.status(405).end(`Method ${method} Not Allowed`);
   }
 }

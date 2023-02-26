@@ -12,17 +12,15 @@ export default async function userHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { method } = req;
+  const { body, method } = req;
+  const { user_key, name, mbti } = body;
 
   switch (method) {
-    case "GET":
+    case "POST":
       let { data, error, count, status, statusText } = await supabase
-        .from("usage_logs")
-        .select(
-          `
-        type
-        `
-        );
+        .from("participants")
+        .insert({ name, user_key, user_mbti: mbti })
+        .eq("key", user_key);
 
       if (error) {
         console.log(error);
@@ -30,14 +28,10 @@ export default async function userHandler(
         break;
       }
 
-      let hit = data.filter((data: Logs) => data.type === 1).length;
-      let share = data.filter((data: Logs) => data.type === 2).length;
-
-      console.log(data);
-      res.status(status).json({ hit, share });
+      res.status(status).json(data);
       break;
     default:
-      res.setHeader("Allow", ["GET"]);
+      res.setHeader("Allow", ["POST"]);
       res.status(405).end(`Method ${method} Not Allowed`);
   }
 }
