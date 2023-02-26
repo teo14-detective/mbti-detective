@@ -1,5 +1,6 @@
 import { Button } from "@components/common/Button";
 import ShareToKakao from "@components/ShareToKakao";
+import ShareToLink from "@components/ShareToLink";
 import React, { useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 
@@ -78,7 +79,7 @@ export default function MainPage() {
       </StyledLableDiv>
       <div>
         <ShareToKakao />
-        <button>링크</button>
+        <ShareToLink />
       </div>
     </StyledBackground>
   );
