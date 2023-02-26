@@ -1,11 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@supabase/supabase-js';
-import { UsageLogs } from '../../interfaces';
 
 // Create a single supabase client for interacting with your database
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
-export default async function userHandler(req: NextApiRequest, res: NextApiResponse) {
+export default async function userHandler(req, res) {
   const { method } = req;
 
   switch (method) {
@@ -28,8 +26,8 @@ export default async function userHandler(req: NextApiRequest, res: NextApiRespo
         break;
       }
 
-      let hit = data.filter((data: UsageLogs) => data.type === 1).length;
-      let share = data.filter((data: UsageLogs) => data.type === 2).length;
+      let hit = data.filter((data) => data.type === 1).length;
+      let share = data.filter((data) => data.type === 2).length;
 
       console.log(data);
       res.status(status).json({ hit, share });
