@@ -81,7 +81,7 @@ export default function MainPage() {
   return (
     <StyledBackgroundBox>
       <StyledContainBox>
-        <StyledLogoImage src="src/assets/images/logo.png" alt="로고" />
+        <StyledLogoImage src="/public/logo.png" alt="로고" />
         <div>슬라이드</div>
         <StyledLable>이름을 입력해주세요</StyledLable>
         <StyledNameInput type="text" value={name} onChange={changeName} />
