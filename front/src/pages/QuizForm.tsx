@@ -11,10 +11,36 @@ export default function QuizForm() {
   const [status, setStatus] = useState<number>(0);
   const [answer, setAnswer] = useState<string[]>([]);
 
+  async function request() {
+    const response = await fetch("/api/participants", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: "아무개4",
+        user_key: "ABEDF12RFe",
+        mbti: answer.join(""),
+      }),
+    }).then(async (res) => console.log(await res.json()));
+  }
+
   const handleNextQuestion = (e: React.MouseEvent<HTMLButtonElement>) => {
     setAnswer([...answer, (e.target as HTMLButtonElement).value]);
     if (status === 3) {
       // api 호출(결과 전송)
+      // fetch("/api/participants", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     name: "아무개4",
+      //     user_key: "ABEDF12RFe",
+      //     mbti: answer.join(""),
+      //   }),
+      // }).then(async (res) => console.log(await res.json()));
+      request();
     }
     setStatus((prev) => prev + 1);
   };
