@@ -34,7 +34,7 @@ const StyledTitleBox = styled.div`
 
 const StyledImagesBox = styled.div`
   display: flex;
-  width: 90%;
+  width: 100%;
   justify-content: space-around;
   margin-bottom: 30px;
 `;
@@ -54,8 +54,8 @@ const StyledImage = styled.img`
 `;
 
 const StyledParagraphBox = styled.div`
-  width: 125px;
-  height: 22px;
+  /* width: 125px;
+  height: 22px; */
   font-family: "theJamsil";
   font-style: normal;
   font-weight: 500;
@@ -84,6 +84,7 @@ const StyledResultSentenceParagraph = styled.p`
   text-align: center;
   vertical-align: middle;
   white-space: pre-line;
+  line-height: 20px; //줄높이가 안맞아서 임의 수정함
 `;
 const StyledButton = styled.button`
   display: flex;
@@ -118,8 +119,8 @@ const StyledParagraph = styled.p`
 `;
 
 const StyledResultContainerBox = styled.div`
-  width: 316px;
-  height: 119px;
+  /* width: 316px;
+  height: 119px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -223,9 +224,9 @@ function ParticipantResult() {
                 {isEqual ? "정답!" : "땡!"}
               </StyledResultTextBox>
               <StyledResultSentenceParagraph>
-                {`${user}님의 MBTI는 ${userMbti}입니다.
-          ${participant}님의 응답 결과가
-          ${user}님에게 전송되었습니다.`}
+                {`${user}님의 MBTI는 ${userMbti}입니다.\n
+                  ${participant}님의 응답 결과가
+                  ${user}님에게 전송되었습니다.`}
               </StyledResultSentenceParagraph>
             </StyledResultContainerBox>
 
