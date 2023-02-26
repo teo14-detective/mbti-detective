@@ -72,6 +72,7 @@ export default function MainPage() {
     })
       .then(async (res) => await res.json())
       .then(async (data) => {
+        await localStorage.clear();
         await localStorage.setItem("UserKey", `${data.key}`);
         await navigate("/share");
       });
@@ -155,7 +156,12 @@ export default function MainPage() {
             ))}
           </div>
         </StyledLableDiv>
-        <Button onclick={clickStartButton} text={"start"} className="bottom" />
+
+        <Button
+          onclick={() => clickStartButton()}
+          text={"start"}
+          className={"bottom"}
+        />
 
         <StyledLableDiv>
           <StyledBoldLable>방문수</StyledBoldLable>
@@ -231,6 +237,10 @@ const StyledButton = styled.button`
 `;
 const StyledMBTIButton2 = styled.button`
   display: flex;
+  margin: 4px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
   align-items: center;
   justify-content: center;
 
