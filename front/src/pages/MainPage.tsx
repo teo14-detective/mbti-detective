@@ -1,3 +1,4 @@
+import { Button } from "@components/common/Button";
 import ShareToKakao from "@components/ShareToKakao";
 import React, { useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
@@ -66,9 +67,9 @@ export default function MainPage() {
           </StyledMBTIButton>
         ))}
       </div>
-      <div>
-        <button onClick={clickStartButton}>start</button>
-      </div>
+
+      <Button onclick={clickStartButton} text={"start"} />
+
       <StyledLableDiv>
         <StyledBoldLable>방문수</StyledBoldLable>
         <StyledCountLable>0</StyledCountLable>
