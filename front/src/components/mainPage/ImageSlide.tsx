@@ -19,10 +19,7 @@ export default function ImageSlide() {
 }
 const Container = styled.div`
   position: relative;
-  margin: auto;
   width: 70%;
-  max-width: 800px;
-  height: 80%;
 `;
 
 const firstAnimation = keyframes`
