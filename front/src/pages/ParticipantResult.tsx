@@ -8,6 +8,7 @@ import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Loading from "./common/Loading";
 import { Header } from "@components/common/Header";
+import { userKey, participantName } from "@utils/getLocalStorageKey";
 
 const StyledImagesBox = styled.div`
   display: flex;
@@ -146,10 +147,8 @@ function ParticipantResult() {
 
   const [fetchData, setFetchData] = useState<fetchDataType>();
   const [isLoading, setisLoading] = useState(true);
-  const params = useParams();
-  const userkey = params.userkey;
   useEffect(() => {
-    fetch(`/api/users/${userkey}`, {
+    fetch(`/api/users/${userKey}`, {
       method: "GET",
     })
       .then((response) => {
@@ -166,18 +165,16 @@ function ParticipantResult() {
         setisLoading(false);
       });
   }, []);
-
-  let participantMbti = "";
-  const paramsName = localStorage.getItem("name");
+  console.log(fetchData);
+  const [participantMbti, setParticipantMbti] = useState("");
   const participantsArray: participantsArrayType[] | undefined =
     fetchData?.participants;
-  participantsArray?.map((elem) => {
-    if (elem.name === paramsName) {
-      participantMbti = elem.user_mbti;
+  participantsArray?.forEach((elem) => {
+    if (elem.name === participantName) {
+      setParticipantMbti(elem.user_mbti);
     }
   });
   const userMbti = fetchData?.mbti;
-  const participant = paramsName;
   const user = fetchData?.name;
   const [isEqual, setIsEqual] = useState<boolean>(participantMbti === userMbti);
   return (
@@ -190,7 +187,9 @@ function ParticipantResult() {
             <Header />
             <StyledImagesBox>
               <StyledImageBox>
-                <StyledParagraphBox>{participant}의 생각</StyledParagraphBox>
+                <StyledParagraphBox>
+                  {participantName}의 생각
+                </StyledParagraphBox>
                 <StyledImage
                   src={`/src/assets/images/mbti-text/${participantMbti}.png`}
                   alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
@@ -211,7 +210,7 @@ function ParticipantResult() {
               </StyledResultTextBox>
               <StyledResultSentenceParagraph>
                 {`${user ?? ""}님의 MBTI는 ${userMbti ?? ""}입니다.\n
-                  ${participant ?? ""}님의 응답 결과가
+                  ${participantName ?? ""}님의 응답 결과가
                   ${user ?? ""}님에게 전송되었습니다.`}
               </StyledResultSentenceParagraph>
             </StyledResultContainerBox>
