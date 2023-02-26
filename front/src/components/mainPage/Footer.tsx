@@ -33,6 +33,8 @@ export const Footer = () => {
 
 const StyledLableDiv = styled.div`
   display: flex;
+  width: 289px;
+  justify-content: space-evenly;
 `;
 
 const StyledBoldLable = styled.label`

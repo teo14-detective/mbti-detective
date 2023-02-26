@@ -15,16 +15,18 @@ export default function ShareToLink() {
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
   };
-  const IconImage = styled.img`
-    position: absolute;
-    top: 11px;
-    left: 11px;
-    width: 32px;
-    height: 32px;
-  `;
+
   return (
     <button onClick={clickLinkButton}>
-      <img src={LinkIcon} alt="링크 공유 버튼" />
+      <IconImage src={LinkIcon} alt="링크 공유 버튼" />
     </button>
   );
 }
+
+const IconImage = styled.img`
+  position: absolute;
+  top: 11px;
+  left: 11px;
+  width: 32px;
+  height: 32px;
+`;
