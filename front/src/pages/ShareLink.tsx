@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { ReactComponent as PasteButton } from "/src/assets/svgs/paste-button.svg";
-import { Header } from "styles/Header";
-import { Button } from "styles/Button";
+import { Header } from "@components/common/Header";
+import { Button } from "@components/common/Button";
 
 export const ShareLink = () => {
   // 유저가 설정한 MBTI
