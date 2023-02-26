@@ -1,27 +1,13 @@
 import React, { useEffect, useState } from "react";
+import {
+  StyledBackgroundBox,
+  StyledContainBox,
+  StyledTitleContainBox,
+} from "@components/common/Container";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import userJSONData from "../../../test-data/get-user.json";
 
-const StyledBackgroundBox = styled.div`
-  background-color: #dcbc8c;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-`;
-const StyledContainBox = styled.div`
-  width: 430px;
-  height: 844px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-const StyledTitleContainBox = styled.div`
-  width: 390px;
-  height: 220px;
-  position: relative;
-`;
 const StyledTitleBox = styled.div`
   position: absolute;
   width: 180px;
@@ -161,36 +147,55 @@ function ParticipantResult() {
     participantMbti: string;
     userMbti: string;
   };
-  const userData = userJSONData.user;
-  const resultObject: MbtiVariablesType = {
-    participant: userData.participants[0].name,
-    user: userData.name,
-    participantMbti: userData.participants[0].mbti,
-    userMbti: userData.mbti,
+  type participantsArrayType = {
+    uid: number;
+    user_mbti: string;
+    user_key: string;
+    name: string;
   };
-  const participantMbti = resultObject.participantMbti;
-  const userMbti = resultObject.userMbti;
-  const participant = resultObject.participant;
-  const user = resultObject.user;
-  const [isEqual, setIsEqual] = useState<boolean>(
-    resultObject.participantMbti === resultObject.userMbti,
-  );
-  const [fetchData, setFetchData] = useState();
-  const [isLoading, setisLoading] = useState(false);
-  // useEffect(() => {
-  //   fetch(`http://127.0.0.1:5173/participant-result-${uniqueid}`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setisLoading(true);
-  //       setFetchData(data);
-  //       setisLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       alert("데이터를 불러오는데 실패했습니다!");
-  //       setisLoading(false);
-  //     });
-  // }, []);
+  type fetchDataType = {
+    create_timestamp: string;
+    key: string;
+    mbti: string;
+    name: string;
+    participants: participantsArrayType[];
+  };
 
+  const [fetchData, setFetchData] = useState<fetchDataType>();
+  const [isLoading, setisLoading] = useState(true);
+  useEffect(() => {
+    fetch(`https://mbti-detective-back.vercel.app/api/users/${"ABEDF12RFe"}`, {
+      method: "GET",
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+      })
+      .then((data) => {
+        setFetchData(data);
+        console.log(fetchData);
+        setisLoading(false);
+      })
+      .catch((error) => {
+        alert("데이터를 불러오는데 실패했습니다!");
+        setisLoading(false);
+      });
+  }, []);
+
+  let participantMbti = "";
+  const paramsName = localStorage.getItem("name");
+  const participantsArray: participantsArrayType[] | undefined =
+    fetchData?.participants;
+  participantsArray?.map((elem) => {
+    if (elem.name === paramsName) {
+      participantMbti = elem.user_mbti;
+    }
+  });
+  const userMbti = fetchData?.mbti;
+  const participant = paramsName;
+  const user = fetchData?.name;
+  const [isEqual, setIsEqual] = useState<boolean>(participantMbti === userMbti);
   return (
     <StyledBackgroundBox>
       <StyledContainBox>
@@ -206,9 +211,7 @@ function ParticipantResult() {
           <div>
             <StyledImagesBox>
               <StyledImageBox>
-                <StyledParagraphBox>
-                  {resultObject.participant}의 생각
-                </StyledParagraphBox>
+                <StyledParagraphBox>{participant}의 생각</StyledParagraphBox>
                 <StyledImage
                   src={`src/assets/images/mbti-text/${participantMbti}.png`}
                   alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
@@ -228,14 +231,14 @@ function ParticipantResult() {
                 {isEqual ? "정답!" : "땡!"}
               </StyledResultTextBox>
               <StyledResultSentenceParagraph>
-                {`${user}님의 MBTI는 ${userMbti}입니다.\n
-                  ${participant}님의 응답 결과가
-                  ${user}님에게 전송되었습니다.`}
+                {`${user ?? ""}님의 MBTI는 ${userMbti ?? ""}입니다.\n
+                  ${participant ?? ""}님의 응답 결과가
+                  ${user ?? ""}님에게 전송되었습니다.`}
               </StyledResultSentenceParagraph>
             </StyledResultContainerBox>
 
             <StyledAnchorBox>
-              <Link to="/result">{user}님의 결과 보기</Link>
+              <Link to="/result">{user ?? ""}님의 결과 보기</Link>
             </StyledAnchorBox>
 
             <Link to="/">
