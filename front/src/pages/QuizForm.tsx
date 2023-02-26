@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useMakeRandomQuestion } from "@hooks/useMakeRandomQuestion";
+import { makeRandomQuestion } from "@utils/makeRandomQuestion";
 import iconTarget from "@assets/images/icon/icon-target.png";
+import { Button } from "@components/common/Button";
+import { Header } from "@components/common/Header";
 
 export default function QuizForm() {
-  const [questions, answerText] = useMakeRandomQuestion();
+  const [questions, answerText] = makeRandomQuestion();
   const questionType = ["IE", "SN", "TF", "JP"];
   const [status, setStatus] = useState<number>(0);
   const [answer, setAnswer] = useState<string[]>([]);
@@ -18,41 +20,42 @@ export default function QuizForm() {
   };
 
   return (
-    <StyledContainer>
-      <button>뒤로가기</button>
-      <h1>MBTI 명탐정</h1>
-      <StyledStatusBox>
-        <StyledStatusBarBox width={status * 25}>
-          <StyledTargetImage src={iconTarget} />
-        </StyledStatusBarBox>
-      </StyledStatusBox>
-      {status < 4 && questions && answerText ? (
-        <StyledQuestionContainer>
-          <StyledQuestionTitle>Q{status + 1}</StyledQuestionTitle>
-          <StyledStatusSpan>({status + 1}/4)</StyledStatusSpan>
-          <StyledQuestionBox>{questions[status]}</StyledQuestionBox>
-          <StyledButtonsBox>
-            <StyledButton
-              className="top"
-              onClick={handleNextQuestion}
-              value={questionType[status].split("")[0]}
-            >
-              {answerText[status][0]}
-            </StyledButton>
-            <StyledButton
-              className="bottom"
-              onClick={handleNextQuestion}
-              value={questionType[status].split("")[1]}
-            >
-              {answerText[status][1]}
-            </StyledButton>
-          </StyledButtonsBox>
-        </StyledQuestionContainer>
-      ) : (
-        <></>
-      )}
-      <div>결과:{...answer}</div>
-    </StyledContainer>
+    <>
+      <Header />
+      <StyledContainer>
+        <StyledStatusBox>
+          <StyledStatusBarBox width={status * 25}>
+            <StyledTargetImage src={iconTarget} />
+          </StyledStatusBarBox>
+        </StyledStatusBox>
+        {status < 4 && questions && answerText ? (
+          <StyledQuestionContainer>
+            <StyledQuestionTitle>Q{status + 1}</StyledQuestionTitle>
+            <StyledStatusSpan>({status + 1}/4)</StyledStatusSpan>
+            <StyledQuestionBox>{questions[status]}</StyledQuestionBox>
+            <StyledButtonsBox>
+              <Button
+                className="top"
+                onClick={handleNextQuestion}
+                value={questionType[status].split("")[0]}
+              >
+                {answerText[status][0]}
+              </Button>
+              <Button
+                className="bottom"
+                onClick={handleNextQuestion}
+                value={questionType[status].split("")[1]}
+              >
+                {answerText[status][1]}
+              </Button>
+            </StyledButtonsBox>
+          </StyledQuestionContainer>
+        ) : (
+          <></>
+        )}
+        <div>결과:{...answer}</div>
+      </StyledContainer>
+    </>
   );
 }
 const StyledContainer = styled.section`

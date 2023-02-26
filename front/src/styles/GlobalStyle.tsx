@@ -56,8 +56,14 @@ export const GlobalStyle = createGlobalStyle`
 
     :root {
         font-family: "theJamsil";
+        background-color: #DCBC8C;
     }
 
+    #root {
+        max-width: 430px;
+        margin: 0 auto;
+    }
+    
     a {
         text-decoration: none;
         color: inherit;
@@ -76,9 +82,7 @@ export const GlobalStyle = createGlobalStyle`
         list-style: none;
     }
 `;
-// * {
-//     box-sizing: border-box;
-//   }
+
 // body{
 //     background-color: #ffffff;
 //     font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; //여기서 쓰시는 폰트 설정하시면 될것같습니다.
