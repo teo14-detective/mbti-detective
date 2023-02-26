@@ -1,0 +1,8 @@
+POST http://localhost:3000/api/participants HTTP/1.1
+content-type: application/json
+
+{
+    "name": "아무개4",
+    "user_key": "ABEDF12RFe",
+    "mbti": "estp"
+}

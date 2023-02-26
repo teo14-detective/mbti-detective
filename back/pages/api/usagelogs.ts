@@ -1,29 +1,26 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { createClient } from "@supabase/supabase-js";
-import { UsageLogs } from "../../interfaces";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { createClient } from '@supabase/supabase-js';
+import { UsageLogs } from '../../interfaces';
 
 // Create a single supabase client for interacting with your database
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY
-);
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
-export default async function userHandler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function userHandler(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req;
 
   switch (method) {
-    case "GET":
+    case 'GET':
+      // 조회수 1 추가
+      await supabase.from('usage_logs').insert([{ type: 1, url: req.url }]);
+
       let { data, error, count, status, statusText } = await supabase
-        .from("usage_logs")
+        .from('usage_logs')
         .select(
           `
         type
         `
         )
-        .neq("type", 0);
+        .neq('type', 0);
 
       if (error) {
         console.log(error);
@@ -38,7 +35,7 @@ export default async function userHandler(
       res.status(status).json({ hit, share });
       break;
     default:
-      res.setHeader("Allow", ["GET"]);
+      res.setHeader('Allow', ['GET']);
       res.status(405).end(`Method ${method} Not Allowed`);
   }
 }
