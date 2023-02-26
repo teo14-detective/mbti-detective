@@ -13,15 +13,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import styled, { createGlobalStyle } from "styled-components";
 import useMakeMBTI from "./../hooks/useMakeMBTI";
+import useCounterFetch from "./../hooks/useCounterFetch";
 
 export default function MainPage() {
   const navigate = useNavigate();
-  useEffect(() => {
-    fetch("/api/usageLogs")
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log("공유/방문자수 받아오는 err", err));
-  }, []);
+
+  const { hitCount, shareCount } = useCounterFetch();
 
   const MBTIIE = [
     { id: "0", mbti: "I" },
@@ -162,9 +159,9 @@ export default function MainPage() {
 
         <StyledLableDiv>
           <StyledBoldLable>방문수</StyledBoldLable>
-          <StyledCountLable>0</StyledCountLable>
+          <StyledCountLable>{hitCount}</StyledCountLable>
           <StyledBoldLable>공유수</StyledBoldLable>
-          <StyledCountLable>0</StyledCountLable>
+          <StyledCountLable>{shareCount}</StyledCountLable>
         </StyledLableDiv>
         <StyledSnsContainerBox>
           <ShareToKakao />

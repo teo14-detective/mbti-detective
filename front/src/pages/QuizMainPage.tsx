@@ -13,6 +13,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import styled, { createGlobalStyle } from "styled-components";
 import useMakeMBTI from "./../hooks/useMakeMBTI";
+import useCounterFetch from "./../hooks/useCounterFetch";
 
 export default function QuizMainPage() {
   const { id } = useParams();
@@ -32,6 +33,7 @@ export default function QuizMainPage() {
   }, []);
 
   const { name, changeName } = useMakeName();
+  const { hitCount, shareCount } = useCounterFetch();
 
   function clickStartButton() {
     if (!name) return alert("이름를 입력해주세요!");
@@ -64,9 +66,9 @@ export default function QuizMainPage() {
 
         <StyledLableDiv>
           <StyledBoldLable>방문수</StyledBoldLable>
-          <StyledCountLable>0</StyledCountLable>
+          <StyledCountLable>{hitCount}</StyledCountLable>
           <StyledBoldLable>공유수</StyledBoldLable>
-          <StyledCountLable>0</StyledCountLable>
+          <StyledCountLable>{shareCount}</StyledCountLable>
         </StyledLableDiv>
         <StyledSnsContainerBox>
           <ShareToKakao />
@@ -148,7 +150,6 @@ const StyledMBTIButton2 = styled.button`
   font-size: 40px;
   border: 1px solid;
   border-radius: 6px;
-  /* background-color: ${(props) => (props.isClick ? `black` : `white`)}; */
 
   gap: 10px;
 
