@@ -38,15 +38,13 @@ export default function MainPage() {
   }
 
   return (
-    <Container>
-      <img src="src/assets/images/logo.png" alt="로고" />
+    <StyledBackground>
+      <StyledLogoImage src="src/assets/images/logo.png" alt="로고" />
       <div>슬라이드</div>
-      <StyledFlexGrid>
-        <label>이름을 입력해주세요</label>
-        <input type="text" />
-      </StyledFlexGrid>
-      <label>MBTI는 무엇인가요?</label>
-      <StyledFlexGrid>
+      <StyledLable>이름을 입력해주세요</StyledLable>
+      <StyledNameInput type="text" />
+      <StyledLable>MBTI는 무엇인가요?</StyledLable>
+      <div>
         {MBTIFirstRow.map((mbtiObject) => (
           <StyledMBTIButton
             onClick={clickMBTIButton}
@@ -56,8 +54,8 @@ export default function MainPage() {
             {mbtiObject.mbti}
           </StyledMBTIButton>
         ))}
-      </StyledFlexGrid>
-      <StyledFlexGrid>
+      </div>
+      <div>
         {MBTISecondRow.map((mbtiObject) => (
           <StyledMBTIButton
             onClick={clickMBTIButton}
@@ -67,28 +65,71 @@ export default function MainPage() {
             {mbtiObject.mbti}
           </StyledMBTIButton>
         ))}
-      </StyledFlexGrid>
-      <StyledFlexGrid>
+      </div>
+      <div>
         <button onClick={clickStartButton}>start</button>
-      </StyledFlexGrid>
-      <label>방문수</label> <label>0</label>
-      <label>공유수</label> <label>0</label>
-      <StyledFlexGrid>
+      </div>
+      <StyledLableDiv>
+        <StyledBoldLable>방문수</StyledBoldLable>
+        <StyledCountLable>0</StyledCountLable>
+        <StyledBoldLable>공유수</StyledBoldLable>
+        <StyledCountLable>0</StyledCountLable>
+      </StyledLableDiv>
+      <div>
         <ShareToKakao />
         <button>링크</button>
-      </StyledFlexGrid>
-    </Container>
+      </div>
+    </StyledBackground>
   );
 }
 
-const Container = styled.div`
-  padding: 16px;
-  margin: 16px auto;
-  max-width: 430px;
+const StyledLableDiv = styled.div`
+  display: flex;
 `;
 
-const StyledFlexGrid = styled.div`
+const StyledBackground = styled.div`
+  background-color: #dcbc8c;
+  width: 100vw;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledLable = styled.label`
+  margin: 10px 0;
+  width: 320px;
+  text-align: center;
+`;
+
+const StyledNameInput = styled.input`
+  margin-bottom: 10px;
+  padding: 1px 10px;
+
+  width: 300px;
+  height: 40px;
+
+  font-size: larger;
+  background: #ffffff;
+  border: 1px solid #ad9777;
+  border-radius: 10px;
+`;
+
+const StyledLogoImage = styled.img`
+  margin-bottom: 50px;
+  width: 300px;
+`;
+
+const StyledBoldLable = styled.label`
+  display: flex;
+  width: 50px;
+  font-weight: 500;
+`;
+
+const StyledCountLable = styled.div`
+  width: 50px;
+  text-align: center;
 `;
 
 const StyledMBTIButton = styled.button`
