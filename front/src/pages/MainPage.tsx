@@ -159,7 +159,7 @@ export default function MainPage() {
             ))}
           </div>
         </StyledLableDiv>
-        <Button onclick={clickStartButton} text={"start"} />
+        <Button onclick={clickStartButton} text={"start"} className={"bottom"} />
 
         <StyledLableDiv>
           <StyledBoldLable>방문수</StyledBoldLable>
