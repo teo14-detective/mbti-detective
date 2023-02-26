@@ -13,15 +13,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import styled, { createGlobalStyle } from "styled-components";
 import useMakeMBTI from "./../hooks/useMakeMBTI";
+import useCounterFetch from "./../hooks/useCounterFetch";
 
 export default function MainPage() {
   const navigate = useNavigate();
-  useEffect(() => {
-    fetch("https://mbti-detective-back.vercel.app/api/share/plus")
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log("공유/방문자수 받아오는 err", err));
-  }, []);
+
+  const { hitCount, shareCount } = useCounterFetch();
 
   const MBTIIE = [
     { id: "0", mbti: "I" },
@@ -84,7 +81,7 @@ export default function MainPage() {
   return (
     <StyledBackgroundBox>
       <StyledContainBox>
-        <StyledLogoImage src="src/assets/images/logo.png" alt="로고" />
+        <StyledLogoImage src="/public/logo.png" alt="로고" />
         <div>슬라이드</div>
         <StyledLable>이름을 입력해주세요</StyledLable>
         <StyledNameInput type="text" value={name} onChange={changeName} />
@@ -159,13 +156,18 @@ export default function MainPage() {
             ))}
           </div>
         </StyledLableDiv>
-        <Button onclick={clickStartButton} text={"start"} className={"bottom"} />
+
+        <Button
+          onclick={() => clickStartButton()}
+          text={"start"}
+          className={"bottom"}
+        />
 
         <StyledLableDiv>
           <StyledBoldLable>방문수</StyledBoldLable>
-          <StyledCountLable>0</StyledCountLable>
+          <StyledCountLable>{hitCount}</StyledCountLable>
           <StyledBoldLable>공유수</StyledBoldLable>
-          <StyledCountLable>0</StyledCountLable>
+          <StyledCountLable>{shareCount}</StyledCountLable>
         </StyledLableDiv>
         <StyledSnsContainerBox>
           <ShareToKakao />
@@ -238,10 +240,22 @@ const StyledMBTIButton2 = styled.button`
   margin: 4px;
   width: 50px;
   height: 50px;
-
   border: 1px solid;
-  /* background-color: ${(props) => (props.isClick ? `black` : `white`)}; */
-
   align-items: center;
   justify-content: center;
+
+  margin: 4px;
+  padding: 6px 16px;
+
+  width: 70px;
+  height: 70px;
+
+  font-size: 40px;
+  border: 1px solid;
+  border-radius: 6px;
+
+  gap: 10px;
+
+  background: #b7b7b7;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25);
 `;
