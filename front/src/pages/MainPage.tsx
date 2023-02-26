@@ -1,42 +1,50 @@
 import { Button } from "@components/common/Button";
 import ShareToKakao from "@components/ShareToKakao";
 import ShareToLink from "@components/ShareToLink";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { createGlobalStyle } from "styled-components";
+import useMakeMBTI from "./../hooks/useMakeMBTI";
 
 export default function MainPage() {
-  const MBTIFirstRow = [
+  const MBTIIE = [
     { id: "0", mbti: "I" },
-    { id: "1", mbti: "N" },
-    { id: "2", mbti: "F" },
-    { id: "3", mbti: "P" },
-  ];
-  const MBTISecondRow = [
     { id: "0", mbti: "E" },
+  ];
+
+  const MBTINS = [
+    { id: "1", mbti: "N" },
     { id: "1", mbti: "S" },
+  ];
+
+  const MBTIFT = [
+    { id: "2", mbti: "F" },
     { id: "2", mbti: "T" },
+  ];
+
+  const MBTIPJ = [
+    { id: "3", mbti: "P" },
     { id: "3", mbti: "J" },
   ];
 
-  const [MBTIResultArray, setMBTIResultArray] = useState<string[]>([]);
+  // const MBTIFirstRow = [
+  //   { id: "0", mbti: "I" },
+  //   { id: "1", mbti: "N" },
+  //   { id: "2", mbti: "F" },
+  //   { id: "3", mbti: "P" },
+  // ];
+  // const MBTISecondRow = [
+  //   { id: "0", mbti: "E" },
+  //   { id: "1", mbti: "S" },
+  //   { id: "2", mbti: "T" },
+  //   { id: "3", mbti: "J" },
+  // ];
+
+  const { MBTIResultArray, isClick, clickMBTIButton } = useMakeMBTI();
 
   function clickStartButton() {
-    return MBTIResultArray.length !== 4
+    MBTIResultArray.includes("")
       ? alert("MBTI를 완성해주세요!")
       : console.log(MBTIResultArray.join(""));
-  }
-
-  function clickMBTIButton(e: React.MouseEvent<HTMLButtonElement>) {
-    const id = Number(e.currentTarget.id);
-
-    // id에 맞는 인덱스에 문자가 있다면, 클릭한 문자로 인덱스에 맞는 mbti 성향 바꿔주기
-    if (MBTIResultArray[id]) {
-      setMBTIResultArray(
-        MBTIResultArray.map((mbti, index) =>
-          id === index ? e.currentTarget.value : mbti,
-        ),
-      );
-    } else setMBTIResultArray([...MBTIResultArray, e.currentTarget.value]);
   }
 
   return (
@@ -46,12 +54,13 @@ export default function MainPage() {
       <StyledLable>이름을 입력해주세요</StyledLable>
       <StyledNameInput type="text" />
       <StyledLable>MBTI는 무엇인가요?</StyledLable>
-      <div>
+      {/* <div>
         {MBTIFirstRow.map((mbtiObject) => (
           <StyledMBTIButton
             onClick={clickMBTIButton}
             id={mbtiObject.id}
             value={mbtiObject.mbti}
+            isClick={isClick}
           >
             {mbtiObject.mbti}
           </StyledMBTIButton>
@@ -63,12 +72,58 @@ export default function MainPage() {
             onClick={clickMBTIButton}
             id={mbtiObject.id}
             value={mbtiObject.mbti}
+            isClick={isClick}
           >
             {mbtiObject.mbti}
           </StyledMBTIButton>
         ))}
-      </div>
-
+      </div> */}
+      <StyledLableDiv>
+        <div>
+          {MBTIIE.map((mbtiObject) => (
+            <StyledMBTIButton2
+              onClick={clickMBTIButton}
+              id={mbtiObject.id}
+              value={mbtiObject.mbti}
+            >
+              {mbtiObject.mbti}
+            </StyledMBTIButton2>
+          ))}
+        </div>
+        <div>
+          {MBTINS.map((mbtiObject) => (
+            <StyledMBTIButton2
+              onClick={clickMBTIButton}
+              id={mbtiObject.id}
+              value={mbtiObject.mbti}
+            >
+              {mbtiObject.mbti}
+            </StyledMBTIButton2>
+          ))}
+        </div>
+        <div>
+          {MBTIFT.map((mbtiObject) => (
+            <StyledMBTIButton2
+              onClick={clickMBTIButton}
+              id={mbtiObject.id}
+              value={mbtiObject.mbti}
+            >
+              {mbtiObject.mbti}
+            </StyledMBTIButton2>
+          ))}
+        </div>
+        <div>
+          {MBTIPJ.map((mbtiObject) => (
+            <StyledMBTIButton2
+              onClick={clickMBTIButton}
+              id={mbtiObject.id}
+              value={mbtiObject.mbti}
+            >
+              {mbtiObject.mbti}
+            </StyledMBTIButton2>
+          ))}
+        </div>
+      </StyledLableDiv>
       <Button onclick={clickStartButton} text={"start"} />
 
       <StyledLableDiv>
@@ -140,4 +195,18 @@ const StyledMBTIButton = styled.button`
   height: 50px;
 
   border: 1px solid;
+  /* background-color: ${(props) => (props.isClick ? `black` : `white`)}; */
+`;
+
+const StyledMBTIButton2 = styled.button`
+  display: flex;
+  margin: 4px;
+  width: 50px;
+  height: 50px;
+
+  border: 1px solid;
+  /* background-color: ${(props) => (props.isClick ? `black` : `white`)}; */
+
+  align-items: center;
+  justify-content: center;
 `;
