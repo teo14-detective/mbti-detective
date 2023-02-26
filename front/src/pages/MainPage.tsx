@@ -55,7 +55,6 @@ export default function MainPage() {
 
   const { MBTIResultArray, isClick, clickMBTIButton } = useMakeMBTI();
   const { name, changeName } = useMakeName();
-
   function clickStartButton() {
     if (MBTIResultArray.includes("") || !name)
       return alert("정보를 입력해주세요!");
@@ -117,6 +116,7 @@ export default function MainPage() {
                 onClick={clickMBTIButton}
                 id={mbtiObject.id}
                 value={mbtiObject.mbti}
+                // isClick={isClick}
               >
                 {mbtiObject.mbti}
               </StyledMBTIButton2>
@@ -128,6 +128,7 @@ export default function MainPage() {
                 onClick={clickMBTIButton}
                 id={mbtiObject.id}
                 value={mbtiObject.mbti}
+                // isClick={isClick}
               >
                 {mbtiObject.mbti}
               </StyledMBTIButton2>
@@ -139,6 +140,7 @@ export default function MainPage() {
                 onClick={clickMBTIButton}
                 id={mbtiObject.id}
                 value={mbtiObject.mbti}
+                // isClick={isClick}
               >
                 {mbtiObject.mbti}
               </StyledMBTIButton2>
@@ -150,6 +152,7 @@ export default function MainPage() {
                 onClick={clickMBTIButton}
                 id={mbtiObject.id}
                 value={mbtiObject.mbti}
+                // isClick={isClick}
               >
                 {mbtiObject.mbti}
               </StyledMBTIButton2>
@@ -170,8 +173,12 @@ export default function MainPage() {
           <StyledCountLable>{shareCount}</StyledCountLable>
         </StyledLableDiv>
         <StyledSnsContainerBox>
-          <ShareToKakao />
-          <ShareToLink />
+          <StyledSnsContainerCircleBox>
+            <ShareToKakao />
+          </StyledSnsContainerCircleBox>
+          <StyledSnsContainerCircleBox>
+            <ShareToLink />
+          </StyledSnsContainerCircleBox>
         </StyledSnsContainerBox>
       </StyledContainBox>
     </StyledBackgroundBox>
@@ -186,6 +193,11 @@ const StyledLable = styled.label`
   margin: 10px 0;
   width: 320px;
   text-align: center;
+  font-family: "theJamsil";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 22px;
 `;
 
 const StyledNameInput = styled.input`
@@ -202,6 +214,7 @@ const StyledNameInput = styled.input`
 `;
 
 const StyledLogoImage = styled.img`
+  margin-top: 85px;
   margin-bottom: 50px;
   width: 300px;
 `;
@@ -217,45 +230,42 @@ const StyledCountLable = styled.div`
   text-align: center;
 `;
 
-const StyledButton = styled.button`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 8px 20px;
-  gap: 10px;
-  width: 340px;
-  height: 56px;
-  background: #ffcd5d;
-  box-shadow: 5px 5px;
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  &:hover {
-    background-color: #ff9c4f;
-  }
-`;
+// type isClickType = {
+//   isClick: boolean;
+// };
+
 const StyledMBTIButton2 = styled.button`
   display: flex;
-  margin: 4px;
+  margin: 5px 10px;
   width: 50px;
   height: 50px;
-  border: 1px solid;
   align-items: center;
   justify-content: center;
 
-  margin: 4px;
   padding: 6px 16px;
-
-  width: 70px;
-  height: 70px;
+  gap: 10px;
+  width: 39px;
+  height: 38px;
 
   font-size: 40px;
-  border: 1px solid;
   border-radius: 6px;
 
   gap: 10px;
 
   background: #b7b7b7;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25);
+  &:hover {
+    background-color: #b89960;
+  }
+
+  /* background-color: ${(props) => (props.isClick ? "#b89960" : "#b7b7b7")}; */
+
+  box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.25);
+
+  font-family: "theJamsil";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 26px;
+
+  color: #554128;
 `;

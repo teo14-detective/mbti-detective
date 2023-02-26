@@ -1,4 +1,4 @@
-import React from "react";
+import styled from "styled-components";
 
 export default function ShareToKakao() {
   const shareKakao = () => {
@@ -16,11 +16,18 @@ export default function ShareToKakao() {
     }
   };
 
+  const IconImage = styled.img`
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 32px;
+    height: 32px;
+  `;
   return (
     <>
       <button onClick={shareKakao}>
-        <img
-          src="src/assets/images/icon/icon-kakao.png"
+        <IconImage
+          src="/src/assets/images/icon/icon-kakao.png"
           alt="카카오톡 공유 버튼"
         />
       </button>
