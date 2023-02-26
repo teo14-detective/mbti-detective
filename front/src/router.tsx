@@ -1,4 +1,4 @@
-import ParticipantResult from "@pages/ParticipantResult/ParticipantResult";
+import ParticipantResult from "@pages/ParticipantResult";
 import { ShareLink } from "@pages/ShareLink";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";

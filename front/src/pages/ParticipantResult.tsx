@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import userJSONData from "../../../../test-data/get-user.json";
+import userJSONData from "../../../test-data/get-user.json";
 
 const StyledBackgroundBox = styled.div`
   background-color: #dcbc8c;
