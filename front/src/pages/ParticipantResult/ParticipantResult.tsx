@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import userJSONData from "../../../../test-data/get-user.json";
 
 const StyledBackgroundBox = styled.div`
   background-color: #dcbc8c;
@@ -65,10 +66,10 @@ const StyledParagraphBox = styled.div`
   color: #000000;
   margin-bottom: 30px;
 `;
-interface StyledResultTextInterface {
+type StyledResultTextType = {
   isEqual: boolean;
-}
-const StyledResultTextBox = styled.div<StyledResultTextInterface>`
+};
+const StyledResultTextBox = styled.div<StyledResultTextType>`
   text-align: center;
   vertical-align: middle;
   font-family: "theJamsil";
@@ -148,11 +149,42 @@ const StyledAnchorBox = styled.div`
 `;
 
 function ParticipantResult() {
-  const participant: string = "사라";
-  const user: string = "메이";
-  const participantMbti: string = "ISTP";
-  const userMbti: string = "ISFP";
-  const [isEqual, setIsEqual] = useState<boolean>(participantMbti === userMbti);
+  type MbtiVariablesType = {
+    participant: string;
+    user: string;
+    participantMbti: string;
+    userMbti: string;
+  };
+  const userData = userJSONData.user;
+  console.log(userData);
+  const resultObject: MbtiVariablesType = {
+    participant: userData.participants[0].name,
+    user: userData.name,
+    participantMbti: userData.participants[0].mbti,
+    userMbti: userData.mbti,
+  };
+  const participantMbti = resultObject.participantMbti;
+  const userMbti = resultObject.userMbti;
+  const participant = resultObject.participant;
+  const user = resultObject.user;
+  const [isEqual, setIsEqual] = useState<boolean>(
+    resultObject.participantMbti === resultObject.userMbti,
+  );
+  const [fetchData, setFetchData] = useState();
+  const [isLoading, setisLoading] = useState(false);
+  // useEffect(() => {
+  //   fetch(`http://127.0.0.1:5173/participant-result-${uniqueid}`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setisLoading(true);
+  //       setFetchData(data);
+  //       setisLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       alert("데이터를 불러오는데 실패했습니다!");
+  //       setisLoading(false);
+  //     });
+  // }, []);
 
   return (
     <StyledBackgroundBox>
@@ -161,43 +193,53 @@ function ParticipantResult() {
           <StyledTitleBox />
         </StyledTitleContainBox>
 
-        <StyledImagesBox>
-          <StyledImageBox>
-            <StyledParagraphBox>{participant}의 생각</StyledParagraphBox>
-            <StyledImage
-              src={`src/assets/images/mbti-text/${participantMbti}.png`}
-              alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
-            />
-          </StyledImageBox>
-          <StyledImageBox>
-            <StyledParagraphBox>{user}의 MBTI</StyledParagraphBox>
-            <StyledImage
-              src={`src/assets/images/mbti-text/${userMbti}.png`}
-              alt="친구의 실제 mbti 캐릭터 이미지"
-            />
-          </StyledImageBox>
-        </StyledImagesBox>
-
-        <StyledResultContainerBox>
-          <StyledResultTextBox isEqual={isEqual}>
-            {isEqual ? "정답!" : "땡!"}
-          </StyledResultTextBox>
+        {isLoading ? (
           <StyledResultSentenceParagraph>
-            {`${user}님의 MBTI는 ${userMbti}입니다.
+            데이터를 불러오고 있습니다...
+          </StyledResultSentenceParagraph>
+        ) : (
+          <div>
+            <StyledImagesBox>
+              <StyledImageBox>
+                <StyledParagraphBox>
+                  {resultObject.participant}의 생각
+                </StyledParagraphBox>
+                <StyledImage
+                  src={`src/assets/images/mbti-text/${participantMbti}.png`}
+                  alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
+                />
+              </StyledImageBox>
+              <StyledImageBox>
+                <StyledParagraphBox>{user}의 MBTI</StyledParagraphBox>
+                <StyledImage
+                  src={`src/assets/images/mbti-text/${userMbti}.png`}
+                  alt="친구의 실제 mbti 캐릭터 이미지"
+                />
+              </StyledImageBox>
+            </StyledImagesBox>
+
+            <StyledResultContainerBox>
+              <StyledResultTextBox isEqual={isEqual}>
+                {isEqual ? "정답!" : "땡!"}
+              </StyledResultTextBox>
+              <StyledResultSentenceParagraph>
+                {`${user}님의 MBTI는 ${userMbti}입니다.
           ${participant}님의 응답 결과가
           ${user}님에게 전송되었습니다.`}
-          </StyledResultSentenceParagraph>
-        </StyledResultContainerBox>
+              </StyledResultSentenceParagraph>
+            </StyledResultContainerBox>
 
-        <StyledAnchorBox>
-          <Link to="/result">{user}님의 결과 보기</Link>
-        </StyledAnchorBox>
+            <StyledAnchorBox>
+              <Link to="/result">{user}님의 결과 보기</Link>
+            </StyledAnchorBox>
 
-        <Link to="/">
-          <StyledButton>
-            <StyledParagraph>내 MBTI 물어보러 가기</StyledParagraph>
-          </StyledButton>
-        </Link>
+            <Link to="/">
+              <StyledButton>
+                <StyledParagraph>내 MBTI 물어보러 가기</StyledParagraph>
+              </StyledButton>
+            </Link>
+          </div>
+        )}
       </StyledContainBox>
     </StyledBackgroundBox>
   );
