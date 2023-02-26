@@ -1,28 +1,19 @@
 import React, { useEffect, useState } from "react";
+import logo from "/src/assets/images/logo.png";
 import {
   StyledBackgroundBox,
   StyledContainBox,
-  StyledTitleContainBox,
 } from "@components/common/Container";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-import userJSONData from "../../../test-data/get-user.json";
-
-const StyledTitleBox = styled.div`
-  position: absolute;
-  width: 180px;
-  height: 90px;
-  left: 105px;
-  top: 60px;
-  background: url("src/assets/images/logo.png") no-repeat;
-  background-size: contain;
-  cursor: pointer;
-`;
+import Loading from "./common/Loading";
+import { Header } from "@components/common/Header";
 
 const StyledImagesBox = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-around;
+  margin-top: 70px;
   margin-bottom: 30px;
 `;
 
@@ -138,15 +129,7 @@ const StyledAnchorBox = styled.div`
   color: #666666;
   margin-bottom: 42px;
 `;
-
 function ParticipantResult() {
-  const navigate = useNavigate();
-  type MbtiVariablesType = {
-    participant: string;
-    user: string;
-    participantMbti: string;
-    userMbti: string;
-  };
   type participantsArrayType = {
     uid: number;
     user_mbti: string;
@@ -163,8 +146,10 @@ function ParticipantResult() {
 
   const [fetchData, setFetchData] = useState<fetchDataType>();
   const [isLoading, setisLoading] = useState(true);
+  const params = useParams();
+  const userkey = params.userkey;
   useEffect(() => {
-    fetch(`https://mbti-detective-back.vercel.app/api/users/${"ABEDF12RFe"}`, {
+    fetch(`/api/users/${userkey}`, {
       method: "GET",
     })
       .then((response) => {
@@ -174,7 +159,6 @@ function ParticipantResult() {
       })
       .then((data) => {
         setFetchData(data);
-        console.log(fetchData);
         setisLoading(false);
       })
       .catch((error) => {
@@ -199,28 +183,23 @@ function ParticipantResult() {
   return (
     <StyledBackgroundBox>
       <StyledContainBox>
-        <StyledTitleContainBox>
-          <StyledTitleBox onClick={() => navigate("/")} />
-        </StyledTitleContainBox>
-
         {isLoading ? (
-          <StyledResultSentenceParagraph>
-            데이터를 불러오고 있습니다...
-          </StyledResultSentenceParagraph>
+          <Loading />
         ) : (
           <div>
+            <Header />
             <StyledImagesBox>
               <StyledImageBox>
                 <StyledParagraphBox>{participant}의 생각</StyledParagraphBox>
                 <StyledImage
-                  src={`src/assets/images/mbti-text/${participantMbti}.png`}
+                  src={`/src/assets/images/mbti-text/${participantMbti}.png`}
                   alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
                 />
               </StyledImageBox>
               <StyledImageBox>
                 <StyledParagraphBox>{user}의 MBTI</StyledParagraphBox>
                 <StyledImage
-                  src={`src/assets/images/mbti-text/${userMbti}.png`}
+                  src={`/src/assets/images/mbti-text/${userMbti}.png`}
                   alt="친구의 실제 mbti 캐릭터 이미지"
                 />
               </StyledImageBox>

@@ -1,9 +1,11 @@
 import React from "react";
 import MainLogo from "/src/assets/images/logo.png";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
-  return <Container src={MainLogo} alt="로고" />;
+  const navigate = useNavigate();
+  return <Container src={MainLogo} alt="로고" onClick={() => navigate("/")} />;
 };
 
 const Container = styled.img`
