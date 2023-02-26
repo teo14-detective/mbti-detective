@@ -6,14 +6,16 @@ import {
   StyledSnsContainerBox,
   StyledMBTIButtonContainerBox,
 } from "@components/common/Container";
-import ShareToKakao from "@components/ShareToKakao";
-import ShareToLink from "@components/ShareToLink";
+
 import useMakeName from "@hooks/useMakeName";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import styled, { createGlobalStyle } from "styled-components";
 import useMakeMBTI from "./../hooks/useMakeMBTI";
 import useCounterFetch from "./../hooks/useCounterFetch";
+import { Header } from "@components/mainPage/Header";
+import ShareToKakao from "@components/mainPage/ShareToKakao";
+import ShareToLink from "@components/mainPage/ShareToLink";
 
 export default function QuizMainPage() {
   const { id } = useParams();
@@ -53,7 +55,7 @@ export default function QuizMainPage() {
   return (
     <StyledBackgroundBox>
       <StyledContainBox>
-        <StyledLogoImage src="src/assets/images/logo.png" alt="로고" />
+        <Header />
         <div>슬라이드</div>
         <StyledLable>{serverName}님의 MBTI를 맞추러 오셨군요!</StyledLable>
         <StyledLable>이름을 입력해주세요.</StyledLable>

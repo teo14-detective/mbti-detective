@@ -1,4 +1,5 @@
 import React from "react";
+import KakaoIcon from "/src/assets/images/icon/icon-kakao.png";
 
 export default function ShareToKakao() {
   const shareKakao = () => {
@@ -19,10 +20,7 @@ export default function ShareToKakao() {
   return (
     <>
       <button onClick={shareKakao}>
-        <img
-          src="src/assets/images/icon/icon-kakao.png"
-          alt="카카오톡 공유 버튼"
-        />
+        <img src={KakaoIcon} alt="카카오톡 공유 버튼" />
       </button>
     </>
   );

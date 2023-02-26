@@ -1,4 +1,5 @@
 import React from "react";
+import LinkIcon from "/src/assets/images/icon/icon-link.png";
 
 export default function ShareToLink() {
   const clickLinkButton = () => {
@@ -16,10 +17,7 @@ export default function ShareToLink() {
 
   return (
     <button onClick={clickLinkButton}>
-      <img
-        src="src/assets/images/icon/icon-link.png"
-        alt="카카오톡 공유 버튼"
-      />
+      <img src={LinkIcon} alt="카카오톡 공유 버튼" />
     </button>
   );
 }

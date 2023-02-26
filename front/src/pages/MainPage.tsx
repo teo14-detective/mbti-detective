@@ -6,14 +6,16 @@ import {
   StyledSnsContainerBox,
   StyledMBTIButtonContainerBox,
 } from "@components/common/Container";
-import ShareToKakao from "@components/ShareToKakao";
-import ShareToLink from "@components/ShareToLink";
+
 import useMakeName from "@hooks/useMakeName";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import styled, { createGlobalStyle } from "styled-components";
 import useMakeMBTI from "./../hooks/useMakeMBTI";
 import useCounterFetch from "./../hooks/useCounterFetch";
+import { Header } from "@components/mainPage/Header";
+import ShareToKakao from "@components/mainPage/ShareToKakao";
+import ShareToLink from "@components/mainPage/ShareToLink";
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -81,7 +83,7 @@ export default function MainPage() {
   return (
     <StyledBackgroundBox>
       <StyledContainBox>
-        <StyledLogoImage src="/public/logo.png" alt="로고" />
+        <Header />
         <div>슬라이드</div>
         <StyledLable>이름을 입력해주세요</StyledLable>
         <StyledNameInput type="text" value={name} onChange={changeName} />
