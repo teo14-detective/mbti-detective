@@ -15,6 +15,7 @@ import useCounterFetch from "./../hooks/useCounterFetch";
 import { Header } from "@components/mainPage/Header";
 import ShareToKakao from "@components/mainPage/ShareToKakao";
 import ShareToLink from "@components/mainPage/ShareToLink";
+import ImageSlide from "@components/mainPage/ImageSlide";
 
 export default function QuizMainPage() {
   const { id } = useParams();
@@ -53,7 +54,7 @@ export default function QuizMainPage() {
     <StyledBackgroundBox>
       <StyledContainBox>
         <Header />
-        <div>슬라이드</div>
+        <ImageSlide />
         <StyledLable>{serverName}님의 MBTI를 맞추러 오셨군요!</StyledLable>
         <StyledLable>이름을 입력해주세요.</StyledLable>
         <StyledNameInput type="text" value={name} onChange={changeName} />
