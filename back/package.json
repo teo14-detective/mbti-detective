@@ -1,0 +1,27 @@
+{
+  "name": "nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "serve": "next serve"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.8.0",
+    "eslint": "8.34.0",
+    "eslint-config-next": "13.2.1",
+    "next": "13.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "swr": "^2.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "18.14.1",
+    "@types/react": "18.0.28",
+    "sass": "^1.58.3",
+    "supabase": "^1.38.7"
+  }
+}
