@@ -1,29 +1,30 @@
 {
-    "user": {
-        "key": "ABEDF12RFe",
-        "participantCount": 5,
-        "name": "아무개",
-        "participants": [
-            {
-                "name": "친구1",
-                "mbti": "istp"
-            },
-            {
-                "name": "친구2",
-                "mbti": "enfp"
-            },
-            {
-                "name": "친구3",
-                "mbti": "estp"
-            },
-            {
-                "name": "친구4",
-                "mbti": "intp"
-            },
-            {
-                "name": "친구5",
-                "mbti": "istj"
-            }
-        ]
-    }
+  "user": {
+    "key": "ABEDF12RFe",
+    "participantCount": 5,
+    "name": "아무개",
+    "mbti": "estp",
+    "participants": [
+      {
+        "name": "친구1",
+        "mbti": "istp"
+      },
+      {
+        "name": "친구2",
+        "mbti": "enfp"
+      },
+      {
+        "name": "친구3",
+        "mbti": "estp"
+      },
+      {
+        "name": "친구4",
+        "mbti": "intp"
+      },
+      {
+        "name": "친구5",
+        "mbti": "istj"
+      }
+    ]
+  }
 }
