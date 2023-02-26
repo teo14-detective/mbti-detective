@@ -1,10 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@supabase/supabase-js';
 
 // Create a single supabase client for interacting with your database
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
-export default async function handler(_req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(_req, res) {
   switch (_req.method) {
     case 'POST':
       const { query, method, body } = _req;
@@ -39,7 +38,7 @@ export default async function handler(_req: NextApiRequest, res: NextApiResponse
   }
 }
 
-function generateRandomString(length: number): string {
+function generateRandomString(length) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
 

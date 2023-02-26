@@ -1,12 +1,10 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { createClient } from '@supabase/supabase-js';
+const { createClient } = require('@supabase/supabase-js');
 
-// Create a single supabase client for interacting with your database
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
-export default async function userHandler(req: NextApiRequest, res: NextApiResponse) {
+export default async function userHandler(req, res) {
   const { query, method } = req;
-  const key = query.key as string;
+  const key = query.key;
 
   switch (method) {
     case 'GET':
