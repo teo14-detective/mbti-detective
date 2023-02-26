@@ -2,9 +2,6 @@ import { Button } from "@components/common/Button2";
 import {
   StyledBackgroundBox,
   StyledContainBox,
-  StyledSnsContainerCircleBox,
-  StyledSnsContainerBox,
-  StyledMBTIButtonContainerBox,
 } from "@components/common/Container";
 
 import useMakeName from "@hooks/useMakeName";
@@ -67,10 +64,6 @@ export default function QuizMainPage() {
   );
 }
 
-const StyledLableDiv = styled.div`
-  display: flex;
-`;
-
 const StyledLable = styled.label`
   margin: 10px 0;
   width: 320px;
@@ -92,56 +85,7 @@ const StyledNameInput = styled.input`
   border-radius: 10px;
 `;
 
-const StyledLogoImage = styled.img`
-  margin-bottom: 50px;
-  width: 300px;
-`;
-
 const StyledBoldLable = styled.label`
   font-size: larger;
   font-weight: 500;
-`;
-
-const StyledCountLable = styled.div`
-  width: 50px;
-  text-align: center;
-`;
-
-const StyledButton = styled.button`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 8px 20px;
-  gap: 10px;
-  width: 340px;
-  height: 56px;
-  background: #ffcd5d;
-  box-shadow: 5px 5px;
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  &:hover {
-    background-color: #ff9c4f;
-  }
-`;
-const StyledMBTIButton2 = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin: 4px;
-  padding: 6px 16px;
-
-  width: 70px;
-  height: 70px;
-
-  font-size: 40px;
-  border: 1px solid;
-  border-radius: 6px;
-
-  gap: 10px;
-
-  background: #b7b7b7;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25);
 `;

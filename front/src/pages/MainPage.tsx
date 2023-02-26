@@ -7,9 +7,6 @@ import { Button } from "@components/common/Button2";
 import {
   StyledBackgroundBox,
   StyledContainBox,
-  StyledSnsContainerCircleBox,
-  StyledSnsContainerBox,
-  StyledMBTIButtonContainerBox,
 } from "@components/common/Container";
 
 import useMakeName from "@hooks/useMakeName";
@@ -200,18 +197,6 @@ const StyledNameInput = styled.input`
   background: #ffffff;
   border: 1px solid #ad9777;
   border-radius: 10px;
-`;
-
-const StyledLogoImage = styled.img`
-  margin-top: 85px;
-  margin-bottom: 50px;
-  width: 300px;
-`;
-
-const StyledBoldLable = styled.label`
-  display: flex;
-  width: 50px;
-  font-weight: 500;
 `;
 
 const StyledCountLable = styled.div`
