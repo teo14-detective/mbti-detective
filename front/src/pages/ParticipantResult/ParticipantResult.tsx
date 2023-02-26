@@ -157,7 +157,6 @@ function ParticipantResult() {
     userMbti: string;
   };
   const userData = userJSONData.user;
-  console.log(userData);
   const resultObject: MbtiVariablesType = {
     participant: userData.participants[0].name,
     user: userData.name,
