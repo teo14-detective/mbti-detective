@@ -1,5 +1,6 @@
 import React from "react";
 import LinkIcon from "/src/assets/images/icon/icon-link.png";
+import styled from "styled-components";
 
 export default function ShareToLink() {
   const clickLinkButton = () => {
@@ -14,10 +15,16 @@ export default function ShareToLink() {
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
   };
-
+  const IconImage = styled.img`
+    position: absolute;
+    top: 11px;
+    left: 11px;
+    width: 32px;
+    height: 32px;
+  `;
   return (
     <button onClick={clickLinkButton}>
-      <img src={LinkIcon} alt="카카오톡 공유 버튼" />
+      <img src={LinkIcon} alt="링크 공유 버튼" />
     </button>
   );
 }
