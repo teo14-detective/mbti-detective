@@ -75,6 +75,7 @@ export default function MainPage() {
     })
       .then(async (res) => await res.json())
       .then(async (data) => {
+        await localStorage.clear();
         await localStorage.setItem("UserKey", `${data.key}`);
         await navigate("/share");
       });
@@ -158,6 +159,7 @@ export default function MainPage() {
             ))}
           </div>
         </StyledLableDiv>
+
         <Button
           onclick={() => clickStartButton()}
           text={"start"}
