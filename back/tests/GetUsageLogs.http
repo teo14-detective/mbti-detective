@@ -1,2 +1,2 @@
-GET http://localhost:3000/api/usageLogs HTTP/1.1
+GET https://mbti-detective-back.vercel.app/api/usageLogs HTTP/1.1
 content-type: application/json
