@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { ReactComponent as PasteButton } from "/src/assets/svgs/paste-button.svg";
 import { Header } from "@components/common/Header";
-import { Button } from "@components/common/Button";
+import { Button } from "@components/common/Button2";
 import { user } from "../../../test-data/get-user.json";
-import axios from "axios";
 import Loading from "./common/Loading";
+import { useNavigate } from "react-router";
 
 export const ShareLink = () => {
+  const navigate = useNavigate();
   const key = localStorage.getItem("UserKey");
 
   useEffect(() => {
@@ -61,7 +62,11 @@ export const ShareLink = () => {
           현재 <StyledCountSpan>{count}</StyledCountSpan> 명에게 <br />
           답변을 받았어요!
         </StyledReplySpan>
-        <Button>답변 보러가기</Button>
+        <Button
+          text={"답변 보러가기"}
+          className={"bottom"}
+          onclick={() => navigate("/result")}
+        />
       </StyledContainer>
     );
   }
