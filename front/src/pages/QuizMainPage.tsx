@@ -52,7 +52,10 @@ export default function QuizMainPage() {
       <StyledContainBox>
         <Header />
         <ImageSlide />
-        <StyledLable>{serverName}님의 MBTI를 맞추러 오셨군요!</StyledLable>
+        <StyledLable>
+          <StyledBoldLable>{serverName} </StyledBoldLable>님의 MBTI를 <br />
+          맞추러 오셨군요!
+        </StyledLable>
         <StyledLable>이름을 입력해주세요.</StyledLable>
         <StyledNameInput type="text" value={name} onChange={changeName} />
 
@@ -72,13 +75,15 @@ const StyledLable = styled.label`
   margin: 10px 0;
   width: 320px;
   text-align: center;
+  font-size: large;
+  line-height: 120%;
 `;
 
 const StyledNameInput = styled.input`
   margin-bottom: 10px;
   padding: 1px 10px;
 
-  width: 300px;
+  width: 289px;
   height: 40px;
 
   font-size: larger;
@@ -93,8 +98,7 @@ const StyledLogoImage = styled.img`
 `;
 
 const StyledBoldLable = styled.label`
-  display: flex;
-  width: 50px;
+  font-size: larger;
   font-weight: 500;
 `;
 
