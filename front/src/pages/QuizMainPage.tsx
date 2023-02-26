@@ -38,19 +38,16 @@ export default function QuizMainPage() {
   function clickStartButton() {
     if (!name) return alert("이름를 입력해주세요!");
 
-    const response = fetch("/api/participants", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user_key: `${id}`,
-        name: name,
-        mbti: mbti,
+    localStorage.clear();
+    localStorage.setItem(
+      "information",
+      JSON.stringify({
+        userKey: `${id}`,
+        participantName: `${name}`,
       }),
-    })
-      .then(async (res) => await res.json())
-      .then(async () => await navigate("/participant/quiz"));
+    );
+
+    navigate("/participant/quiz");
   }
 
   return (
