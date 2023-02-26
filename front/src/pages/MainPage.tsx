@@ -17,7 +17,7 @@ import useMakeMBTI from "./../hooks/useMakeMBTI";
 export default function MainPage() {
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("https://mbti-detective-back.vercel.app/api/share/plus")
+    fetch("/api/usageLogs")
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((err) => console.log("공유/방문자수 받아오는 err", err));

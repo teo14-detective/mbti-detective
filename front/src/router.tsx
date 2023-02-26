@@ -13,7 +13,6 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/:id" element={<QuizMainPage />} />
-
         <Route path="/share" element={<ShareLink />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/result/chart" element={<ChartResultPage />} />

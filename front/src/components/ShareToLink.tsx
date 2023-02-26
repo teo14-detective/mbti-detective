@@ -6,7 +6,7 @@ export default function ShareToLink() {
       alert("링크가 복사됐습니다!");
     });
 
-    fetch("https://mbti-detective-back.vercel.app/api/share/plus", {
+    fetch("/api/share/plus", {
       method: "POST",
     })
       .then((response) => response.json())
