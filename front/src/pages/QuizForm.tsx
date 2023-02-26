@@ -4,12 +4,14 @@ import { makeRandomQuestion } from "@utils/makeRandomQuestion";
 import iconTarget from "@assets/images/icon/icon-target.png";
 import { Button } from "@components/common/Button";
 import { Header } from "@components/common/Header";
+import { useNavigate } from "react-router";
 
 export default function QuizForm() {
   const [questions, answerText] = makeRandomQuestion();
   const questionType = ["IE", "SN", "TF", "JP"];
   const [status, setStatus] = useState<number>(0);
   const [answer, setAnswer] = useState<string[]>([]);
+  const navigate = useNavigate();
 
   async function request() {
     const response = await fetch("/api/participants", {
@@ -41,6 +43,7 @@ export default function QuizForm() {
       //   }),
       // }).then(async (res) => console.log(await res.json()));
       request();
+      navigate("../participant-result");
     }
     setStatus((prev) => prev + 1);
   };

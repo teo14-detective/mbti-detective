@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { ReactComponent as PasteButton } from "/src/assets/svgs/paste-button.svg";
 import { Header } from "@components/common/Header";
-import { Button } from "@components/common/Button";
+import { Button } from "@components/common/Button2";
 import { user } from "../../../test-data/get-user.json";
-import axios from "axios";
+import Loading from "./common/Loading";
+import { useNavigate } from "react-router";
 
 export const ShareLink = () => {
+  const navigate = useNavigate();
+  const key = localStorage.getItem("UserKey");
+
   useEffect(() => {
-    fetch("/api/users/ABEDF12RFe", {
+    fetch(`/api/users/${key}`, {
       method: "GET",
     })
       .then((response: any) => response.json())
@@ -30,10 +34,9 @@ export const ShareLink = () => {
 
   // 복사링크 div
   const [url, setUrl] = useState<string>(
-    `https://mbti-detective.vercel.app/${"key"}`,
+    `https://mbti-detective.vercel.app/${key}`,
   );
   //복사링크 핸들러
-
   const copyTextUrl = () => {
     navigator.clipboard.writeText(url).then(() => {
       alert("링크 복사 성공");
@@ -41,7 +44,7 @@ export const ShareLink = () => {
   };
 
   if (isLoading) {
-    return <div>로딩중</div>;
+    return <Loading />;
   } else {
     return (
       <StyledContainer>
@@ -59,7 +62,11 @@ export const ShareLink = () => {
           현재 <StyledCountSpan>{count}</StyledCountSpan> 명에게 <br />
           답변을 받았어요!
         </StyledReplySpan>
-        <Button>답변 보러가기</Button>
+        <Button
+          text={"답변 보러가기"}
+          className={"bottom"}
+          onclick={() => navigate("/result")}
+        />
       </StyledContainer>
     );
   }

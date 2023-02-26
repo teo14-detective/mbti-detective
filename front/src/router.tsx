@@ -6,7 +6,7 @@ import ResultPage from "@pages/ResultPage";
 import ChartResultPage from "@pages/ChartResultPage";
 import CompareResultPage from "@pages/CompareResultPage";
 import MainPage from "./pages/MainPage";
-
+import QuizForm from "@pages/QuizForm";
 const Router = () => {
   return (
     <BrowserRouter>
@@ -16,6 +16,7 @@ const Router = () => {
         <Route path="/result" element={<ResultPage />} />
         <Route path="/result/chart" element={<ChartResultPage />} />
         <Route path="/result/compare" element={<CompareResultPage />} />
+        <Route path="/participant/quiz" element={<QuizForm />} />
         <Route path="/participant-result" element={<ParticipantResult />} />
       </Routes>
     </BrowserRouter>
