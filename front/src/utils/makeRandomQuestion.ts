@@ -1,6 +1,6 @@
 import questions from "@assets/data/question.json";
 
-export const useMakeRandomQuestion = () => {
+export const makeRandomQuestion = () => {
   const IEQuestion = questions.IE[~~(Math.random() * questions.IE.length)];
   const SNQuestion = questions.SN[~~(Math.random() * questions.SN.length)];
   const TFQuestion = questions.TF[~~(Math.random() * questions.TF.length)];

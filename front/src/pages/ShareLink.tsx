@@ -59,7 +59,7 @@ export const ShareLink = () => {
           현재 <StyledCountSpan>{count}</StyledCountSpan> 명에게 <br />
           답변을 받았어요!
         </StyledReplySpan>
-        <Button onclick={} text={"답변 보러가기"} />
+        <Button>답변 보러가기</Button>
       </StyledContainer>
     );
   }
