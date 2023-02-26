@@ -60,7 +60,8 @@ export default function MainPage() {
   const { name, changeName } = useMakeName();
 
   function clickStartButton() {
-    if (MBTIResultArray.includes("")) return alert("MBTI를 완성해주세요!");
+    if (MBTIResultArray.includes("") || !name)
+      return alert("정보를 입력해주세요!");
 
     const response = fetch("/api/users", {
       method: "POST",
