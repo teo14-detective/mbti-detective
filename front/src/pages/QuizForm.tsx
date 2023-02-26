@@ -102,7 +102,7 @@ const StyledStatusSpan = styled.span`
   display: block;
   font-style: 20px;
   color: #554128;
-  margin-bottom: 80px;
+  margin-bottom: 20px;
 `;
 const StyledQuestionBox = styled.div`
   font-size: 24px;
@@ -117,7 +117,7 @@ const StyledButtonsBox = styled.div`
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 10%;
+  bottom: 8%;
   width: 80%;
   gap: 40px;
 `;
