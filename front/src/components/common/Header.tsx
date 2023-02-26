@@ -7,7 +7,9 @@ export const Header = () => {
 };
 
 const Container = styled.img`
-  margin-top: 85px;
   width: 180px;
   height: 90px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 85px;
 `;

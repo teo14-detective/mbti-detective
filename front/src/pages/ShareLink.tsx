@@ -44,7 +44,7 @@ export const ShareLink = () => {
         현재 <CountSpan>{count}</CountSpan> 명에게 <br />
         답변을 받았어요!
       </ReplySpan>
-      <Button text={"답변 보러가기"} />
+      <Button>답변 보러가기</Button>
     </Container>
   );
 };
