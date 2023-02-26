@@ -1,3 +1,4 @@
+import ParticipantResult from "@pages/ParticipantResult";
 import { ShareLink } from "@pages/ShareLink";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -15,6 +16,7 @@ const Router = () => {
         <Route path="/result" element={<ResultPage />} />
         <Route path="/result/chart" element={<ChartResultPage />} />
         <Route path="/result/compare" element={<CompareResultPage />} />
+        <Route path="/participant-result" element={<ParticipantResult />} />
       </Routes>
     </BrowserRouter>
   );
