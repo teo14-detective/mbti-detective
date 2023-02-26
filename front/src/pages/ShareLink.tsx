@@ -1,10 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { ReactComponent as PasteButton } from "/src/assets/svgs/paste-button.svg";
 import { Header } from "@components/common/Header";
 import { Button } from "@components/common/Button";
+import { user } from "../../../test-data/get-user.json";
 
 export const ShareLink = () => {
+  useEffect(() => {
+    setMbti(user.mbti);
+    setCount(user.participantCount);
+  }, []);
+
   // 유저가 설정한 MBTI
   const [mbti, setMbti] = useState<string>("INTJ");
   // 유저에게 답변해준 사람들
@@ -38,7 +44,7 @@ export const ShareLink = () => {
         현재 <CountSpan>{count}</CountSpan> 명에게 <br />
         답변을 받았어요!
       </ReplySpan>
-      <Button text={"답변 보러가기"} />
+      <Button>답변 보러가기</Button>
     </Container>
   );
 };
