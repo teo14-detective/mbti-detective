@@ -158,7 +158,7 @@ export default function MainPage() {
             ))}
           </div>
         </StyledLableDiv>
-        <Button onclick={clickStartButton} text={"start"} />
+        <Button onclick={clickStartButton} text={"start"} className="bottom" />
 
         <StyledLableDiv>
           <StyledBoldLable>방문수</StyledBoldLable>
@@ -234,13 +234,21 @@ const StyledButton = styled.button`
 `;
 const StyledMBTIButton2 = styled.button`
   display: flex;
-  margin: 4px;
-  width: 50px;
-  height: 50px;
-
-  border: 1px solid;
-  /* background-color: ${(props) => (props.isClick ? `black` : `white`)}; */
-
   align-items: center;
   justify-content: center;
+
+  margin: 4px;
+  padding: 6px 16px;
+
+  width: 70px;
+  height: 70px;
+
+  font-size: 40px;
+  border: 1px solid;
+  border-radius: 6px;
+
+  gap: 10px;
+
+  background: #b7b7b7;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25);
 `;
