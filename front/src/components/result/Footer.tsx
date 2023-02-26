@@ -3,6 +3,46 @@ import styled from "styled-components";
 import kakaoIcon from "@assets/images/icon/icon-kakao.png";
 import linkIcon from "@assets/images/icon/icon-link.png";
 import saveIcon from "@assets/images/icon/icon-save.png";
+import handleCopyClipBoard from "@utils/copyToClipboard";
+
+type Props = {
+  handleCapture: () => void;
+};
+
+const Footer = ({ handleCapture }: Props) => {
+  const onCopyClipBoard = () => {
+    const baseUrl = "http://127.0.0.1:5173/";
+    handleCopyClipBoard(baseUrl + window.location.pathname);
+  };
+
+  return (
+    <StyledFooter>
+      <StyledContainer>
+        <StyledDataList>
+          <StyledDataTerm>방문수</StyledDataTerm>
+          <StyledDataDesc>2121212</StyledDataDesc>
+        </StyledDataList>
+        <StyledDataList>
+          <StyledDataTerm>공유수</StyledDataTerm>
+          <StyledDataDesc>121212</StyledDataDesc>
+        </StyledDataList>
+      </StyledContainer>
+      <StyledButtonContainer>
+        <KakaoShareButton />
+        <StyledButton type="button" onClick={onCopyClipBoard}>
+          <StyledImage src={linkIcon} alt="링크" />
+        </StyledButton>
+        <StyledButton type="button" onClick={handleCapture}>
+          <StyledImage src={saveIcon} alt="저장" />
+        </StyledButton>
+      </StyledButtonContainer>
+    </StyledFooter>
+  );
+};
+
+export default Footer;
+
+/* 카카오톡 공유 버튼 */
 
 const KakaoShareButton = () => {
   useEffect(() => {
@@ -58,34 +98,6 @@ const KakaoShareButton = () => {
     </StyledButton>
   );
 };
-
-const Footer = () => {
-  return (
-    <StyledFooter>
-      <StyledContainer>
-        <StyledDataList>
-          <StyledDataTerm>방문수</StyledDataTerm>
-          <StyledDataDesc>2121212</StyledDataDesc>
-        </StyledDataList>
-        <StyledDataList>
-          <StyledDataTerm>공유수</StyledDataTerm>
-          <StyledDataDesc>121212</StyledDataDesc>
-        </StyledDataList>
-      </StyledContainer>
-      <StyledButtonContainer>
-        <KakaoShareButton />
-        <StyledButton type="button">
-          <StyledImage src={linkIcon} alt="링크" />
-        </StyledButton>
-        <StyledButton type="button">
-          <StyledImage src={saveIcon} alt="저장" />
-        </StyledButton>
-      </StyledButtonContainer>
-    </StyledFooter>
-  );
-};
-
-export default Footer;
 
 /* Footer Style */
 
