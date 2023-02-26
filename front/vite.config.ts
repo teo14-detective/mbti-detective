@@ -6,6 +6,12 @@ import svgr from "vite-plugin-svgr";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths(), svgr()],
+  resolve: {
+    alias: [
+      { find: "@components", replacement: "/src/components" },
+      { find: "@", replacement: "/src" },
+    ],
+  },
   server: {
     proxy: {
       "/api": {
