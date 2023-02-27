@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import MainLogo from "/src/assets/images/logo.png";
 import styled, { keyframes } from "styled-components";
 
 import sprite from "/src/assets/images/sprite.png";
@@ -19,7 +18,8 @@ export default function ImageSlide() {
 }
 const Container = styled.div`
   position: relative;
-  width: 70%;
+  width: 100%;
+  overflow: hidden;
 `;
 
 const firstAnimation = keyframes`
@@ -41,7 +41,7 @@ const StyledFirstAnimation = styled.div<Image>`
   margin: 40px;
   width: 700%;
   height: 150px;
-  animation: ${firstAnimation} 25s 1s infinite linear;
+  animation: ${firstAnimation} 60s 1s infinite linear;
   background-image: url(${(props) => `${props.url}`});
   background-repeat: repeat-x;
   background-size: contain;
@@ -54,7 +54,7 @@ const StyledSecondAnimation = styled.div<Image>`
   top: 0px;
   width: 700%;
   height: 150px;
-  animation: ${secondAnimation} 25s 1s infinite linear;
+  animation: ${secondAnimation} 60s 1s infinite linear;
   background-image: url(${(props) => `${props.url}`});
   background-repeat: repeat-x;
   background-size: contain;
@@ -67,7 +67,7 @@ const StyledThirdAnimation = styled.div<Image>`
   top: 0px;
   width: 700%;
   height: 150px;
-  animation: ${thirdAnimation} 25s 1s infinite linear;
+  animation: ${thirdAnimation} 60s 1s infinite linear;
   background-image: url(${(props) => `${props.url}`});
   background-repeat: repeat-x;
   background-size: contain;

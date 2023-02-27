@@ -33,7 +33,7 @@ export const ShareLink = () => {
 
   // 복사링크 div
   const [url, setUrl] = useState<string>(
-    `https://mbti-detective.vercel.app/${key}`,
+    `https://mbti-detective.netlify.app/${key}`,
   );
   //복사링크 핸들러
   const copyTextUrl = () => {

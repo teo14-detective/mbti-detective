@@ -48,7 +48,7 @@ export default function MainPage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: name,
+        name: name.trim(),
         mbti: MBTIResultArray.join(""),
       }),
     })
@@ -61,81 +61,95 @@ export default function MainPage() {
   }
 
   return (
-    <StyledBackgroundBox>
-      <StyledContainBox>
-        <Header />
-        <ImageSlide />
-        <StyledLable>이름을 입력해주세요</StyledLable>
-        <StyledNameInput type="text" value={name} onChange={changeName} />
-        <StyledLable>MBTI는 무엇인가요?</StyledLable>
+    <StyledContainer>
+      <Header />
+      <ImageSlide />
+      <StyledLable>이름을 입력해주세요</StyledLable>
+      <StyledNameInput
+        type="text"
+        value={name}
+        onChange={changeName}
+        placeholder="10자 이하로 입력해주세요."
+        maxLength={10}
+      />
+      <StyledLable>MBTI는 무엇인가요?</StyledLable>
 
-        <StyledLableDiv>
-          <div>
-            {MBTIIE.map((mbtiObject) => (
-              <StyledMBTIButton2
-                onClick={clickMBTIButton}
-                id={mbtiObject.id}
-                value={mbtiObject.mbti}
-              >
-                {mbtiObject.mbti}
-              </StyledMBTIButton2>
-            ))}
-          </div>
-          <div>
-            {MBTINS.map((mbtiObject) => (
-              <StyledMBTIButton2
-                onClick={clickMBTIButton}
-                id={mbtiObject.id}
-                value={mbtiObject.mbti}
-              >
-                {mbtiObject.mbti}
-              </StyledMBTIButton2>
-            ))}
-          </div>
-          <div>
-            {MBTIFT.map((mbtiObject) => (
-              <StyledMBTIButton2
-                onClick={clickMBTIButton}
-                id={mbtiObject.id}
-                value={mbtiObject.mbti}
-              >
-                {mbtiObject.mbti}
-              </StyledMBTIButton2>
-            ))}
-          </div>
-          <div>
-            {MBTIPJ.map((mbtiObject) => (
-              <StyledMBTIButton2
-                onClick={clickMBTIButton}
-                id={mbtiObject.id}
-                value={mbtiObject.mbti}
-              >
-                {mbtiObject.mbti}
-              </StyledMBTIButton2>
-            ))}
-          </div>
-        </StyledLableDiv>
-
+      <StyledLableDiv>
+        <div>
+          {MBTIIE.map((mbtiObject) => (
+            <StyledMBTIButton2
+              onClick={clickMBTIButton}
+              id={mbtiObject.id}
+              value={mbtiObject.mbti}
+            >
+              {mbtiObject.mbti}
+            </StyledMBTIButton2>
+          ))}
+        </div>
+        <div>
+          {MBTINS.map((mbtiObject) => (
+            <StyledMBTIButton2
+              onClick={clickMBTIButton}
+              id={mbtiObject.id}
+              value={mbtiObject.mbti}
+            >
+              {mbtiObject.mbti}
+            </StyledMBTIButton2>
+          ))}
+        </div>
+        <div>
+          {MBTIFT.map((mbtiObject) => (
+            <StyledMBTIButton2
+              onClick={clickMBTIButton}
+              id={mbtiObject.id}
+              value={mbtiObject.mbti}
+            >
+              {mbtiObject.mbti}
+            </StyledMBTIButton2>
+          ))}
+        </div>
+        <div>
+          {MBTIPJ.map((mbtiObject) => (
+            <StyledMBTIButton2
+              onClick={clickMBTIButton}
+              id={mbtiObject.id}
+              value={mbtiObject.mbti}
+            >
+              {mbtiObject.mbti}
+            </StyledMBTIButton2>
+          ))}
+        </div>
+      </StyledLableDiv>
+      <StyledLableDiv>
         <Button
           onclick={() => clickStartButton()}
           text={"start"}
           className={"bottom"}
         />
-
-        <Footer />
-      </StyledContainBox>
-    </StyledBackgroundBox>
+      </StyledLableDiv>
+      <Footer />
+    </StyledContainer>
   );
 }
 
+const StyledContainer = styled.section`
+  margin: 0 auto;
+  text-align: center;
+`;
+
 const StyledLableDiv = styled.div`
   display: flex;
+  justify-content: center;
+
+  margin-bottom: 10px;
 `;
 
 const StyledLable = styled.label`
-  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+
+  margin: 10px;
   width: 320px;
-  text-align: center;
   font-family: "theJamsil";
   font-style: normal;
   font-weight: 400;
@@ -147,49 +161,39 @@ const StyledNameInput = styled.input`
   margin-bottom: 10px;
   padding: 1px 10px;
 
-  width: 300px;
+  width: 269px;
   height: 40px;
 
-  font-size: larger;
+  font-size: 20px;
   background: #ffffff;
   border: 1px solid #ad9777;
   border-radius: 10px;
 `;
 
-const StyledCountLable = styled.div`
-  width: 50px;
-  text-align: center;
-`;
-
 const StyledMBTIButton2 = styled.button`
   display: flex;
-  margin: 5px 10px;
-  width: 50px;
-  height: 50px;
+  margin: 4px;
+  width: 65px;
+  height: 65px;
   align-items: center;
   justify-content: center;
-
-  padding: 6px 16px;
-  gap: 10px;
-  width: 39px;
-  height: 38px;
 
   font-size: 40px;
   border-radius: 6px;
 
-  gap: 10px;
-
   background: #b7b7b7;
   &:hover {
     background-color: #b89960;
+    transform: translateX(3%) translateY(3%);
+    box-shadow: none;
   }
 
-  box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.25);
+  box-shadow: 4px 4px #333;
 
   font-family: "theJamsil";
   font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
+  font-weight: 800;
+  font-size: 35px;
   line-height: 26px;
 
   color: #554128;
