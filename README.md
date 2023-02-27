@@ -84,5 +84,30 @@
 ### 🤔 친구들의 응답 받기
 <img src="https://user-images.githubusercontent.com/78977003/221558393-f0cc0069-6384-4a20-a900-d5c3fb5648af.png" width=33%/> <img src="https://i.imgur.com/mXQRusf.png" width=33%/>
 
+##
+
+```mermaid
+flowchart LR
+
+A{본인} --> B[Share]
+B --> C[Result]
+C --> D[ChartResult]
+C --> E[ComparisonResult]
+
+```
+
+```mermaid
+flowchart LR
+
+A{본인} --> B[Share]
+B --> C[Result]
+C --> D[ChartResult]
+C --> E[ComparisonResult]
+
+F{친구} --> G[Ask]
+G --> H[Share]
+H --> A
+
+```
 
 
