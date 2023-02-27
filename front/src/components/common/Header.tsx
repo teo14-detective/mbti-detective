@@ -5,13 +5,22 @@ import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const navigate = useNavigate();
-  return <Container src={MainLogo} alt="로고" onClick={() => navigate("/")} />;
+  return (
+    <StyledHeader>
+      <StyledLogoImage
+        src={MainLogo}
+        alt="MBTI 명탐정"
+        onClick={() => navigate("/")}
+      />
+    </StyledHeader>
+  );
 };
 
-const Container = styled.img`
+const StyledHeader = styled.h1``;
+const StyledLogoImage = styled.img`
   width: 180px;
   height: 90px;
   display: block;
   margin: 0 auto;
-  margin-top: 85px;
+  margin-top: 20px;
 `;
