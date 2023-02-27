@@ -4,16 +4,108 @@ import {
   StyledBackgroundBox,
   StyledContainBox,
 } from "@components/common/Container";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Loading from "./common/Loading";
 import { Header } from "@components/common/Header";
-import {
-  userKey,
-  participantName,
-  participantAnswer,
-} from "@utils/getLocalStorageKey";
 
+function ParticipantResult() {
+  type participantsArrayType = {
+    uid: number;
+    user_mbti: string;
+    user_key: string;
+    name: string;
+  };
+  type fetchDataType = {
+    create_timestamp: string;
+    key: string;
+    mbti: string;
+    name: string;
+    participants: participantsArrayType[];
+  };
+
+  const [fetchData, setFetchData] = useState<fetchDataType>();
+  const [isLoading, setisLoading] = useState(true);
+  useEffect(() => {
+    fetch(`/api/users/${localStorage.getItem("userKey")}`, {
+      method: "GET",
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+      })
+      .then((data) => {
+        setFetchData(data);
+        setisLoading(false);
+      })
+      .catch((error) => {
+        alert("데이터를 불러오는데 실패했습니다!");
+        setisLoading(false);
+      });
+  }, []);
+  const userMbti = fetchData?.mbti;
+  const user = fetchData?.name;
+  const [isEqual, setIsEqual] = useState<boolean>(
+    localStorage.getItem("participantAnswer") === userMbti,
+  );
+  return (
+    <StyledBackgroundBox>
+      <StyledContainBox>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <div>
+            <Header />
+            <StyledImagesBox>
+              <StyledImageBox>
+                <StyledParagraphBox>
+                  {localStorage.getItem("participantAnswer")}의 생각
+                </StyledParagraphBox>
+                <StyledImage
+                  src={`/src/assets/images/mbti-text/${localStorage.getItem(
+                    "participantAnswer",
+                  )}.png`}
+                  alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
+                />
+              </StyledImageBox>
+              <StyledImageBox>
+                <StyledParagraphBox>{user}의 MBTI</StyledParagraphBox>
+                <StyledImage
+                  src={`/src/assets/images/mbti-text/${userMbti}.png`}
+                  alt="친구의 실제 mbti 캐릭터 이미지"
+                />
+              </StyledImageBox>
+            </StyledImagesBox>
+
+            <StyledResultContainerBox>
+              <StyledResultTextBox isEqual={isEqual}>
+                {isEqual ? "정답!" : "땡!"}
+              </StyledResultTextBox>
+              <StyledResultSentenceParagraph>
+                {`${user ?? ""}님의 MBTI는 ${userMbti ?? ""}입니다.\n
+                  ${
+                    localStorage.getItem("participantName") ?? ""
+                  }님의 응답 결과가
+                  ${user ?? ""}님에게 전송되었습니다.`}
+              </StyledResultSentenceParagraph>
+            </StyledResultContainerBox>
+
+            <StyledAnchorBox>
+              <Link to="/result">{user ?? ""}님의 결과 보기</Link>
+            </StyledAnchorBox>
+
+            <Link to="/">
+              <StyledButton>
+                <StyledParagraph>내 MBTI 물어보러 가기</StyledParagraph>
+              </StyledButton>
+            </Link>
+          </div>
+        )}
+      </StyledContainBox>
+    </StyledBackgroundBox>
+  );
+}
 const StyledImagesBox = styled.div`
   display: flex;
   width: 100%;
@@ -134,107 +226,4 @@ const StyledAnchorBox = styled.div`
   color: #666666;
   margin-bottom: 42px;
 `;
-function ParticipantResult() {
-  type participantsArrayType = {
-    uid: number;
-    user_mbti: string;
-    user_key: string;
-    name: string;
-  };
-  type fetchDataType = {
-    create_timestamp: string;
-    key: string;
-    mbti: string;
-    name: string;
-    participants: participantsArrayType[];
-  };
-
-  const [fetchData, setFetchData] = useState<fetchDataType>();
-  const [isLoading, setisLoading] = useState(true);
-  useEffect(() => {
-    fetch(`/api/users/${userKey}`, {
-      method: "GET",
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-      })
-      .then((data) => {
-        setFetchData(data);
-        setisLoading(false);
-      })
-      .catch((error) => {
-        alert("데이터를 불러오는데 실패했습니다!");
-        setisLoading(false);
-      });
-  }, []);
-  console.log(fetchData);
-  const [participantMbti, setParticipantMbti] = useState("");
-  // const participantsArray: participantsArrayType[] | undefined =
-  //   fetchData?.participants;
-  // participantsArray?.forEach((elem) => {
-  //   if (elem.name === participantName) {
-  //     setParticipantMbti(elem.user_mbti);
-  //   }
-  // });
-  const userMbti = fetchData?.mbti;
-  const user = fetchData?.name;
-  const [isEqual, setIsEqual] = useState<boolean>(
-    participantAnswer === userMbti,
-  );
-  return (
-    <StyledBackgroundBox>
-      <StyledContainBox>
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <div>
-            <Header />
-            <StyledImagesBox>
-              <StyledImageBox>
-                <StyledParagraphBox>
-                  {participantName}의 생각
-                </StyledParagraphBox>
-                <StyledImage
-                  src={`/src/assets/images/mbti-text/${participantAnswer}.png`}
-                  alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
-                />
-              </StyledImageBox>
-              <StyledImageBox>
-                <StyledParagraphBox>{user}의 MBTI</StyledParagraphBox>
-                <StyledImage
-                  src={`/src/assets/images/mbti-text/${userMbti}.png`}
-                  alt="친구의 실제 mbti 캐릭터 이미지"
-                />
-              </StyledImageBox>
-            </StyledImagesBox>
-
-            <StyledResultContainerBox>
-              <StyledResultTextBox isEqual={isEqual}>
-                {isEqual ? "정답!" : "땡!"}
-              </StyledResultTextBox>
-              <StyledResultSentenceParagraph>
-                {`${user ?? ""}님의 MBTI는 ${userMbti ?? ""}입니다.\n
-                  ${participantName ?? ""}님의 응답 결과가
-                  ${user ?? ""}님에게 전송되었습니다.`}
-              </StyledResultSentenceParagraph>
-            </StyledResultContainerBox>
-
-            <StyledAnchorBox>
-              <Link to="/result">{user ?? ""}님의 결과 보기</Link>
-            </StyledAnchorBox>
-
-            <Link to="/">
-              <StyledButton>
-                <StyledParagraph>내 MBTI 물어보러 가기</StyledParagraph>
-              </StyledButton>
-            </Link>
-          </div>
-        )}
-      </StyledContainBox>
-    </StyledBackgroundBox>
-  );
-}
-
 export default ParticipantResult;
