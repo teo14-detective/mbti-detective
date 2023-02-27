@@ -24,13 +24,15 @@ export default function QuizMainPage() {
       .then((data) => {
         setServerName(data.name);
       })
-      .catch((err) => console.log("사용자에러", err));
+      .catch((err) =>
+        alert(`사용자를 불러오는데 문제가 생겼습니다. \n에러내용 ${err}`),
+      );
   }, []);
 
   const { name, changeName } = useMakeName();
 
   function clickStartButton() {
-    if (!name) return alert("이름를 입력해주세요!");
+    if (!name.trim()) return alert("이름를 입력해주세요!");
 
     localStorage.clear();
     if (id !== undefined) {
@@ -51,7 +53,13 @@ export default function QuizMainPage() {
           맞추러 오셨군요!
         </StyledLable>
         <StyledLable>이름을 입력해주세요.</StyledLable>
-        <StyledNameInput type="text" value={name} onChange={changeName} />
+        <StyledNameInput
+          type="text"
+          value={name}
+          onChange={changeName}
+          placeholder="10자 이하로 입력해주세요."
+          maxLength={10}
+        />
 
         <Button onclick={clickStartButton} text={"start"} className="button" />
 
@@ -76,7 +84,7 @@ const StyledNameInput = styled.input`
   width: 289px;
   height: 40px;
 
-  font-size: larger;
+  font-size: 20px;
   background: #ffffff;
   border: 1px solid #ad9777;
   border-radius: 10px;

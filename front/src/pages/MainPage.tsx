@@ -48,7 +48,7 @@ export default function MainPage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: name,
+        name: name.trim(),
         mbti: MBTIResultArray.join(""),
       }),
     })
@@ -66,7 +66,13 @@ export default function MainPage() {
         <Header />
         <ImageSlide />
         <StyledLable>이름을 입력해주세요</StyledLable>
-        <StyledNameInput type="text" value={name} onChange={changeName} />
+        <StyledNameInput
+          type="text"
+          value={name}
+          onChange={changeName}
+          placeholder="10자 이하로 입력해주세요."
+          maxLength={10}
+        />
         <StyledLable>MBTI는 무엇인가요?</StyledLable>
 
         <StyledLableDiv>
@@ -150,7 +156,7 @@ const StyledNameInput = styled.input`
   width: 300px;
   height: 40px;
 
-  font-size: larger;
+  font-size: 20px;
   background: #ffffff;
   border: 1px solid #ad9777;
   border-radius: 10px;
