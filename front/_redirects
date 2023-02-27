@@ -1,2 +1,2 @@
 # proxy to api
-/api/*  https://mbti-detective-back.vercel.app/api/:splat  200
+/api/* https://mbti-detective-back.vercel.app/api/:splat 200
