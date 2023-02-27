@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import useMakeMBTI from "./../hooks/useMakeMBTI";
-import useCounterFetch from "./../hooks/useCounterFetch";
 import { Button } from "@components/common/Button2";
 import {
   StyledBackgroundBox,
@@ -16,8 +15,6 @@ import { Footer } from "@components/mainPage/Footer";
 
 export default function MainPage() {
   const navigate = useNavigate();
-
-  const { hitCount, shareCount } = useCounterFetch();
 
   const MBTIIE = [
     { id: "0", mbti: "I" },
@@ -39,20 +36,7 @@ export default function MainPage() {
     { id: "3", mbti: "J" },
   ];
 
-  // const MBTIFirstRow = [
-  //   { id: "0", mbti: "I" },
-  //   { id: "1", mbti: "N" },
-  //   { id: "2", mbti: "F" },
-  //   { id: "3", mbti: "P" },
-  // ];
-  // const MBTISecondRow = [
-  //   { id: "0", mbti: "E" },
-  //   { id: "1", mbti: "S" },
-  //   { id: "2", mbti: "T" },
-  //   { id: "3", mbti: "J" },
-  // ];
-
-  const { MBTIResultArray, isClick, clickMBTIButton } = useMakeMBTI();
+  const { MBTIResultArray, clickMBTIButton } = useMakeMBTI();
   const { name, changeName } = useMakeName();
   function clickStartButton() {
     if (MBTIResultArray.includes("") || !name)
@@ -84,30 +68,7 @@ export default function MainPage() {
         <StyledLable>이름을 입력해주세요</StyledLable>
         <StyledNameInput type="text" value={name} onChange={changeName} />
         <StyledLable>MBTI는 무엇인가요?</StyledLable>
-        {/* <div>
-        {MBTIFirstRow.map((mbtiObject) => (
-          <StyledMBTIButton
-            onClick={clickMBTIButton}
-            id={mbtiObject.id}
-            value={mbtiObject.mbti}
-            isClick={isClick}
-          >
-            {mbtiObject.mbti}
-          </StyledMBTIButton>
-        ))}
-      </div>
-      <div>
-        {MBTISecondRow.map((mbtiObject) => (
-          <StyledMBTIButton
-            onClick={clickMBTIButton}
-            id={mbtiObject.id}
-            value={mbtiObject.mbti}
-            isClick={isClick}
-          >
-            {mbtiObject.mbti}
-          </StyledMBTIButton>
-        ))}
-      </div> */}
+
         <StyledLableDiv>
           <div>
             {MBTIIE.map((mbtiObject) => (
@@ -115,7 +76,6 @@ export default function MainPage() {
                 onClick={clickMBTIButton}
                 id={mbtiObject.id}
                 value={mbtiObject.mbti}
-                // isClick={isClick}
               >
                 {mbtiObject.mbti}
               </StyledMBTIButton2>
@@ -127,7 +87,6 @@ export default function MainPage() {
                 onClick={clickMBTIButton}
                 id={mbtiObject.id}
                 value={mbtiObject.mbti}
-                // isClick={isClick}
               >
                 {mbtiObject.mbti}
               </StyledMBTIButton2>
@@ -139,7 +98,6 @@ export default function MainPage() {
                 onClick={clickMBTIButton}
                 id={mbtiObject.id}
                 value={mbtiObject.mbti}
-                // isClick={isClick}
               >
                 {mbtiObject.mbti}
               </StyledMBTIButton2>
@@ -151,7 +109,6 @@ export default function MainPage() {
                 onClick={clickMBTIButton}
                 id={mbtiObject.id}
                 value={mbtiObject.mbti}
-                // isClick={isClick}
               >
                 {mbtiObject.mbti}
               </StyledMBTIButton2>
@@ -204,10 +161,6 @@ const StyledCountLable = styled.div`
   text-align: center;
 `;
 
-// type isClickType = {
-//   isClick: boolean;
-// };
-
 const StyledMBTIButton2 = styled.button`
   display: flex;
   margin: 5px 10px;
@@ -230,8 +183,6 @@ const StyledMBTIButton2 = styled.button`
   &:hover {
     background-color: #b89960;
   }
-
-  /* background-color: ${(props) => (props.isClick ? "#b89960" : "#b7b7b7")}; */
 
   box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.25);
 
