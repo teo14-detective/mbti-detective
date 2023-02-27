@@ -31,11 +31,18 @@ export const Footer = () => {
   );
 };
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 10px;
+`;
+
 const StyledLableDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 289px;
   justify-content: space-evenly;
+  margin: 10px;
 `;
 
 const StyledBoldLable = styled.label`

@@ -61,87 +61,95 @@ export default function MainPage() {
   }
 
   return (
-    <StyledBackgroundBox>
-      <StyledContainBox>
-        <Header />
-        <ImageSlide />
-        <StyledLable>이름을 입력해주세요</StyledLable>
-        <StyledNameInput
-          type="text"
-          value={name}
-          onChange={changeName}
-          placeholder="10자 이하로 입력해주세요."
-          maxLength={10}
-        />
-        <StyledLable>MBTI는 무엇인가요?</StyledLable>
+    <StyledContainer>
+      <Header />
+      <ImageSlide />
+      <StyledLable>이름을 입력해주세요</StyledLable>
+      <StyledNameInput
+        type="text"
+        value={name}
+        onChange={changeName}
+        placeholder="10자 이하로 입력해주세요."
+        maxLength={10}
+      />
+      <StyledLable>MBTI는 무엇인가요?</StyledLable>
 
-        <StyledLableDiv>
-          <div>
-            {MBTIIE.map((mbtiObject) => (
-              <StyledMBTIButton2
-                onClick={clickMBTIButton}
-                id={mbtiObject.id}
-                value={mbtiObject.mbti}
-              >
-                {mbtiObject.mbti}
-              </StyledMBTIButton2>
-            ))}
-          </div>
-          <div>
-            {MBTINS.map((mbtiObject) => (
-              <StyledMBTIButton2
-                onClick={clickMBTIButton}
-                id={mbtiObject.id}
-                value={mbtiObject.mbti}
-              >
-                {mbtiObject.mbti}
-              </StyledMBTIButton2>
-            ))}
-          </div>
-          <div>
-            {MBTIFT.map((mbtiObject) => (
-              <StyledMBTIButton2
-                onClick={clickMBTIButton}
-                id={mbtiObject.id}
-                value={mbtiObject.mbti}
-              >
-                {mbtiObject.mbti}
-              </StyledMBTIButton2>
-            ))}
-          </div>
-          <div>
-            {MBTIPJ.map((mbtiObject) => (
-              <StyledMBTIButton2
-                onClick={clickMBTIButton}
-                id={mbtiObject.id}
-                value={mbtiObject.mbti}
-              >
-                {mbtiObject.mbti}
-              </StyledMBTIButton2>
-            ))}
-          </div>
-        </StyledLableDiv>
-
+      <StyledLableDiv>
+        <div>
+          {MBTIIE.map((mbtiObject) => (
+            <StyledMBTIButton2
+              onClick={clickMBTIButton}
+              id={mbtiObject.id}
+              value={mbtiObject.mbti}
+            >
+              {mbtiObject.mbti}
+            </StyledMBTIButton2>
+          ))}
+        </div>
+        <div>
+          {MBTINS.map((mbtiObject) => (
+            <StyledMBTIButton2
+              onClick={clickMBTIButton}
+              id={mbtiObject.id}
+              value={mbtiObject.mbti}
+            >
+              {mbtiObject.mbti}
+            </StyledMBTIButton2>
+          ))}
+        </div>
+        <div>
+          {MBTIFT.map((mbtiObject) => (
+            <StyledMBTIButton2
+              onClick={clickMBTIButton}
+              id={mbtiObject.id}
+              value={mbtiObject.mbti}
+            >
+              {mbtiObject.mbti}
+            </StyledMBTIButton2>
+          ))}
+        </div>
+        <div>
+          {MBTIPJ.map((mbtiObject) => (
+            <StyledMBTIButton2
+              onClick={clickMBTIButton}
+              id={mbtiObject.id}
+              value={mbtiObject.mbti}
+            >
+              {mbtiObject.mbti}
+            </StyledMBTIButton2>
+          ))}
+        </div>
+      </StyledLableDiv>
+      <StyledLableDiv>
         <Button
           onclick={() => clickStartButton()}
           text={"start"}
           className={"bottom"}
         />
-
-        <Footer />
-      </StyledContainBox>
-    </StyledBackgroundBox>
+      </StyledLableDiv>
+      <Footer />
+    </StyledContainer>
   );
 }
 
+const StyledContainer = styled.section`
+  margin: 0 auto;
+  text-align: center;
+`;
+
 const StyledLableDiv = styled.div`
   display: flex;
+  justify-content: center;
+
+  margin-bottom: 10px;
 `;
 
 const StyledLable = styled.label`
-  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+
+  margin: 10px;
   width: 320px;
-  text-align: center;
   font-family: "theJamsil";
   font-style: normal;
   font-weight: 400;

@@ -44,30 +44,47 @@ export default function QuizMainPage() {
   }
 
   return (
-    <StyledBackgroundBox>
-      <StyledContainBox>
-        <Header />
-        <ImageSlide />
-        <StyledLable>
-          <StyledBoldLable>{serverName} </StyledBoldLable>님의 MBTI를 <br />
-          맞추러 오셨군요!
-        </StyledLable>
-        <StyledLable>이름을 입력해주세요.</StyledLable>
-        <StyledNameInput
-          type="text"
-          value={name}
-          onChange={changeName}
-          placeholder="10자 이하로 입력해주세요."
-          maxLength={10}
-        />
-
+    <StyledContainer>
+      <Header />
+      <ImageSlide />
+      <StyledLable>
+        <StyledBoldLable>{serverName} </StyledBoldLable>님의 MBTI를 <br />
+        맞추러 오셨군요!
+      </StyledLable>
+      <StyledNameLable>이름을 입력해주세요.</StyledNameLable>
+      <StyledNameInput
+        type="text"
+        value={name}
+        onChange={changeName}
+        placeholder="10자 이하로 입력해주세요."
+        maxLength={10}
+      />
+      <StyledNameLable>
         <Button onclick={clickStartButton} text={"start"} className="button" />
-
-        <Footer />
-      </StyledContainBox>
-    </StyledBackgroundBox>
+      </StyledNameLable>
+      <Footer />
+    </StyledContainer>
   );
 }
+
+const StyledContainer = styled.section`
+  margin: 0 auto;
+  text-align: center;
+`;
+
+const StyledNameLable = styled.label`
+  display: flex;
+  justify-content: center;
+
+  margin: 10px;
+  margin-top: 20px;
+  width: 320px;
+  font-family: "theJamsil";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 22px;
+`;
 
 const StyledLable = styled.label`
   margin: 10px 0;
