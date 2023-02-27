@@ -64,8 +64,10 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0 auto;
         padding: 40px 20px;
         font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    
     a {
         text-decoration: none;
         color: inherit;

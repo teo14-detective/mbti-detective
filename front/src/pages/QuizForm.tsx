@@ -80,13 +80,12 @@ export default function QuizForm() {
   );
 }
 const StyledContainer = styled.section`
-  max-width: 430px;
   margin: 0 auto;
   text-align: center;
 `;
 
 const StyledStatusBox = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 20px;
   border: 2px solid black;
   margin: 20px 0 40px;
