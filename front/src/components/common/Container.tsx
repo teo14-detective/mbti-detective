@@ -6,7 +6,6 @@ export const StyledBackgroundBox = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
 export const StyledContainBox = styled.div`
@@ -15,13 +14,7 @@ export const StyledContainBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-`;
-
-export const StyledTitleContainBox = styled.div`
-  width: 390px;
-  height: 220px;
-  position: relative;
+  justify-content: space-between;
 `;
 
 export const StyledSnsContainerBox = styled.div`
