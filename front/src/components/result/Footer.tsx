@@ -4,12 +4,17 @@ import kakaoIcon from "@assets/images/icon/icon-kakao.png";
 import linkIcon from "@assets/images/icon/icon-link.png";
 import saveIcon from "@assets/images/icon/icon-save.png";
 import handleCopyClipBoard from "@utils/copyToClipboard";
+import { ResponseFetchUsageLogs } from "@pages/ResultPage";
+import useResultStore from "@store/resultStore";
+import questionCharactor from "@assets/images/questionCharactor.png";
+import { ogMBTIImage } from "@assets/data/mbti";
 
 type Props = {
   handleCapture: () => void;
+  usageLog: ResponseFetchUsageLogs;
 };
 
-const Footer = ({ handleCapture }: Props) => {
+const Footer = ({ handleCapture, usageLog }: Props) => {
   const onCopyClipBoard = () => {
     const baseUrl = "http://127.0.0.1:5173/";
     handleCopyClipBoard(baseUrl + window.location.pathname);
@@ -20,11 +25,11 @@ const Footer = ({ handleCapture }: Props) => {
       <StyledContainer>
         <StyledDataList>
           <StyledDataTerm>방문수</StyledDataTerm>
-          <StyledDataDesc>2121212</StyledDataDesc>
+          <StyledDataDesc>{usageLog.hit}</StyledDataDesc>
         </StyledDataList>
         <StyledDataList>
           <StyledDataTerm>공유수</StyledDataTerm>
-          <StyledDataDesc>121212</StyledDataDesc>
+          <StyledDataDesc>{usageLog.share}</StyledDataDesc>
         </StyledDataList>
       </StyledContainer>
       <StyledButtonContainer>
@@ -45,11 +50,17 @@ export default Footer;
 /* 카카오톡 공유 버튼 */
 
 const KakaoShareButton = () => {
+  const sortedSurveyList = useResultStore((state) => {
+    return state.sortedSurveyList;
+  });
   useEffect(() => {
-    createKakaoButton();
+    if (sortedSurveyList.length) {
+      let mbti = sortedSurveyList[0][0]["user_mbti"].toUpperCase();
+    }
+    createKakaoButton(questionCharactor);
   }, []);
 
-  const createKakaoButton = () => {
+  const createKakaoButton = (url: string) => {
     // kakao sdk script이 정상적으로 불러와졌으면 window.Kakao로 접근이 가능합니다
     if (window.Kakao) {
       const kakao = window.Kakao;
@@ -65,24 +76,17 @@ const KakaoShareButton = () => {
         container: "#kakao-link-btn",
         objectType: "feed",
         content: {
-          title: "타이틀",
-          description: "#나는야 #MBTI #명탐정",
-          imageUrl:
-            "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/78e62aef-f8dd-4a6f-8c0f-ecae5737813c/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230226%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230226T114336Z&X-Amz-Expires=86400&X-Amz-Signature=4695abcd0c95d1638e7a552142682b377855e0fc2e7f0825a4dd9b160e709bc7&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject", // i.e. process.env.FETCH_URL + '/logo.png'
+          title: "MBTI 명탐정",
+          description: "#진실은 #언제나 #하나",
+          imageUrl: "/public/opimage.png", // i.e. process.env.FETCH_URL + '/logo.png'
           link: {
             mobileWebUrl: window.location.href,
             webUrl: window.location.href,
           },
         },
-        /* social은 optional */
-        social: {
-          likeCount: 77,
-          commentCount: 55,
-          sharedCount: 333,
-        },
         buttons: [
           {
-            title: "웹으로 보기",
+            title: "탐정이 되어보자",
             link: {
               mobileWebUrl: window.location.href,
               webUrl: window.location.href,

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import charactor from "@assets/images/mbti-face/ISTP.png";
 import useRoute from "@hooks/useRoute";
 import Chart from "./Chart";
+import { ResponseFetchUser } from "@pages/ResultPage";
+import useResultStore from "@store/resultStore";
+import mbtiData, { MBTI } from "@assets/data/mbti";
 
 type PropsType = {
   type: "stats" | "results";
@@ -36,32 +39,58 @@ const StyledContainer = styled.section`
 
 const Stats = () => {
   const { handleRouteBack } = useRoute();
+  const { user, MBTIData, sortedSurveyList } = useResultStore((state) => ({
+    ...state,
+  }));
+
+  const [isListOpen, setIsListOpen] = useState(false);
+  const [showingList, setShowingList] = useState<string[][]>([]);
+  const mappedList = sortedSurveyList
+    .map((it) => {
+      return it.map((it) => [it.name, it.user_mbti]);
+    })
+    .flat();
+
+  useEffect(() => {
+    setShowingList(mappedList.slice(0, 4));
+  }, [sortedSurveyList]);
+
   return (
     <>
-      <StyledStatsTitle>메이님의 통계</StyledStatsTitle>
+      <StyledStatsTitle>{`${user.name}님의 통계`}</StyledStatsTitle>
       <Chart />
       <StyledStatsResultsContainer>
         <StyledStatsResults>
           <StyledStatsContainer>
             <StyledStatsStrong>닉네임</StyledStatsStrong>
             <StyledStatsList>
-              <StyledStatsItem>사라</StyledStatsItem>
-              <StyledStatsItem>사라</StyledStatsItem>
-              <StyledStatsItem>사라</StyledStatsItem>
-              <StyledStatsItem>사라</StyledStatsItem>
+              {showingList.map((it, i) => (
+                <StyledStatsItem key={i}>{it[0]}</StyledStatsItem>
+              ))}
             </StyledStatsList>
           </StyledStatsContainer>
           <StyledStatsContainer>
             <StyledStatsStrong>응답 결과</StyledStatsStrong>
             <StyledStatsList>
-              <StyledStatsItem>ISTP</StyledStatsItem>
-              <StyledStatsItem>ISTP</StyledStatsItem>
-              <StyledStatsItem>ISTP</StyledStatsItem>
-              <StyledStatsItem>ISTP</StyledStatsItem>
+              {showingList.map((it, i) => (
+                <StyledStatsItem key={i}>{it[1]}</StyledStatsItem>
+              ))}
             </StyledStatsList>
           </StyledStatsContainer>
         </StyledStatsResults>
-        <StyledMoreButton>더보기</StyledMoreButton>
+        <StyledMoreButton
+          onClick={() => {
+            if (!isListOpen) {
+              setShowingList([...mappedList]);
+              setIsListOpen(true);
+            } else {
+              setShowingList([...mappedList].slice(0, 4));
+              setIsListOpen(false);
+            }
+          }}
+        >
+          {isListOpen ? "닫기" : "더보기"}
+        </StyledMoreButton>
       </StyledStatsResultsContainer>
 
       <StyledResultButton onClick={handleRouteBack}>
@@ -119,7 +148,7 @@ const StyledStatsItem = styled.li`
 
 const StyledStatsImage = styled.img`
   width: 128px;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1;
   margin-bottom: 12px;
 `;
 
@@ -138,7 +167,34 @@ const StyledStatsResults = styled.div`
   margin-bottom: 20px;
 `;
 const Result = () => {
+  const user = useResultStore((state) => state.user);
+  const MBTIData = useResultStore((state) => state.MBTIData);
+  const surveyList = useResultStore((state) => state.sortedSurveyList);
   const { handleRouteBack } = useRoute();
+  const [surveyMBTI, setSurveyMBTI] = useState<any[]>([]);
+  const [surveyData, setSurveyData] = useState<any[]>([]);
+
+  useEffect(() => {
+    setSurveyMBTI(
+      mbtiData.filter((el) => el[surveyList[0][0].user_mbti.toUpperCase()]),
+    );
+  }, []);
+
+  const foo = user.mbti.toUpperCase();
+
+  const extractFromObj = () => {
+    const list = [];
+    for (const key in surveyMBTI[0]) {
+      const { type, image, description } = surveyMBTI[0][key];
+      list.push(type, image, description);
+    }
+    return list;
+  };
+
+  useEffect(() => {
+    setSurveyData(extractFromObj());
+  }, [surveyMBTI]);
+
   return (
     <>
       <StyledResultTitle>메이님의 결과</StyledResultTitle>
@@ -147,12 +203,9 @@ const Result = () => {
           <StyledResultStrong>
             친구들이 본<br /> 나의 MBTI
           </StyledResultStrong>
-          <StyledResultImage src={charactor} alt="mbti oooo 캐릭터" />
+          <StyledResultImage src={surveyData[1]} alt="mbti oooo 캐릭터" />
           <StyledResultList>
-            <StyledResultItem>관심받기싫은관종</StyledResultItem>
-            <StyledResultItem>관심받기싫은관종</StyledResultItem>
-            <StyledResultItem>관심받기싫은관종</StyledResultItem>
-            <StyledResultItem>관심받기싫은관종</StyledResultItem>
+            <StyledResultItem>{surveyData[2]}</StyledResultItem>
           </StyledResultList>
         </StyledResultSideContainer>
         <StyledResultSideContainer>
@@ -160,12 +213,9 @@ const Result = () => {
             실제
             <br /> 나의 MBTI
           </StyledResultStrong>
-          <StyledResultImage src={charactor} alt="mbti oooo 캐릭터" />
+          <StyledResultImage src={MBTIData.image} alt="mbti oooo 캐릭터" />
           <StyledResultList>
-            <StyledResultItem>관심받기싫은관종</StyledResultItem>
-            <StyledResultItem>관심받기싫은관종</StyledResultItem>
-            <StyledResultItem>관심받기싫은관종</StyledResultItem>
-            <StyledResultItem>관심받기싫은관종</StyledResultItem>
+            <StyledResultItem>{MBTIData.description}</StyledResultItem>
           </StyledResultList>
         </StyledResultSideContainer>
       </StyledResultContainer>
