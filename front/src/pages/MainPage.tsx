@@ -1,19 +1,18 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import styled from "styled-components";
+import useMakeMBTI from "./../hooks/useMakeMBTI";
+import useCounterFetch from "./../hooks/useCounterFetch";
 import { Button } from "@components/common/Button2";
 import {
   StyledBackgroundBox,
   StyledContainBox,
-  StyledSnsContainerCircleBox,
-  StyledSnsContainerBox,
-  StyledMBTIButtonContainerBox,
 } from "@components/common/Container";
-import ShareToKakao from "@components/ShareToKakao";
-import ShareToLink from "@components/ShareToLink";
+
 import useMakeName from "@hooks/useMakeName";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import styled, { createGlobalStyle } from "styled-components";
-import useMakeMBTI from "./../hooks/useMakeMBTI";
-import useCounterFetch from "./../hooks/useCounterFetch";
+import ImageSlide from "@components/mainPage/ImageSlide";
+import { Header } from "@components/mainPage/Header";
+import { Footer } from "@components/mainPage/Footer";
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -55,7 +54,6 @@ export default function MainPage() {
 
   const { MBTIResultArray, isClick, clickMBTIButton } = useMakeMBTI();
   const { name, changeName } = useMakeName();
-
   function clickStartButton() {
     if (MBTIResultArray.includes("") || !name)
       return alert("정보를 입력해주세요!");
@@ -81,8 +79,8 @@ export default function MainPage() {
   return (
     <StyledBackgroundBox>
       <StyledContainBox>
-        <StyledLogoImage src="/public/logo.png" alt="로고" />
-        <div>슬라이드</div>
+        <Header />
+        <ImageSlide />
         <StyledLable>이름을 입력해주세요</StyledLable>
         <StyledNameInput type="text" value={name} onChange={changeName} />
         <StyledLable>MBTI는 무엇인가요?</StyledLable>
@@ -117,6 +115,7 @@ export default function MainPage() {
                 onClick={clickMBTIButton}
                 id={mbtiObject.id}
                 value={mbtiObject.mbti}
+                // isClick={isClick}
               >
                 {mbtiObject.mbti}
               </StyledMBTIButton2>
@@ -128,6 +127,7 @@ export default function MainPage() {
                 onClick={clickMBTIButton}
                 id={mbtiObject.id}
                 value={mbtiObject.mbti}
+                // isClick={isClick}
               >
                 {mbtiObject.mbti}
               </StyledMBTIButton2>
@@ -139,6 +139,7 @@ export default function MainPage() {
                 onClick={clickMBTIButton}
                 id={mbtiObject.id}
                 value={mbtiObject.mbti}
+                // isClick={isClick}
               >
                 {mbtiObject.mbti}
               </StyledMBTIButton2>
@@ -150,6 +151,7 @@ export default function MainPage() {
                 onClick={clickMBTIButton}
                 id={mbtiObject.id}
                 value={mbtiObject.mbti}
+                // isClick={isClick}
               >
                 {mbtiObject.mbti}
               </StyledMBTIButton2>
@@ -163,16 +165,7 @@ export default function MainPage() {
           className={"bottom"}
         />
 
-        <StyledLableDiv>
-          <StyledBoldLable>방문수</StyledBoldLable>
-          <StyledCountLable>{hitCount}</StyledCountLable>
-          <StyledBoldLable>공유수</StyledBoldLable>
-          <StyledCountLable>{shareCount}</StyledCountLable>
-        </StyledLableDiv>
-        <StyledSnsContainerBox>
-          <ShareToKakao />
-          <ShareToLink />
-        </StyledSnsContainerBox>
+        <Footer />
       </StyledContainBox>
     </StyledBackgroundBox>
   );
@@ -186,6 +179,11 @@ const StyledLable = styled.label`
   margin: 10px 0;
   width: 320px;
   text-align: center;
+  font-family: "theJamsil";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 22px;
 `;
 
 const StyledNameInput = styled.input`
@@ -201,61 +199,47 @@ const StyledNameInput = styled.input`
   border-radius: 10px;
 `;
 
-const StyledLogoImage = styled.img`
-  margin-bottom: 50px;
-  width: 300px;
-`;
-
-const StyledBoldLable = styled.label`
-  display: flex;
-  width: 50px;
-  font-weight: 500;
-`;
-
 const StyledCountLable = styled.div`
   width: 50px;
   text-align: center;
 `;
 
-const StyledButton = styled.button`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 8px 20px;
-  gap: 10px;
-  width: 340px;
-  height: 56px;
-  background: #ffcd5d;
-  box-shadow: 5px 5px;
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  &:hover {
-    background-color: #ff9c4f;
-  }
-`;
+// type isClickType = {
+//   isClick: boolean;
+// };
+
 const StyledMBTIButton2 = styled.button`
   display: flex;
-  margin: 4px;
+  margin: 5px 10px;
   width: 50px;
   height: 50px;
-  border: 1px solid;
   align-items: center;
   justify-content: center;
 
-  margin: 4px;
   padding: 6px 16px;
-
-  width: 70px;
-  height: 70px;
+  gap: 10px;
+  width: 39px;
+  height: 38px;
 
   font-size: 40px;
-  border: 1px solid;
   border-radius: 6px;
 
   gap: 10px;
 
   background: #b7b7b7;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25);
+  &:hover {
+    background-color: #b89960;
+  }
+
+  /* background-color: ${(props) => (props.isClick ? "#b89960" : "#b7b7b7")}; */
+
+  box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.25);
+
+  font-family: "theJamsil";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 26px;
+
+  color: #554128;
 `;
