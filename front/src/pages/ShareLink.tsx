@@ -49,7 +49,7 @@ export const ShareLink = () => {
       <StyledContainer>
         <Header />
         <StyledAvatarImage
-          src={`/src/assets/images/mbti-hat/${mbti}.png`}
+          src={`mbti-hat/${mbti}.png`}
           alt="MBTI AVATAR"
         />
         <StyledDoneSpan>응답 링크가 생성되었습니다.</StyledDoneSpan>
