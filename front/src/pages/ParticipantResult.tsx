@@ -70,14 +70,16 @@ function ParticipantResult() {
                   {localStorage.getItem("participantName")}의 생각
                 </StyledParagraphBox>
                 <StyledImage
-                  src={participantMbti.join("").substring(18, 37)}
+                  src={`/mbti-text/${localStorage.getItem(
+                    "participantAnswer",
+                  )}.png`}
                   alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
                 />
               </StyledImageBox>
               <StyledImageBox>
                 <StyledParagraphBox>{user}의 MBTI</StyledParagraphBox>
                 <StyledImage
-                  src={userAnswerMbti.join("").substring(18, 37)}
+                  src={`/mbti-text/${userMbti}.png`}
                   alt="친구의 실제 mbti 캐릭터 이미지"
                 />
               </StyledImageBox>
