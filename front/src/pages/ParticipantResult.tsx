@@ -24,7 +24,6 @@ function ParticipantResult() {
 
   const [fetchData, setFetchData] = useState<fetchDataType>();
   const [isLoading, setisLoading] = useState(true);
-  const [MBTIData, setMBTIData] = useState();
   const navigate = useNavigate();
   useEffect(() => {
     fetch(`/api/users/${localStorage.getItem("userKey")}`, {
@@ -46,16 +45,14 @@ function ParticipantResult() {
   }, []);
   const userMbti = fetchData?.mbti;
   const user = fetchData?.name;
-  const [isEqual, setIsEqual] = useState<boolean>(
-    localStorage.getItem("participantAnswer") === userMbti,
-  );
-  const participantMbti = MBTIImage.filter(
-    (elem) =>
-      elem.substring(29, 33) === localStorage.getItem("participantAnswer"),
-  );
-  const userAnswerMbti = MBTIImage.filter(
-    (elem) => elem.substring(29, 33) === userMbti,
-  );
+  // const participantMbti = MBTIImage.filter(
+  //   (elem) =>
+  //     elem.substring(29, 33) === localStorage.getItem("participantAnswer"),
+  // );
+  // const userAnswerMbti = MBTIImage.filter(
+  //   (elem) => elem.substring(29, 33) === userMbti,
+  // );
+  const isEqualMbti = localStorage.getItem("participantAnswer") === userMbti;
   return (
     <>
       {isLoading ? (
@@ -86,8 +83,8 @@ function ParticipantResult() {
             </StyledImagesBox>
 
             <StyledResultContainerBox>
-              <StyledResultTextBox isEqual={isEqual}>
-                {isEqual ? "정답!" : "땡!"}
+              <StyledResultTextBox isEqual={isEqualMbti}>
+                {isEqualMbti ? "정답!" : "땡!"}
               </StyledResultTextBox>
               <StyledResultSentenceParagraph>
                 {`${user ?? ""}님의 MBTI는 ${userMbti ?? ""}입니다.\n
