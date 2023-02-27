@@ -1,15 +1,25 @@
-# MBTI-detective
+# <p id="top">MBTI-detective</p>
 ---
 <img src="https://i.imgur.com/lU6aLXF.png" width=80%/>
 
 
+## 목차
 
+1. [프로젝트 소개](#프로젝트-소개)
+2. [기술 스택 & 개발 환경](#기술-스택-개발-환경)
+3. [개발 기간](#개발-기간)
+4. [멤버 구성](#멤버-구성)
+5. [주요 기능](#주요-기능)
+6. [User Flow](#User-Flow)
 
-## 프로젝트 소개
+## <a id="프로젝트-소개">프로젝트 소개</a>
 🕵️우리는 MBTI 탐정단!🕵️<br>
 친구들의 MBTI를 맞춰보고, 친구들은 내 성격을 어떻게 생각하는지 들어봅시다!
 
-## 기술 스택 & 개발 환경
+<br/>
+ <p align="right"><a href="#top">(⬆️ Top)</a></p>
+
+## <a id="기술-스택-개발-환경">기술 스택 & 개발 환경</a>
 
 <table>
       <thead align="center">
@@ -65,10 +75,16 @@
       </tbody>
 </table>
 
-## 개발 기간
+<br/>
+ <p align="right"><a href="#top">(⬆️ Top)</a></p>
+
+## <a id="기발-기간">개발 기간</a>
 2023.02.22 ~ 2023.02.27
 
-## 멤버 구성
+<br/>
+ <p align="right"><a href="#top">(⬆️ Top)</a></p>
+
+## <a id="멤버-구성">멤버 구성</a>
 |<span style="font-size:16px">devtedlee</span>|<span style="font-size:16px">devep441</span>|<span style="font-size:16px">권민영</span>|<span style="font-size:16px">Gyuri Gwon</span>|
 |:-:|:-:|:-:|:-:|
 |<a href="https://github.com/devtedlee"><img src="https://avatars.githubusercontent.com/devtedlee" height=150 width=150></a>|<a href="https://github.com/Bsfla"><img src="https://avatars.githubusercontent.com/Bsfla" height=150 width=150></a>|<a href="https://github.com/FROM-minyoung"><img src="https://avatars.githubusercontent.com/FROM-minyoung" height=150 width=150></a>|<a href="https://github.com/Gyuri092"><img src="https://avatars.githubusercontent.com/Gyuri092" height=150 width=150></a>|
@@ -76,13 +92,42 @@
 **leejungeun**</span>|<span style="font-size:16px">**김지용**</span>|<span style="font-size:16px">**정수현**</span>|
 |<a href="https://github.com/Jxxunnn"><img src="https://avatars.githubusercontent.com/Jxxunnn" height=150 width=150></a>|<a href="https://github.com/kkkimjiyong"><img src="https://avatars.githubusercontent.com/kkkimjiyong" height=150 width=150></a>|<a href="https://github.com/sasha1107"><img src="https://avatars.githubusercontent.com/sasha1107" height=150 width=150></a>|
 
+<br/>
+ <p align="right"><a href="#top">(⬆️ Top)</a></p>
 
-## 주요 기능
+
+## <a id="주요-기능">주요 기능</a>
 ### 🔍 mbti 맞추기
 <img src="https://i.imgur.com/XQucAI3.png" width=33%/> <img src="https://i.imgur.com/PBnVPz8.png" width=33%/> <img src="https://i.imgur.com/R4D3skL.png" width=33%/>
 
 ### 🤔 친구들의 응답 받기
 <img src="https://user-images.githubusercontent.com/78977003/221558393-f0cc0069-6384-4a20-a900-d5c3fb5648af.png" width=33%/> <img src="https://i.imgur.com/mXQRusf.png" width=33%/>
 
+## <a id="User-Flow">User Flow</a>
 
+```mermaid
+flowchart LR
+
+A{본인} --> B[Share]
+B --> C[Result]
+C --> D[ChartResult]
+C --> E[ComparisonResult]
+
+```
+
+```mermaid
+flowchart LR
+
+A{본인} --> B[Share]
+B --> C[Result]
+C --> D[ChartResult]
+C --> E[ComparisonResult]
+
+F{친구} --> G[Ask]
+G --> H[Share]
+H --> A
+```
+
+<br/>
+ <p align="right"><a href="#top">(⬆️ Top)</a></p>
 

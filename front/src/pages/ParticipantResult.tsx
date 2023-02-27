@@ -56,6 +56,7 @@ function ParticipantResult() {
   const userAnswerMbti = MBTIImage.filter(
     (elem) => elem.substring(29, 33) === userMbti,
   );
+  console.log(participantMbti.join("").substring(19, 37));
   return (
     <>
       {isLoading ? (
@@ -70,14 +71,14 @@ function ParticipantResult() {
                   {localStorage.getItem("participantName")}의 생각
                 </StyledParagraphBox>
                 <StyledImage
-                  src={participantMbti.join("")}
+                  src={participantMbti.join("").substring(19, 37)}
                   alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
                 />
               </StyledImageBox>
               <StyledImageBox>
                 <StyledParagraphBox>{user}의 MBTI</StyledParagraphBox>
                 <StyledImage
-                  src={userAnswerMbti.join("")}
+                  src={`../src/assets/images/mbti-text/${userMbti}.png`} //userAnswerMbti.join("")
                   alt="친구의 실제 mbti 캐릭터 이미지"
                 />
               </StyledImageBox>
