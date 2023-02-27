@@ -20,7 +20,10 @@ const Router = () => {
         <Route path="/result/chart" element={<ChartResultPage />} />
         <Route path="/result/compare" element={<CompareResultPage />} />
         <Route path="/participant/quiz" element={<QuizForm />} />
-        <Route path="/participant-result" element={<ParticipantResult />} />
+        <Route
+          path="/participant-result/:userkey"
+          element={<ParticipantResult />}
+        />
       </Routes>
     </BrowserRouter>
   );
