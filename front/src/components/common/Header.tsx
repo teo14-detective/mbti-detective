@@ -3,13 +3,18 @@ import MainLogo from "/src/assets/images/logo.png";
 import styled from "styled-components";
 
 export const Header = () => {
-  return <Container src={MainLogo} alt="로고" />;
+  return (
+    <StyledHeader>
+      <StyledLogoImage src={MainLogo} alt="MBTI 명탐정" />
+    </StyledHeader>
+  );
 };
 
-const Container = styled.img`
+const StyledHeader = styled.h1``;
+const StyledLogoImage = styled.img`
   width: 180px;
   height: 90px;
   display: block;
   margin: 0 auto;
-  margin-top: 85px;
+  margin-top: 20px;
 `;
