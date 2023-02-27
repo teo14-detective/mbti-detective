@@ -33,17 +33,18 @@ export const Footer = () => {
 
 const StyledLableDiv = styled.div`
   display: flex;
+  flex-wrap: wrap;
   width: 289px;
   justify-content: space-evenly;
 `;
 
 const StyledBoldLable = styled.label`
   display: flex;
-  width: 50px;
+  width: 60px;
   font-weight: 500;
 `;
 
 const StyledCountLable = styled.div`
-  width: 50px;
+  width: auto;
   text-align: center;
 `;

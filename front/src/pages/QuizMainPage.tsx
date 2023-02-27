@@ -81,7 +81,7 @@ const StyledNameInput = styled.input`
   margin-bottom: 10px;
   padding: 1px 10px;
 
-  width: 289px;
+  width: 269px;
   height: 40px;
 
   font-size: 20px;

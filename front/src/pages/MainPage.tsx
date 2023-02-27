@@ -153,7 +153,7 @@ const StyledNameInput = styled.input`
   margin-bottom: 10px;
   padding: 1px 10px;
 
-  width: 300px;
+  width: 269px;
   height: 40px;
 
   font-size: 20px;
@@ -162,40 +162,30 @@ const StyledNameInput = styled.input`
   border-radius: 10px;
 `;
 
-const StyledCountLable = styled.div`
-  width: 50px;
-  text-align: center;
-`;
-
 const StyledMBTIButton2 = styled.button`
   display: flex;
-  margin: 5px 10px;
-  width: 50px;
-  height: 50px;
+  margin: 4px;
+  width: 65px;
+  height: 65px;
   align-items: center;
   justify-content: center;
-
-  padding: 6px 16px;
-  gap: 10px;
-  width: 39px;
-  height: 38px;
 
   font-size: 40px;
   border-radius: 6px;
 
-  gap: 10px;
-
   background: #b7b7b7;
   &:hover {
     background-color: #b89960;
+    transform: translateX(3%) translateY(3%);
+    box-shadow: none;
   }
 
-  box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.25);
+  box-shadow: 4px 4px #333;
 
   font-family: "theJamsil";
   font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
+  font-weight: 800;
+  font-size: 35px;
   line-height: 26px;
 
   color: #554128;
