@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import logo from "/src/assets/images/logo.png";
-import {
-  StyledBackgroundBox,
-  StyledContainBox,
-} from "@components/common/Container";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Loading from "./common/Loading";
 import { Header } from "@components/common/Header";
+import { Button } from "@components/common/Button";
+import { useNavigate } from "react-router-dom";
 
 function ParticipantResult() {
   type participantsArrayType = {
@@ -26,6 +23,7 @@ function ParticipantResult() {
 
   const [fetchData, setFetchData] = useState<fetchDataType>();
   const [isLoading, setisLoading] = useState(true);
+  const navigate = useNavigate();
   useEffect(() => {
     fetch(`/api/users/${localStorage.getItem("userKey")}`, {
       method: "GET",
@@ -50,13 +48,13 @@ function ParticipantResult() {
     localStorage.getItem("participantAnswer") === userMbti,
   );
   return (
-    <StyledBackgroundBox>
-      <StyledContainBox>
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <div>
-            <Header />
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <Header />
+          <StyledContainer>
             <StyledImagesBox>
               <StyledImageBox>
                 <StyledParagraphBox>
@@ -94,136 +92,78 @@ function ParticipantResult() {
             <StyledAnchorBox>
               <Link to="/result">{user ?? ""}님의 결과 보기</Link>
             </StyledAnchorBox>
-
-            <Link to="/">
-              <StyledButton>
-                <StyledParagraph>내 MBTI 물어보러 가기</StyledParagraph>
-              </StyledButton>
-            </Link>
-          </div>
-        )}
-      </StyledContainBox>
-    </StyledBackgroundBox>
+            <StyledButtonBox>
+              <Button onClick={() => navigate("/")}>내 MBTI 물어보기</Button>
+            </StyledButtonBox>
+          </StyledContainer>
+        </>
+      )}
+    </>
   );
 }
+
+const StyledContainer = styled.section`
+  margin: 0 auto;
+  text-align: center;
+`;
 const StyledImagesBox = styled.div`
   display: flex;
-  width: 100%;
-  justify-content: space-around;
-  margin-top: 70px;
-  margin-bottom: 30px;
+  justify-content: space-between;
+  margin-top: 3em;
+  margin-bottom: 2em;
 `;
-
 const StyledImageBox = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  gap: 1em;
 `;
 
 const StyledImage = styled.img`
   width: 138px;
   height: 138px;
 `;
-
 const StyledParagraphBox = styled.div`
-  /* width: 125px;
-  height: 22px; */
-  font-family: "theJamsil";
-  font-style: normal;
   font-weight: 500;
-  font-size: 20px;
-  line-height: 22px;
-  /* identical to box height */
   text-align: center;
-  color: #000000;
-  margin-bottom: 30px;
 `;
 type StyledResultTextType = {
   isEqual: boolean;
 };
 const StyledResultTextBox = styled.div<StyledResultTextType>`
-  text-align: center;
-  vertical-align: middle;
-  font-family: "theJamsil";
-  font-style: normal;
-  font-weight: 400;
   font-size: 30px;
-  line-height: 33px;
-  text-align: center;
   color: ${(props) => (props.isEqual ? "#023C9E" : "#9E2311")};
 `;
+
 const StyledResultSentenceParagraph = styled.p`
-  text-align: center;
-  vertical-align: middle;
   white-space: pre-line;
   line-height: 20px; //줄높이가 안맞아서 임의 수정함
 `;
-const StyledButton = styled.button`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 8px 20px;
-  gap: 10px;
-
-  width: 340px;
-  height: 56px;
-
-  background: #ffcd5d;
-  box-shadow: 5px 5px;
-  /* Inside auto layout */
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  &:hover {
-    background-color: #ff9c4f;
-  }
-`;
-const StyledParagraph = styled.p`
-  font-family: "blackHanSans";
-  font-weight: 400;
-  font-style: normal;
-  font-size: 32px;
-  line-height: 40px;
-  /* identical to box height */
-
-  display: flex;
-  align-items: flex-end;
-
-  color: #000000;
-`;
 
 const StyledResultContainerBox = styled.div`
-  /* width: 316px;
-  height: 119px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  font-family: "theJamsil";
-  font-style: normal;
-  font-weight: 400;
-  /* font-size: 30px; */
-  line-height: 33px;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 2em;
 `;
 
 const StyledAnchorBox = styled.div`
-  font-family: "theJamsil";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
-  line-height: 20px;
-  /* identical to box height */
 
   text-align: center;
   text-decoration-line: underline;
-
   color: #666666;
-  margin-bottom: 42px;
+  margin-bottom: 16%;
+`;
+
+const StyledButtonBox = styled.div`
+  width: 80%;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 8%;
 `;
 export default ParticipantResult;

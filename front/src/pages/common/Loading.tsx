@@ -8,7 +8,7 @@ export default function Loading() {
     <>
       <Header />
       <StyledContainter>
-        <StyledAmimationBox></StyledAmimationBox>
+        <StyledAmimationBox />
         <StyledParagraph>LOADING . . .</StyledParagraph>
       </StyledContainter>
     </>
@@ -21,12 +21,12 @@ const SpriteAnimation = keyframes`
     }
 `;
 const StyledContainter = styled.section`
+  height: calc(100vh - 40px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
-  height: calc(100vh - 90px - 85px - 50px);
 `;
 const StyledAmimationBox = styled.div`
   width: 90px;
