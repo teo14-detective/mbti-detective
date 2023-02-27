@@ -1,6 +1,7 @@
 import React from "react";
 import Detail from "@components/result/Detail";
 import styled from "styled-components";
+import useResultStore from "@store/resultStore";
 
 const CompareResult = () => {
   return (
