@@ -16,7 +16,7 @@ type Props = {
 
 const Footer = ({ handleCapture, usageLog }: Props) => {
   const onCopyClipBoard = () => {
-    const baseUrl = "https://mbti-detective.netlify.app/";
+    const baseUrl = "https://mbti-detective.netlify.app";
     handleCopyClipBoard(baseUrl + window.location.pathname);
   };
 
@@ -54,14 +54,18 @@ const KakaoShareButton = () => {
     return state.sortedSurveyList;
   });
   useEffect(() => {
+    let url =
+      "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/questionCharactor.png?raw=true";
+    let mbti = "잉프피";
     if (sortedSurveyList.length) {
-      let mbti = sortedSurveyList[0][0]["user_mbti"].toUpperCase();
+      mbti = sortedSurveyList[0][0]["user_mbti"].toUpperCase();
+
       console.log(ogMBTIImage[mbti]);
     }
-    createKakaoButton(questionCharactor);
+    createKakaoButton(url, mbti);
   }, []);
 
-  const createKakaoButton = (url: string) => {
+  const createKakaoButton = (url: string, mbti: string) => {
     // kakao sdk script이 정상적으로 불러와졌으면 window.Kakao로 접근이 가능합니다
     if (window.Kakao) {
       const kakao = window.Kakao;
@@ -77,10 +81,9 @@ const KakaoShareButton = () => {
         container: "#kakao-link-btn",
         objectType: "feed",
         content: {
-          title: "내 이름은 인프피, 탐정이죠",
+          title: `내 이름은 ${mbti}, 탐정이죠`,
           description: "#진실은 #언제나 #하나",
-          imageUrl:
-            "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/INFP.png?raw=true", // i.e. process.env.FETCH_URL + '/logo.png'
+          imageUrl: url, // i.e. process.env.FETCH_URL + '/logo.png'
           link: {
             mobileWebUrl: window.location.href,
             webUrl: window.location.href,
