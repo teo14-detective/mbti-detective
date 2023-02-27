@@ -60,7 +60,7 @@ const MBITDesc = [
   "사교적이다.타인의 의견을 존중한다.비판을 받으면 예민하게 반응한다.",
   "철저한 준비를 한다.활동적이다.통솔력이 있다.단호하다.",
 ];
-const MBTIImage = [
+export const MBTIImage = [
   ISTJImage,
   ISFJImage,
   INFJImage,
