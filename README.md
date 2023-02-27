@@ -10,6 +10,7 @@
 친구들의 MBTI를 맞춰보고, 친구들은 내 성격을 어떻게 생각하는지 들어봅시다!
 
 ## 기술 스택 & 개발 환경
+
 <table>
       <thead align="center">
         <tr>
@@ -59,8 +60,7 @@
             <a href="https://www.netlify.com/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1569039210/noticon/yubwjrkj43jpneajrdii.png" alt="Netlify" height="40" /></a>
             <br>
             <code>Netlify</code>
-          </td>
-          
+          </td> 
         </tr>
       </tbody>
 </table>
