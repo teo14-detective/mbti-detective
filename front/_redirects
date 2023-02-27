@@ -1,0 +1,2 @@
+# proxy to api
+/api/*  https://your-server.herokuapp.com/api/:splat  200
