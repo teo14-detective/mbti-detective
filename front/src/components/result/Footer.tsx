@@ -55,7 +55,7 @@ const KakaoShareButton = () => {
   });
   useEffect(() => {
     let url =
-      "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/questionCharactor.png?raw=true";
+      "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/resultOG.png?raw=true";
     let mbti = "잉프피";
     if (sortedSurveyList.length) {
       mbti = sortedSurveyList[0][0]["user_mbti"].toUpperCase();
