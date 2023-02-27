@@ -73,7 +73,12 @@ export default function MainPage() {
       .then(async (res) => await res.json())
       .then(async (data) => {
         await localStorage.clear();
-        await localStorage.setItem("UserKey", `${data.key}`);
+        await localStorage.setItem(
+          "information",
+          JSON.stringify({
+            userKey: `${data.key}`,
+          }),
+        );
         await navigate("/share");
       });
   }

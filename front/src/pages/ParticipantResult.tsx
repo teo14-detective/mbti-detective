@@ -8,7 +8,11 @@ import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Loading from "./common/Loading";
 import { Header } from "@components/common/Header";
-import { userKey, participantName } from "@utils/getLocalStorageKey";
+import {
+  userKey,
+  participantName,
+  participantAnswer,
+} from "@utils/getLocalStorageKey";
 
 const StyledImagesBox = styled.div`
   display: flex;
@@ -167,16 +171,18 @@ function ParticipantResult() {
   }, []);
   console.log(fetchData);
   const [participantMbti, setParticipantMbti] = useState("");
-  const participantsArray: participantsArrayType[] | undefined =
-    fetchData?.participants;
-  participantsArray?.forEach((elem) => {
-    if (elem.name === participantName) {
-      setParticipantMbti(elem.user_mbti);
-    }
-  });
+  // const participantsArray: participantsArrayType[] | undefined =
+  //   fetchData?.participants;
+  // participantsArray?.forEach((elem) => {
+  //   if (elem.name === participantName) {
+  //     setParticipantMbti(elem.user_mbti);
+  //   }
+  // });
   const userMbti = fetchData?.mbti;
   const user = fetchData?.name;
-  const [isEqual, setIsEqual] = useState<boolean>(participantMbti === userMbti);
+  const [isEqual, setIsEqual] = useState<boolean>(
+    participantAnswer === userMbti,
+  );
   return (
     <StyledBackgroundBox>
       <StyledContainBox>
@@ -191,7 +197,7 @@ function ParticipantResult() {
                   {participantName}의 생각
                 </StyledParagraphBox>
                 <StyledImage
-                  src={`/src/assets/images/mbti-text/${participantMbti}.png`}
+                  src={`/src/assets/images/mbti-text/${participantAnswer}.png`}
                   alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
                 />
               </StyledImageBox>

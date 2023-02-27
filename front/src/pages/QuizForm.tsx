@@ -5,7 +5,7 @@ import iconTarget from "@assets/images/icon/icon-target.png";
 import { Button } from "@components/common/Button";
 import { Header } from "@components/common/Header";
 import { useNavigate } from "react-router";
-import { userKey } from "@utils/getLocalStorageKey";
+import { userKey, participantName } from "@utils/getLocalStorageKey";
 
 export default function QuizForm() {
   const [questions, answerText] = makeRandomQuestion();
@@ -21,8 +21,8 @@ export default function QuizForm() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: "아무개4",
-        user_key: "ABEDF12RFe",
+        name: participantName,
+        user_key: userKey,
         mbti: answer.join(""),
       }),
     }).then(async (res) => console.log(await res.json()));
@@ -44,7 +44,15 @@ export default function QuizForm() {
       //   }),
       // }).then(async (res) => console.log(await res.json()));
       request();
-
+      // localStorage.setItem("participantAnswer", answer.join(""));
+      localStorage.setItem(
+        "information",
+        JSON.stringify({
+          userKey: `${userKey}`,
+          participantName: `${participantName}`,
+          participantAnswer: answer.join(""),
+        }),
+      );
       navigate(`../participant-result/${userKey}`);
     }
     setStatus((prev) => prev + 1);

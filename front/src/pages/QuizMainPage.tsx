@@ -44,6 +44,7 @@ export default function QuizMainPage() {
       JSON.stringify({
         userKey: `${id}`,
         participantName: `${name}`,
+        participantAnswer: "",
       }),
     );
 
