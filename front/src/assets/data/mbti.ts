@@ -93,22 +93,22 @@ type ogType = {
 };
 
 export const ogMBTIImage: ogType = {
-  ENFJ: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ENFJ.png?raw=true",
-  ENFP: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ENFP.png?raw=true",
-  ENTJ: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ENTJ.png?raw=true",
-  ENTP: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ENTP.png?raw=true",
-  ESFJ: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ESFJ.png?raw=true",
-  ESFP: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ESFP.png?raw=true",
-  ESTJ: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ESTJ.png?raw=true",
-  ESTP: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ESTP.png?raw=true",
-  INFJ: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/INFJ.png?raw=true",
-  INFP: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/INFP.png?raw=true",
-  INTJ: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/INTJ.png?raw=true",
-  INTP: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/INTP.png?raw=true",
-  ISFJ: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ISFJ.png?raw=true",
-  ISFP: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ISFP.png?raw=true",
-  ISTJ: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ISTJ.png?raw=true",
-  ISTP: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ISTP.png?raw=true",
+  ENFJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ENFJ.png?raw=true",
+  ENFP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ENFP.png?raw=true",
+  ENTJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ENTJ.png?raw=true",
+  ENTP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ENTP.png?raw=true",
+  ESFJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ESFJ.png?raw=true",
+  ESFP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ESFP.png?raw=true",
+  ESTJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ESTJ.png?raw=true",
+  ESTP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ESTP.png?raw=true",
+  INFJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/INFJ.png?raw=true",
+  INFP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/INFP.png?raw=true",
+  INTJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/INTJ.png?raw=true",
+  INTP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/INTP.png?raw=true",
+  ISFJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ISFJ.png?raw=true",
+  ISFP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ISFP.png?raw=true",
+  ISTJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ISTJ.png?raw=true",
+  ISTP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ISTP.png?raw=true",
 };
 
 export default mbtiData;
