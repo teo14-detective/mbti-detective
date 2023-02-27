@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Loading from "./common/Loading";
 import { Header } from "@components/common/Header";
-import { Button } from "@components/common/Button";
+import { Button } from "@components/common/Button2";
 import { useNavigate } from "react-router-dom";
+import { MBTIImage } from "@assets/data/mbti";
 
 function ParticipantResult() {
   type participantsArrayType = {
@@ -23,6 +24,7 @@ function ParticipantResult() {
 
   const [fetchData, setFetchData] = useState<fetchDataType>();
   const [isLoading, setisLoading] = useState(true);
+  const [MBTIData, setMBTIData] = useState();
   const navigate = useNavigate();
   useEffect(() => {
     fetch(`/api/users/${localStorage.getItem("userKey")}`, {
@@ -47,6 +49,10 @@ function ParticipantResult() {
   const [isEqual, setIsEqual] = useState<boolean>(
     localStorage.getItem("participantAnswer") === userMbti,
   );
+  const participantMbti = MBTIImage.filter(
+    (elem) =>
+      elem.substring(29, 33) === localStorage.getItem("participantAnswer"),
+  );
   return (
     <>
       {isLoading ? (
@@ -58,12 +64,10 @@ function ParticipantResult() {
             <StyledImagesBox>
               <StyledImageBox>
                 <StyledParagraphBox>
-                  {localStorage.getItem("participantAnswer")}의 생각
+                  {localStorage.getItem("participantName")}의 생각
                 </StyledParagraphBox>
                 <StyledImage
-                  src={`/src/assets/images/mbti-text/${localStorage.getItem(
-                    "participantAnswer",
-                  )}.png`}
+                  src={participantMbti.join("")}
                   alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
                 />
               </StyledImageBox>
@@ -93,7 +97,11 @@ function ParticipantResult() {
               <Link to="/result">{user ?? ""}님의 결과 보기</Link>
             </StyledAnchorBox>
             <StyledButtonBox>
-              <Button onClick={() => navigate("/")}>내 MBTI 물어보기</Button>
+              <Button
+                onclick={() => navigate("/")}
+                text={"내 MBTI 물어보기"}
+                className={"bottom"}
+              />
             </StyledButtonBox>
           </StyledContainer>
         </>
@@ -125,8 +133,10 @@ const StyledImage = styled.img`
   height: 138px;
 `;
 const StyledParagraphBox = styled.div`
+  width: 125px;
   font-weight: 500;
   text-align: center;
+  white-space: normal;
 `;
 type StyledResultTextType = {
   isEqual: boolean;
@@ -160,10 +170,10 @@ const StyledAnchorBox = styled.div`
 `;
 
 const StyledButtonBox = styled.div`
-  width: 80%;
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 8%;
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 10px;
 `;
+
 export default ParticipantResult;
