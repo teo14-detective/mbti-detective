@@ -1,0 +1,6 @@
+{
+    "rewrites": [
+      {"source": "/api/", "destination": "https://mbti-detective-back.vercel.app"},
+      {"source": "/api/:match*", "destination": "https://mbti-detective-back.vercel.app/:match*"}
+    ]
+}
