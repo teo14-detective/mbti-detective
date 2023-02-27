@@ -10,7 +10,7 @@ export const StyledBackgroundBox = styled.div`
 
 export const StyledContainBox = styled.div`
   width: 430px;
-  height: 844px;
+  max-height: 1000px;
   display: flex;
   flex-direction: column;
   align-items: center;

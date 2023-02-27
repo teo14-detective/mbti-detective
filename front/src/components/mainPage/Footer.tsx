@@ -31,19 +31,27 @@ export const Footer = () => {
   );
 };
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 10px;
+`;
+
 const StyledLableDiv = styled.div`
   display: flex;
-  width: 289px;
+  flex-wrap: wrap;
   justify-content: space-evenly;
+  margin: 10px;
 `;
 
 const StyledBoldLable = styled.label`
   display: flex;
-  width: 50px;
+  width: 60px;
   font-weight: 500;
 `;
 
 const StyledCountLable = styled.div`
-  width: 50px;
+  width: auto;
   text-align: center;
 `;
