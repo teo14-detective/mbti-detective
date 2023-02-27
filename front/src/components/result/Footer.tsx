@@ -16,7 +16,7 @@ type Props = {
 
 const Footer = ({ handleCapture, usageLog }: Props) => {
   const onCopyClipBoard = () => {
-    const baseUrl = "http://127.0.0.1:5173/";
+    const baseUrl = "https://mbti-detective.netlify.app/";
     handleCopyClipBoard(baseUrl + window.location.pathname);
   };
 
