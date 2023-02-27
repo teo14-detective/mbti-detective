@@ -1,5 +1,5 @@
 {
-    "rewrites": [
-        {"source": "/api/:match*", "destination": "https://mbti-detective-back.vercel.app/:match*"}
+    "redirects": [
+        {"source": "/api/:path*", "destination": "https://mbti-detective-back.vercel.app/:path*"}
     ]
 }
