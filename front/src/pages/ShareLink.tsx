@@ -9,7 +9,7 @@ import { useNavigate } from "react-router";
 
 export const ShareLink = () => {
   const navigate = useNavigate();
-  const key = localStorage.getItem("UserKey");
+  const key = localStorage.getItem("userKey");
 
   useEffect(() => {
     fetch(`/api/users/${key}`, {

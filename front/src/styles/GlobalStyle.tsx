@@ -62,8 +62,12 @@ export const GlobalStyle = createGlobalStyle`
     #root {
         max-width: 430px;
         margin: 0 auto;
+        padding: 40px 20px;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    
     a {
         text-decoration: none;
         color: inherit;

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { makeRandomQuestion } from "@utils/makeRandomQuestion";
 import iconTarget from "@assets/images/icon/icon-target.png";
 import { Button } from "@components/common/Button";
 import { Header } from "@components/common/Header";
 import { useNavigate } from "react-router";
+// import { userKey, participantName } from "@utils/getLocalStorageKey";
 
 export default function QuizForm() {
   const [questions, answerText] = makeRandomQuestion();
@@ -12,7 +13,6 @@ export default function QuizForm() {
   const [status, setStatus] = useState<number>(0);
   const [answer, setAnswer] = useState<string[]>([]);
   const navigate = useNavigate();
-
   async function request() {
     const response = await fetch("/api/participants", {
       method: "POST",
@@ -20,9 +20,9 @@ export default function QuizForm() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: "아무개4",
-        user_key: "ABEDF12RFe",
-        mbti: answer.join(""),
+        name: localStorage.getItem("participantName"),
+        user_key: localStorage.getItem("userKey"),
+        mbti: localStorage.getItem("participantAnswer"),
       }),
     }).then(async (res) => console.log(await res.json()));
   }
@@ -31,19 +31,12 @@ export default function QuizForm() {
     setAnswer([...answer, (e.target as HTMLButtonElement).value]);
     if (status === 3) {
       // api 호출(결과 전송)
-      // fetch("/api/participants", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     name: "아무개4",
-      //     user_key: "ABEDF12RFe",
-      //     mbti: answer.join(""),
-      //   }),
-      // }).then(async (res) => console.log(await res.json()));
+      localStorage.setItem(
+        "participantAnswer",
+        [...answer, (e.target as HTMLButtonElement).value].join(""),
+      );
       request();
-      navigate("../participant-result");
+      navigate(`../participant-result/${localStorage.getItem("userKey")}`);
     }
     setStatus((prev) => prev + 1);
   };
@@ -82,19 +75,17 @@ export default function QuizForm() {
         ) : (
           <></>
         )}
-        <div>결과:{...answer}</div>
       </StyledContainer>
     </>
   );
 }
 const StyledContainer = styled.section`
-  max-width: 430px;
   margin: 0 auto;
   text-align: center;
 `;
 
 const StyledStatusBox = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 20px;
   border: 2px solid black;
   margin: 20px 0 40px;

@@ -33,13 +33,10 @@ export default function QuizMainPage() {
     if (!name) return alert("이름를 입력해주세요!");
 
     localStorage.clear();
-    localStorage.setItem(
-      "information",
-      JSON.stringify({
-        userKey: `${id}`,
-        participantName: `${name}`,
-      }),
-    );
+    if (id !== undefined) {
+      localStorage.setItem("userKey", id);
+    }
+    localStorage.setItem("participantName", name);
 
     navigate("/participant/quiz");
   }
