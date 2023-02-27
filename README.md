@@ -23,40 +23,40 @@
       <tbody>
         <tr>
           <td align="center" style="text-align:center;">
-            <a href="https://reactjs.org/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1579667701/noticon/basd2y5bygpkqjiixuqy.png" alt="React" height="50" /></a>
+            <a href="https://reactjs.org/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1579667701/noticon/basd2y5bygpkqjiixuqy.png" alt="React" height="40" /></a>
             <br>
             <code>React</code>
           </td><td align="center" style="text-align:center;">
-            <a href="https://reactjs.org/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1566913457/noticon/eh4d0dnic4n1neth3fui.png" alt="React" height="50" /></a>
+            <a href="https://reactjs.org/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1566913457/noticon/eh4d0dnic4n1neth3fui.png" alt="React" height="40" /></a>
             <br>
             <code>TypeScript</code>
           </td>
           <td align="center" style="text-align:center; margin: 0 auto;">
-            <a href="https://styled-components.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/styled-components.png" alt="Styled Components" height="50" /></a>
+            <a href="https://styled-components.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/styled-components.png" alt="Styled Components" height="40" /></a>
             <br>
             <code>styled-components</code>
           </td>
           <td align="center" style="text-align:center;">
-            <a href="https://reactjs.org/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1566879300/noticon/fvty9lnsbjol5lq9u3by.svg" alt="React" height="50" /></a>
+            <a href="https://reactjs.org/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1566879300/noticon/fvty9lnsbjol5lq9u3by.svg" alt="React" height="40" /></a>
             <br>
             <code>nextjs</code></td>
             <td align="center" style="text-align:center;">
-            <a href="https://reactjs.org/" target="_blank"><img style="margin: 10px" src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/001/299/square_480/supabase-logo-icon_1.png" alt="React" height="50" /></a>
+            <a href="https://reactjs.org/" target="_blank"><img style="margin: 10px" src="https://d2eip9sf3oo6c2.cloudfront.net/tags/images/000/001/299/square_480/supabase-logo-icon_1.png" alt="React" height="40" /></a>
             <br>
             <code>supabase</code>
           </td>
             <td align="center" style="text-align:center; margin: 0 auto;">
-            <a href="https://styled-components.com/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1566913379/noticon/uiite75rxvkvcki3mr4u.png" alt="PostgreSQL" height="50" /></a>
+            <a href="https://styled-components.com/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1566913379/noticon/uiite75rxvkvcki3mr4u.png" alt="PostgreSQL" height="40" /></a>
             <br>
             <code>PostgreSQL</code>
           </td>
           <td align="center" style="text-align:center;">
-            <a href="https://www.netlify.com/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1569039210/noticon/yubwjrkj43jpneajrdii.png" alt="Netlify" height="50" /></a>
+            <a href="https://www.netlify.com/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1569039210/noticon/yubwjrkj43jpneajrdii.png" alt="Netlify" height="40" /></a>
             <br>
             <code>Netlify</code>
           </td>
           <td align="center" style="text-align:center; margin: 0 auto;">
-            <a href="https://www.figma.com/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1640982247/noticon/tpvr26zp02angin4t0jv.png" alt="Styled Components" height="50" /></a>
+            <a href="https://www.figma.com/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1640982247/noticon/tpvr26zp02angin4t0jv.png" alt="Styled Components" height="40" /></a>
             <br>
             <code>Figma</code>
           </td>
