@@ -2,10 +2,8 @@ import { useState } from "react";
 
 export default function useMakeMBTI() {
   const [MBTIResultArray, setMBTIResultArray] = useState<any>(["", "", "", ""]);
-  const [isClick, setIsClick] = useState<boolean>(false);
 
   function clickMBTIButton(e: React.MouseEvent<HTMLButtonElement>) {
-    setIsClick(!isClick);
     const id = Number(e.currentTarget.id);
 
     setMBTIResultArray(
@@ -26,5 +24,5 @@ export default function useMakeMBTI() {
     }
   }
 
-  return { MBTIResultArray, isClick, clickMBTIButton };
+  return { MBTIResultArray, clickMBTIButton };
 }

@@ -1,33 +1,80 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import charactor from "@assets/images/mbti-text/ENFJ.png";
 import goldMedal from "@assets/images/gold-medal.png";
 import Chart from "./Chart";
+import useResultStore from "@store/resultStore";
+import mbtiData from "@assets/data/mbti";
+import questionCharactor from "@assets/images/questionCharactor.png";
+
+type MBTI = {
+  type: string;
+  image: string;
+  description: string;
+};
 
 const Result = () => {
+  const user = useResultStore((state) => state.user);
+  const { setUser, MBTIData, setMBTIData, sortedSurveyList } = useResultStore(
+    (state) => ({
+      ...state,
+    }),
+  );
+
+  useEffect(() => {
+    if (user.mbti) {
+      const mbti = user.mbti.toUpperCase();
+      setMBTIData(
+        mbtiData.filter((type) => Object.keys(type)[0] === mbti)[0][mbti],
+      );
+    }
+  }, [user]);
+
   return (
     <StyledContainer>
       <StyledCaptureContainer id="capture">
-        <StyledTitle>메이님의 결과</StyledTitle>
-        <StyledResultContainer>
-          <StyledImage src={charactor} alt="캐릭터" />
-          <StyledMedalImage src={goldMedal} alt="캐릭터" />
-        </StyledResultContainer>
-        <StyledList>
-          <StyledItem>호불호 강함</StyledItem>
-          <StyledItem>호불호 강함</StyledItem>
-          <StyledItem>호불호 강함</StyledItem>
-          <StyledItem>호불호 강함</StyledItem>
-          <StyledItem>호불호 강함</StyledItem>
-        </StyledList>
+        <StyledTitle>{`${user.name}님의 결과`}</StyledTitle>
+        {user.participants.length ? (
+          <>
+            <StyledResultContainer>
+              <StyledImage
+                src={MBTIData?.image}
+                alt={MBTIData?.type + `캐릭터`}
+              />
+              <StyledMedalImage src={goldMedal} alt="캐릭터" />
+            </StyledResultContainer>
+            <StyledList>
+              {MBTIData?.description.split(".").map((text, i) => (
+                <StyledItem key={i}>{text}</StyledItem>
+              ))}
+            </StyledList>
+          </>
+        ) : (
+          <>
+            <StyledStateImage
+              src={questionCharactor}
+              alt="고개를 갸웃거리는 탐정 이미지"
+            />
+            <StyledStateMessage>
+              "앗! 아직 아무도 추리를 안했어요!"
+            </StyledStateMessage>
+          </>
+        )}
       </StyledCaptureContainer>
-      <Link style={{ width: "100%", marginBottom: "10px" }} to="/result/chart">
-        <StyledButton>통계 보러가기</StyledButton>
-      </Link>
-      <Link to="/result/compare">
-        <StyledButton>실제 MBTI랑 비교하기</StyledButton>
-      </Link>
+      {user.participants.length > 0 && (
+        <>
+          <Link
+            style={{ width: "100%", marginBottom: "10px" }}
+            to="/result/chart"
+          >
+            <StyledButton>통계 보러가기</StyledButton>
+          </Link>
+          <Link to="/result/compare">
+            <StyledButton>실제 MBTI랑 비교하기</StyledButton>
+          </Link>
+        </>
+      )}
     </StyledContainer>
   );
 };
@@ -35,6 +82,21 @@ const Result = () => {
 export default Result;
 
 /* Result Style */
+
+const StyledStateImage = styled.img`
+  width: 128px;
+  aspect-ratio: 1/1;
+  margin-left: -10px;
+  margin-top: 30px;
+`;
+
+const StyledStateMessage = styled.strong`
+  display: block;
+  margin-top: 30px;
+  padding: 20px;
+  font-size: 20px;
+  color: white;
+`;
 
 const StyledMedalImage = styled.img`
   position: absolute;
