@@ -52,7 +52,7 @@ const ResultPage = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const KEY = localStorage.getItem("UserKey");
+      const KEY = localStorage.getItem("userKey");
       try {
         const res = await fetch(BASE_URL + "/api/users/" + KEY);
         const json = await res.json();
