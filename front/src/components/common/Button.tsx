@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  width: 80%;
+  width: 100%;
   padding: 8px;
   display: flex;
   align-items: center;
@@ -13,6 +13,7 @@ export const Button = styled.button`
   background-color: #ffcd5d;
   border: 2px solid black;
   box-shadow: 3px 3px 0px 0px black;
+  margin: 0 auto;
 
   &:hover,
   :active {
