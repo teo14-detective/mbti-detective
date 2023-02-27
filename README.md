@@ -15,10 +15,9 @@
         <tr>
           <th colspan="3" style="text-align:center;"><span style="font-size:16px;">프론트엔드</span></th>
           <th colspan="2" style="text-align:center;"><span style="font-size:16px">백엔드</span></th>
-            <th style="text-align:center;"><span style="font-size:16px">DB</span></th>
+          <th style="text-align:center;"><span style="font-size:16px">DB</span></th>
           <th style="text-align:center;"><span style="font-size:16px;">디자인</span></th>
           <th style="text-align:center;"><span style="font-size:16px">배포</span></th>
-
         </tr>
       </thead>
       <tbody>
@@ -51,7 +50,7 @@
             <br>
             <code>PostgreSQL</code>
           </td>
-          <td align="center" style="text-align:center; margin: 0 auto;">
+              <td align="center" style="text-align:center; margin: 0 auto;">
             <a href="https://www.figma.com/" target="_blank"><img style="margin: 10px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1640982247/noticon/tpvr26zp02angin4t0jv.png" alt="Styled Components" height="40" /></a>
             <br>
             <code>Figma</code>
@@ -61,6 +60,7 @@
             <br>
             <code>Netlify</code>
           </td>
+          
         </tr>
       </tbody>
 </table>
