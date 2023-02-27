@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { ReactComponent as PasteButton } from "/src/assets/svgs/paste-button.svg";
 import { Header } from "@components/common/Header";
 import { Button } from "@components/common/Button2";
-import { user } from "../../../test-data/get-user.json";
 import Loading from "./common/Loading";
 import { useNavigate } from "react-router";
 
