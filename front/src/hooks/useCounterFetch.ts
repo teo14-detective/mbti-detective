@@ -11,7 +11,9 @@ export default function useCounterFetch() {
         setHitCount(data.hit);
         setShareCount(data.share);
       })
-      .catch((err) => console.log("공유/방문자수 받아오는 err", err));
+      .catch((err) =>
+        console.log("방문자수, 공유수 count를 받아올 수 없습니다", err),
+      );
   }, []);
 
   return { hitCount, shareCount };
