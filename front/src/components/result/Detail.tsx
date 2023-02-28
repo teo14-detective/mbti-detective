@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import charactor from "@assets/images/mbti-face/ISTP.png";
 import useRoute from "@hooks/useRoute";
 import Chart from "./Chart";
 import { ResponseFetchUser } from "@pages/ResultPage";
