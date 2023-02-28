@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import character from "@assets/images/mbti-text/ENFJ.png";
 import goldMedal from "@assets/images/gold-medal.png";
 import Chart from "./Chart";
 import useResultStore from "@store/resultStore";
 import mbtiData from "@assets/data/mbti";
-import questionCharacter from "@assets/images/questionCharacter.png";
+const s3Url = import.meta.env.VITE_S3_URL as string;
+const questionCharacter = `${s3Url}/mbti-hat/questionCharacter.png`;
 
 type MBTI = {
   type: string;

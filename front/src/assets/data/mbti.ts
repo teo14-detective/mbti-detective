@@ -1,19 +1,20 @@
-import ISTJImage from "@assets/images/mbti-text/ISTJ.png";
-import ISFJImage from "@assets/images/mbti-text/ISFJ.png";
-import INFJImage from "@assets/images/mbti-text/INFJ.png";
-import INTJImage from "@assets/images/mbti-text/INTJ.png";
-import ISTPImage from "@assets/images/mbti-text/ISTP.png";
-import ISFPImage from "@assets/images/mbti-text/ISFP.png";
-import INFPImage from "@assets/images/mbti-text/INFP.png";
-import INTPImage from "@assets/images/mbti-text/INTP.png";
-import ENFJImage from "@assets/images/mbti-text/ENFJ.png";
-import ENTJImage from "@assets/images/mbti-text/ENFP.png";
-import ENTPImage from "@assets/images/mbti-text/ENTP.png";
-import ESFJImage from "@assets/images/mbti-text/ESFJ.png";
-import ESFPImage from "@assets/images/mbti-text/ESFP.png";
-import ESTJImage from "@assets/images/mbti-text/ESTJ.png";
-import ESTPImage from "@assets/images/mbti-text/ESTP.png";
-import ENFPImage from "@assets/images/mbti-text/ENFP.png";
+const s3Url = import.meta.env.VITE_S3_URL as string;
+const ISTJImage = `${s3Url}/mbti-text/ISTJ.png`;
+const ISFJImage = `${s3Url}/mbti-text/ISFJ.png`;
+const INFJImage = `${s3Url}/mbti-text/INFJ.png`;
+const INTJImage = `${s3Url}/mbti-text/INTJ.png`;
+const ISTPImage = `${s3Url}/mbti-text/ISTP.png`;
+const ISFPImage = `${s3Url}/mbti-text/ISFP.png`;
+const INFPImage = `${s3Url}/mbti-text/INFP.png`;
+const INTPImage = `${s3Url}/mbti-text/INTP.png`;
+const ENFJImage = `${s3Url}/mbti-text/ENFJ.png`;
+const ENTJImage = `${s3Url}/mbti-text/ENFP.png`;
+const ENTPImage = `${s3Url}/mbti-text/ENTP.png`;
+const ESFJImage = `${s3Url}/mbti-text/ESFJ.png`;
+const ESFPImage = `${s3Url}/mbti-text/ESFP.png`;
+const ESTJImage = `${s3Url}/mbti-text/ESTJ.png`;
+const ESTPImage = `${s3Url}/mbti-text/ESTP.png`;
+const ENFPImage = `${s3Url}/mbti-text/ENFP.png`;
 
 export type MBTI = {
   [key: string]: {
@@ -93,22 +94,22 @@ type ogType = {
 };
 
 export const ogMBTIImage: ogType = {
-  ENFJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ENFJ.png?raw=true",
-  ENFP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ENFP.png?raw=true",
-  ENTJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ENTJ.png?raw=true",
-  ENTP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ENTP.png?raw=true",
-  ESFJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ESFJ.png?raw=true",
-  ESFP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ESFP.png?raw=true",
-  ESTJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ESTJ.png?raw=true",
-  ESTP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ESTP.png?raw=true",
-  INFJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/INFJ.png?raw=true",
-  INFP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/INFP.png?raw=true",
-  INTJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/INTJ.png?raw=true",
-  INTP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/INTP.png?raw=true",
-  ISFJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ISFJ.png?raw=true",
-  ISFP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ISFP.png?raw=true",
-  ISTJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ISTJ.png?raw=true",
-  ISTP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ISTP.png?raw=true",
+  ENFJ: `${s3Url}/share-kakao/ENFJ.png`,
+  ENFP: `${s3Url}/share-kakao/ENFP.png`,
+  ENTJ: `${s3Url}/share-kakao/ENTJ.png`,
+  ENTP: `${s3Url}/share-kakao/ENTP.png`,
+  ESFJ: `${s3Url}/share-kakao/ESFJ.png`,
+  ESFP: `${s3Url}/share-kakao/ESFP.png`,
+  ESTJ: `${s3Url}/share-kakao/ESTJ.png`,
+  ESTP: `${s3Url}/share-kakao/ESTP.png`,
+  INFJ: `${s3Url}/share-kakao/INFJ.png`,
+  INFP: `${s3Url}/share-kakao/INFP.png`,
+  INTJ: `${s3Url}/share-kakao/INTJ.png`,
+  INTP: `${s3Url}/share-kakao/INTP.png`,
+  ISFJ: `${s3Url}/share-kakao/ISFJ.png`,
+  ISFP: `${s3Url}/share-kakao/ISFP.png`,
+  ISTJ: `${s3Url}/share-kakao/ISTJ.png`,
+  ISTP: `${s3Url}/share-kakao/ISTP.png`,
 };
 
 export default mbtiData;

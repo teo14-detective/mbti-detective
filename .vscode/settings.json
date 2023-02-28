@@ -5,4 +5,8 @@
         "supabase",
         "svgr"
     ],
+    "eslint.workingDirectories": [
+        "./front",
+        "./back"
+    ]
 }

@@ -7,6 +7,8 @@ import { Button } from "@components/common/Button2";
 import Loading from "./common/Loading";
 import { useNavigate } from "react-router";
 
+const s3Url = import.meta.env.VITE_S3_URL as string;
+
 export const ShareLink = () => {
   const navigate = useNavigate();
   const { userKey } = useParams();
@@ -50,7 +52,7 @@ export const ShareLink = () => {
       <StyledContainer>
         <Header />
         <StyledAvatarImage
-          src={`/mbti-hat/${mbti}.png`}
+          src={`${s3Url}/mbti-hat/${mbti}.png`}
           alt="MBTI AVATAR"
         />
         <StyledDoneSpan>응답 링크가 생성되었습니다.</StyledDoneSpan>
