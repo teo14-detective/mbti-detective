@@ -1,7 +1,10 @@
-GET {{$host}}/api/usageLogs HTTP/1.1
+@host = http://localhost:3000
+// @host = https://mbti-detective-api.netlify.app
+
+GET {{host}}/api/usageLogs HTTP/1.1
 content-type: application/json
 
 ###
 
-GET {{$host}}/api/users/ABEDF12RFe HTTP/1.1
+GET {{host}}/api/users/ABEDF12RFe HTTP/1.1
 content-type: application/json

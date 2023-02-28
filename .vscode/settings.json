@@ -5,12 +5,4 @@
         "supabase",
         "svgr"
     ],
-    "rest-client.environmentVariables": {
-        "local": {
-            "host": "http://localhost:3000",
-        },
-        "production": {
-            "host": "https://mbti-detective-api.netlify.app",
-        }
-    }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "nextjs",
+  "name": "mbti-detective-api",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,16 +14,15 @@
     "next": "13.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "swr": "^2.0.4",
-    "supabase": "^1.38.7"
+    "supabase": "^1.38.7",
+    "swr": "^2.0.4"
   },
   "devDependencies": {
     "@types/node": "18.14.1",
     "@types/react": "18.0.28",
     "babel-eslint": "^10.1.0",
-    "sass": "^1.58.3",
-    "babel-preset-next": "^1.4.0",
     "eslint": "8.34.0",
-    "eslint-config-next": "13.2.1"
+    "eslint-config-next": "^13.2.1",
+    "sass": "^1.58.3"
   }
 }
