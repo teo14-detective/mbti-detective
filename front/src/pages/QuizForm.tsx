@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { makeRandomQuestion } from "@utils/makeRandomQuestion";
 import iconTarget from "@assets/images/icon/icon-target.png";
 import { Button } from "@components/common/Button";
 import { Header } from "@components/common/Header";
 import { useNavigate } from "react-router";
-// import { userKey, participantName } from "@utils/getLocalStorageKey";
 
 export default function QuizForm() {
   const [questions, answerText] = makeRandomQuestion();
+  const { userKey } = useParams();
   const questionType = ["IE", "SN", "TF", "JP"];
   const [status, setStatus] = useState<number>(0);
   const [answer, setAnswer] = useState<string[]>([]);
@@ -21,7 +22,7 @@ export default function QuizForm() {
       },
       body: JSON.stringify({
         name: localStorage.getItem("participantName"),
-        user_key: localStorage.getItem("userKey"),
+        user_key: userKey,
         mbti: localStorage.getItem("participantAnswer"),
       }),
     }).then(async (res) => console.log(await res.json()));
@@ -36,7 +37,7 @@ export default function QuizForm() {
         [...answer, (e.target as HTMLButtonElement).value].join(""),
       );
       request();
-      navigate(`../participant-result/${localStorage.getItem("userKey")}`);
+      navigate(`/${userKey}/participant/result`);
     }
     setStatus((prev) => prev + 1);
   };

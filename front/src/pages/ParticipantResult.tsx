@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Loading from "./common/Loading";
@@ -23,10 +24,12 @@ function ParticipantResult() {
   };
 
   const [fetchData, setFetchData] = useState<fetchDataType>();
-  const [isLoading, setisLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const { userKey } = useParams();
+
   const navigate = useNavigate();
   useEffect(() => {
-    fetch(`/api/users/${localStorage.getItem("userKey")}`, {
+    fetch(`/api/users/${userKey}`, {
       method: "GET",
     })
       .then((response) => {
@@ -36,11 +39,11 @@ function ParticipantResult() {
       })
       .then((data) => {
         setFetchData(data);
-        setisLoading(false);
+        setIsLoading(false);
       })
       .catch((error) => {
         alert("데이터를 불러오는데 실패했습니다!");
-        setisLoading(false);
+        setIsLoading(false);
       });
   }, []);
   const userMbti = fetchData?.mbti;
@@ -96,7 +99,7 @@ function ParticipantResult() {
             </StyledResultContainerBox>
 
             <StyledAnchorBox>
-              <Link to="/result">{user ?? ""}님의 결과 보기</Link>
+              <Link to={`/${userKey}/result`}>{user ?? ""}님의 결과 보기</Link>
             </StyledAnchorBox>
             <StyledButtonBox>
               <Button
