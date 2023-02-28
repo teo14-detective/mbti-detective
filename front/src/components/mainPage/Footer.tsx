@@ -6,6 +6,7 @@ import {
 } from "@components/common/Container";
 import ShareToKakao from "./ShareToKakao";
 import ShareToLink from "./ShareToLink";
+import ShareToTwitter from "./ShareToTwitter";
 import useCounterFetch from "@hooks/useCounterFetch";
 
 export const Footer = () => {
@@ -22,6 +23,9 @@ export const Footer = () => {
       <StyledSnsContainerBox>
         <StyledSnsContainerCircleBox>
           <ShareToKakao />
+        </StyledSnsContainerCircleBox>
+        <StyledSnsContainerCircleBox>
+          <ShareToTwitter />
         </StyledSnsContainerCircleBox>
         <StyledSnsContainerCircleBox>
           <ShareToLink />
