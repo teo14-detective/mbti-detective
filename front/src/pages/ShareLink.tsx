@@ -33,7 +33,7 @@ export const ShareLink = () => {
 
   // 복사링크 div
   const [url, setUrl] = useState<string>(
-    `https://mbti-detective.vercel.app/${key}`,
+    `https://mbti-detective.netlify.app/${key}`,
   );
   //복사링크 핸들러
   const copyTextUrl = () => {
@@ -49,7 +49,7 @@ export const ShareLink = () => {
       <StyledContainer>
         <Header />
         <StyledAvatarImage
-          src={`/src/assets/images/mbti-hat/${mbti}.png`}
+          src={`mbti-hat/${mbti}.png`}
           alt="MBTI AVATAR"
         />
         <StyledDoneSpan>응답 링크가 생성되었습니다.</StyledDoneSpan>

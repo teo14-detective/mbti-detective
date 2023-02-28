@@ -60,7 +60,7 @@ const MBITDesc = [
   "사교적이다.타인의 의견을 존중한다.비판을 받으면 예민하게 반응한다.",
   "철저한 준비를 한다.활동적이다.통솔력이 있다.단호하다.",
 ];
-const MBTIImage = [
+export const MBTIImage = [
   ISTJImage,
   ISFJImage,
   INFJImage,
@@ -93,22 +93,22 @@ type ogType = {
 };
 
 export const ogMBTIImage: ogType = {
-  ENFJ: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ENFJ.png?raw=true",
-  ENFP: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ENFP.png?raw=true",
-  ENTJ: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ENTJ.png?raw=true",
-  ENTP: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ENTP.png?raw=true",
-  ESFJ: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ESFJ.png?raw=true",
-  ESFP: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ESFP.png?raw=true",
-  ESTJ: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ESTJ.png?raw=true",
-  ESTP: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ESTP.png?raw=true",
-  INFJ: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/INFJ.png?raw=true",
-  INFP: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/INFP.png?raw=true",
-  INTJ: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/INTJ.png?raw=true",
-  INTP: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/INTP.png?raw=true",
-  ISFJ: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ISFJ.png?raw=true",
-  ISFP: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ISFP.png?raw=true",
-  ISTJ: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ISTJ.png?raw=true",
-  ISTP: "https://github.com/teo14-detective/mbti-detective/blob/develop/front/src/assets/images/share-kakao/ISTP.png?raw=true",
+  ENFJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ENFJ.png?raw=true",
+  ENFP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ENFP.png?raw=true",
+  ENTJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ENTJ.png?raw=true",
+  ENTP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ENTP.png?raw=true",
+  ESFJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ESFJ.png?raw=true",
+  ESFP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ESFP.png?raw=true",
+  ESTJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ESTJ.png?raw=true",
+  ESTP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ESTP.png?raw=true",
+  INFJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/INFJ.png?raw=true",
+  INFP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/INFP.png?raw=true",
+  INTJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/INTJ.png?raw=true",
+  INTP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/INTP.png?raw=true",
+  ISFJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ISFJ.png?raw=true",
+  ISFP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ISFP.png?raw=true",
+  ISTJ: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ISTJ.png?raw=true",
+  ISTP: "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/ISTP.png?raw=true",
 };
 
 export default mbtiData;
