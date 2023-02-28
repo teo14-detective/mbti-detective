@@ -16,6 +16,10 @@ export default function ShareToKakao() {
         templateId: Number(VITE_KAKAO_TEMPLATE_ID), // 템플릿 아이디 넣기
       });
     }
+
+    fetch("/api/share/plus", {
+      method: "POST",
+    }).catch((err) => console.log("Share to kakao count err", err));
   };
 
   return (

@@ -1,20 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
-import useMakeMBTI from "./../hooks/useMakeMBTI";
-import { Button } from "@components/common/Button2";
-import {
-  StyledBackgroundBox,
-  StyledContainBox,
-} from "@components/common/Container";
 
+import { Button } from "@components/common/Button2";
 import useMakeName from "@hooks/useMakeName";
 import ImageSlide from "@components/mainPage/ImageSlide";
 import { Header } from "@components/mainPage/Header";
 import { Footer } from "@components/mainPage/Footer";
+import MBTIButton from "@components/mainPage/MBTIButton";
 
 export default function MainPage() {
   const navigate = useNavigate();
+  const { name, changeName } = useMakeName();
 
   const MBTIIE = [
     { id: "0", mbti: "I" },
@@ -36,8 +33,13 @@ export default function MainPage() {
     { id: "3", mbti: "J" },
   ];
 
-  const { MBTIResultArray, clickMBTIButton } = useMakeMBTI();
-  const { name, changeName } = useMakeName();
+  const [MBTIResultArray, setMBTIResultArray] = useState<any[]>([
+    "",
+    "",
+    "",
+    "",
+  ]);
+
   function clickStartButton() {
     if (MBTIResultArray.includes("") || !name)
       return alert("정보를 입력해주세요!");
@@ -73,52 +75,37 @@ export default function MainPage() {
         maxLength={10}
       />
       <StyledLable>MBTI는 무엇인가요?</StyledLable>
-
+      <StyleMBTISection>
+        {MBTIResultArray.map((mbti, index) => {
+          return (
+            <StyleMBTIAlphabetSection key={index}>
+              <StyleMBTILabel>{mbti}</StyleMBTILabel>
+              <div>―</div>
+            </StyleMBTIAlphabetSection>
+          );
+        })}
+      </StyleMBTISection>
       <StyledLableDiv>
-        <div>
-          {MBTIIE.map((mbtiObject) => (
-            <StyledMBTIButton2
-              onClick={clickMBTIButton}
-              id={mbtiObject.id}
-              value={mbtiObject.mbti}
-            >
-              {mbtiObject.mbti}
-            </StyledMBTIButton2>
-          ))}
-        </div>
-        <div>
-          {MBTINS.map((mbtiObject) => (
-            <StyledMBTIButton2
-              onClick={clickMBTIButton}
-              id={mbtiObject.id}
-              value={mbtiObject.mbti}
-            >
-              {mbtiObject.mbti}
-            </StyledMBTIButton2>
-          ))}
-        </div>
-        <div>
-          {MBTIFT.map((mbtiObject) => (
-            <StyledMBTIButton2
-              onClick={clickMBTIButton}
-              id={mbtiObject.id}
-              value={mbtiObject.mbti}
-            >
-              {mbtiObject.mbti}
-            </StyledMBTIButton2>
-          ))}
-        </div>
-        <div>
-          {MBTIPJ.map((mbtiObject) => (
-            <StyledMBTIButton2
-              onClick={clickMBTIButton}
-              id={mbtiObject.id}
-              value={mbtiObject.mbti}
-            >
-              {mbtiObject.mbti}
-            </StyledMBTIButton2>
-          ))}
-        </div>
+        <MBTIButton
+          mbtiCategory={MBTIIE}
+          MBTIResultArray={MBTIResultArray}
+          setMBTIResultArray={setMBTIResultArray}
+        />
+        <MBTIButton
+          mbtiCategory={MBTINS}
+          MBTIResultArray={MBTIResultArray}
+          setMBTIResultArray={setMBTIResultArray}
+        />
+        <MBTIButton
+          mbtiCategory={MBTIFT}
+          MBTIResultArray={MBTIResultArray}
+          setMBTIResultArray={setMBTIResultArray}
+        />
+        <MBTIButton
+          mbtiCategory={MBTIPJ}
+          MBTIResultArray={MBTIResultArray}
+          setMBTIResultArray={setMBTIResultArray}
+        />
       </StyledLableDiv>
       <StyledLableDiv>
         <Button
@@ -169,8 +156,26 @@ const StyledNameInput = styled.input`
   border: 1px solid #ad9777;
   border-radius: 10px;
 `;
+const StyleMBTISection = styled.section`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
 
-const StyledMBTIButton2 = styled.button`
+const StyleMBTIAlphabetSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyleMBTILabel = styled.label`
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  font-weight: 500;
+`;
+
+const StyledMBTIButton = styled.button`
   display: flex;
   margin: 4px;
   width: 65px;

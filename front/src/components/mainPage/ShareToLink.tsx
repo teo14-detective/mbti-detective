@@ -10,10 +10,7 @@ export default function ShareToLink() {
 
     fetch("/api/share/plus", {
       method: "POST",
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+    }).catch((err) => console.log("Share to Link count err", err));
   };
 
   return (
