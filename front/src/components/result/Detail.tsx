@@ -197,7 +197,9 @@ const Result = () => {
 
   return (
     <>
-      <StyledResultTitle>메이님의 결과</StyledResultTitle>
+      <StyledResultTitle>{`${
+        user.name || "아무개"
+      }님의 결과`}</StyledResultTitle>
       <StyledResultContainer>
         <StyledResultSideContainer>
           <StyledResultStrong>
