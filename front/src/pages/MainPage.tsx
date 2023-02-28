@@ -3,10 +3,6 @@ import { useNavigate } from "react-router";
 import styled from "styled-components";
 import useMakeMBTI from "./../hooks/useMakeMBTI";
 import { Button } from "@components/common/Button2";
-import {
-  StyledBackgroundBox,
-  StyledContainBox,
-} from "@components/common/Container";
 
 import useMakeName from "@hooks/useMakeName";
 import ImageSlide from "@components/mainPage/ImageSlide";
@@ -73,50 +69,64 @@ export default function MainPage() {
         maxLength={10}
       />
       <StyledLable>MBTI는 무엇인가요?</StyledLable>
+      <StyleMBTISection>
+        {MBTIResultArray.map((mbti, index) => {
+          return (
+            <StyleMBTIAlphabetSection key={index}>
+              <StyleMBTILabel>{mbti}</StyleMBTILabel>
+              <div>―</div>
+            </StyleMBTIAlphabetSection>
+          );
+        })}
+      </StyleMBTISection>
 
       <StyledLableDiv>
         <div>
           {MBTIIE.map((mbtiObject) => (
-            <StyledMBTIButton2
+            <StyledMBTIButton
               onClick={clickMBTIButton}
               id={mbtiObject.id}
               value={mbtiObject.mbti}
+              key={mbtiObject.mbti}
             >
               {mbtiObject.mbti}
-            </StyledMBTIButton2>
+            </StyledMBTIButton>
           ))}
         </div>
         <div>
           {MBTINS.map((mbtiObject) => (
-            <StyledMBTIButton2
+            <StyledMBTIButton
               onClick={clickMBTIButton}
               id={mbtiObject.id}
               value={mbtiObject.mbti}
+              key={mbtiObject.mbti}
             >
               {mbtiObject.mbti}
-            </StyledMBTIButton2>
+            </StyledMBTIButton>
           ))}
         </div>
         <div>
           {MBTIFT.map((mbtiObject) => (
-            <StyledMBTIButton2
+            <StyledMBTIButton
               onClick={clickMBTIButton}
               id={mbtiObject.id}
               value={mbtiObject.mbti}
+              key={mbtiObject.mbti}
             >
               {mbtiObject.mbti}
-            </StyledMBTIButton2>
+            </StyledMBTIButton>
           ))}
         </div>
         <div>
           {MBTIPJ.map((mbtiObject) => (
-            <StyledMBTIButton2
+            <StyledMBTIButton
               onClick={clickMBTIButton}
               id={mbtiObject.id}
               value={mbtiObject.mbti}
+              key={mbtiObject.mbti}
             >
               {mbtiObject.mbti}
-            </StyledMBTIButton2>
+            </StyledMBTIButton>
           ))}
         </div>
       </StyledLableDiv>
@@ -169,8 +179,26 @@ const StyledNameInput = styled.input`
   border: 1px solid #ad9777;
   border-radius: 10px;
 `;
+const StyleMBTISection = styled.section`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
 
-const StyledMBTIButton2 = styled.button`
+const StyleMBTIAlphabetSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyleMBTILabel = styled.label`
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  font-weight: 500;
+`;
+
+const StyledMBTIButton = styled.button`
   display: flex;
   margin: 4px;
   width: 65px;
