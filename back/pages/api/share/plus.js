@@ -1,12 +1,9 @@
-import { createClient } from '@supabase/supabase-js';
-
-// Create a single supabase client for interacting with your database
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+import supabase from '@/plugins/supabase';
 
 export default async function handler(req, res) {
   switch (req.method) {
     case 'POST':
-      const { data, status, error, statusText } = await supabase.from('usage_logs').insert([{ type: 2, url: req.url }]);
+      const { status, error, statusText } = await supabase.from('usage_logs').insert([{ type: 2, url: req.url }]);
 
       if (error) {
         res.status(status).json(statusText);
@@ -17,7 +14,8 @@ export default async function handler(req, res) {
       break;
     // handle other HTTP methods
     default:
-      res.status(404).json({ message: 'Not found' });
+      res.setHeader('Allow', ['GET']);
+      res.status(405).end(`Method ${method} Not Allowed`);
       break;
   }
 }

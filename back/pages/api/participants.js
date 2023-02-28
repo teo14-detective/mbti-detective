@@ -1,7 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
-
-// Create a single supabase client for interacting with your database
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+import supabase from '@/plugins/supabase';
 
 export default async function userHandler(req, res) {
   switch (req.method) {
@@ -42,7 +39,7 @@ export default async function userHandler(req, res) {
         break;
       }
 
-      const { data, status, error, statusText } = await supabase
+      const { status, error, statusText } = await supabase
         .from('participants')
         .insert([{ name: body.name, user_uid: getUser.data[0].uid, user_key: body.user_key, user_mbti: body.mbti }]);
 

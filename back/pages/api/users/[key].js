@@ -1,6 +1,4 @@
-const { createClient } = require('@supabase/supabase-js');
-
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+import supabase from '@/plugins/supabase';
 
 export default async function userHandler(req, res) {
   const { query, method } = req;

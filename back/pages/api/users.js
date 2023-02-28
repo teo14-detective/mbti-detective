@@ -1,12 +1,9 @@
-import { createClient } from '@supabase/supabase-js';
+import supabase from '@/plugins/supabase';
 
-// Create a single supabase client for interacting with your database
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
-
-export default async function handler(_req, res) {
-  switch (_req.method) {
+export default async function handler(req, res) {
+  switch (req.method) {
     case 'POST':
-      const { query, method, body } = _req;
+      const { method, body } = req;
 
       if (!body.name || !body.mbti) {
         let message = 'Bad Request';
@@ -22,7 +19,7 @@ export default async function handler(_req, res) {
         break;
       }
       const key = generateRandomString(10);
-      const { data, status, error, statusText } = await supabase.from('users').insert([{ name: body.name, key, mbti: body.mbti }]);
+      const { status, error, statusText } = await supabase.from('users').insert([{ name: body.name, key, mbti: body.mbti }]);
 
       if (error) {
         res.status(status).json(statusText);
@@ -33,7 +30,8 @@ export default async function handler(_req, res) {
       break;
     // handle other HTTP methods
     default:
-      res.status(404).json({ message: 'Not Found' });
+      res.setHeader('Allow', ['GET']);
+      res.status(405).end(`Method ${method} Not Allowed`);
       break;
   }
 }
