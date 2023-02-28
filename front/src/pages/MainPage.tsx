@@ -75,16 +75,6 @@ export default function MainPage() {
         maxLength={10}
       />
       <StyledLable>MBTI는 무엇인가요?</StyledLable>
-      <StyleMBTISection>
-        {MBTIResultArray.map((mbti, index) => {
-          return (
-            <StyleMBTIAlphabetSection key={index}>
-              <StyleMBTILabel>{mbti}</StyleMBTILabel>
-              <div>―</div>
-            </StyleMBTIAlphabetSection>
-          );
-        })}
-      </StyleMBTISection>
       <StyledLableDiv>
         <MBTIButton
           mbtiCategory={MBTIIE}
@@ -135,7 +125,6 @@ const StyledLable = styled.label`
   display: flex;
   justify-content: center;
 
-  margin: 10px;
   width: 320px;
   font-family: "theJamsil";
   font-style: normal;
@@ -145,7 +134,7 @@ const StyledLable = styled.label`
 `;
 
 const StyledNameInput = styled.input`
-  margin-bottom: 10px;
+  margin: 10px 0 30px 0;
   padding: 1px 10px;
 
   width: 269px;
@@ -155,51 +144,4 @@ const StyledNameInput = styled.input`
   background: #ffffff;
   border: 1px solid #ad9777;
   border-radius: 10px;
-`;
-const StyleMBTISection = styled.section`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-`;
-
-const StyleMBTIAlphabetSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const StyleMBTILabel = styled.label`
-  width: 30px;
-  height: 30px;
-  font-size: 30px;
-  font-weight: 500;
-`;
-
-const StyledMBTIButton = styled.button`
-  display: flex;
-  margin: 4px;
-  width: 65px;
-  height: 65px;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 40px;
-  border-radius: 6px;
-
-  background: #b7b7b7;
-  &:hover {
-    background-color: #b89960;
-    transform: translateX(3%) translateY(3%);
-    box-shadow: none;
-  }
-
-  box-shadow: 4px 4px #333;
-
-  font-family: "theJamsil";
-  font-style: normal;
-  font-weight: 800;
-  font-size: 35px;
-  line-height: 26px;
-
-  color: #554128;
 `;
