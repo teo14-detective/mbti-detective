@@ -41,7 +41,7 @@ const ResultPage = () => {
     hit: 0,
     share: 0,
   });
-  const BASE_URL = "https://mbti-detective-back.vercel.app";
+  const BASE_URL = "https://mbti-detective-api.netlify.app";
   const { user, setUser, storeSurveyList } = useResultStore((state) => ({
     ...state,
   }));

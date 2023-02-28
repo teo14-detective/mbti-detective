@@ -1,7 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
-
-// Create a single supabase client for interacting with your database
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+import { supabase } from '@plugins/supabaseClient';
 
 export default async function userHandler(req, res) {
   const { method } = req;
@@ -11,26 +8,26 @@ export default async function userHandler(req, res) {
       // 조회수 1 추가
       await supabase.from('usage_logs').insert([{ type: 1, url: req.url }]);
 
-      let { data, error, count, status, statusText } = await supabase
-        .from('usage_logs')
-        .select(
-          `
-        type
-        `
-        )
-        .neq('type', 0);
+      const hitCountResult = await supabase.from('usage_logs').select('*', { count: 'exact', head: true }).eq('type', 1);
 
-      if (error) {
-        console.log(error);
-        res.status(status).json(statusText);
+      if (hitCountResult.error) {
+        console.log(hitCountResult.error);
+        res.status(hitCountResult.status).json(hitCountResult.statusText);
         break;
       }
 
-      let hit = data.filter((data) => data.type === 1).length;
-      let share = data.filter((data) => data.type === 2).length;
+      const hit = hitCountResult.count;
 
-      console.log(data);
-      res.status(status).json({ hit, share });
+      const shareCountResult = await supabase.from('usage_logs').select('*', { count: 'exact', head: true }).eq('type', 2);
+
+      if (shareCountResult.error) {
+        console.log(shareCountResult.error);
+        res.status(shareCountResult.status).json(shareCountResult.statusText);
+        break;
+      }
+
+      let share = shareCountResult.count;
+      res.status(shareCountResult.status).json({ hit, share });
       break;
     default:
       res.setHeader('Allow', ['GET']);

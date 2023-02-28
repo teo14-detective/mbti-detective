@@ -1,5 +1,0 @@
-{
-    "redirects": [
-        {"source": "/api/:path*", "destination": "https://mbti-detective-back.vercel.app/:path*"}
-    ]
-}
