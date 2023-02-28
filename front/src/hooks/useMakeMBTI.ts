@@ -28,6 +28,6 @@ export default function useMakeMBTI() {
       );
     }
   }
-
+  console.log(MBTIResultArray);
   return { MBTIResultArray, clickMBTIButton };
 }

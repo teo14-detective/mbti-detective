@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
-import useMakeMBTI from "./../hooks/useMakeMBTI";
-import { Button } from "@components/common/Button2";
 
+import { Button } from "@components/common/Button2";
 import useMakeName from "@hooks/useMakeName";
 import ImageSlide from "@components/mainPage/ImageSlide";
 import { Header } from "@components/mainPage/Header";
 import { Footer } from "@components/mainPage/Footer";
+import MBTIButton from "@components/mainPage/MBTIButton";
 
 export default function MainPage() {
   const navigate = useNavigate();
+  const { name, changeName } = useMakeName();
 
   const MBTIIE = [
     { id: "0", mbti: "I" },
@@ -32,8 +33,13 @@ export default function MainPage() {
     { id: "3", mbti: "J" },
   ];
 
-  const { MBTIResultArray, clickMBTIButton } = useMakeMBTI();
-  const { name, changeName } = useMakeName();
+  const [MBTIResultArray, setMBTIResultArray] = useState<any[]>([
+    "",
+    "",
+    "",
+    "",
+  ]);
+
   function clickStartButton() {
     if (MBTIResultArray.includes("") || !name)
       return alert("정보를 입력해주세요!");
@@ -79,56 +85,27 @@ export default function MainPage() {
           );
         })}
       </StyleMBTISection>
-
       <StyledLableDiv>
-        <div>
-          {MBTIIE.map((mbtiObject) => (
-            <StyledMBTIButton
-              onClick={clickMBTIButton}
-              id={mbtiObject.id}
-              value={mbtiObject.mbti}
-              key={mbtiObject.mbti}
-            >
-              {mbtiObject.mbti}
-            </StyledMBTIButton>
-          ))}
-        </div>
-        <div>
-          {MBTINS.map((mbtiObject) => (
-            <StyledMBTIButton
-              onClick={clickMBTIButton}
-              id={mbtiObject.id}
-              value={mbtiObject.mbti}
-              key={mbtiObject.mbti}
-            >
-              {mbtiObject.mbti}
-            </StyledMBTIButton>
-          ))}
-        </div>
-        <div>
-          {MBTIFT.map((mbtiObject) => (
-            <StyledMBTIButton
-              onClick={clickMBTIButton}
-              id={mbtiObject.id}
-              value={mbtiObject.mbti}
-              key={mbtiObject.mbti}
-            >
-              {mbtiObject.mbti}
-            </StyledMBTIButton>
-          ))}
-        </div>
-        <div>
-          {MBTIPJ.map((mbtiObject) => (
-            <StyledMBTIButton
-              onClick={clickMBTIButton}
-              id={mbtiObject.id}
-              value={mbtiObject.mbti}
-              key={mbtiObject.mbti}
-            >
-              {mbtiObject.mbti}
-            </StyledMBTIButton>
-          ))}
-        </div>
+        <MBTIButton
+          mbtiCategory={MBTIIE}
+          MBTIResultArray={MBTIResultArray}
+          setMBTIResultArray={setMBTIResultArray}
+        />
+        <MBTIButton
+          mbtiCategory={MBTINS}
+          MBTIResultArray={MBTIResultArray}
+          setMBTIResultArray={setMBTIResultArray}
+        />
+        <MBTIButton
+          mbtiCategory={MBTIFT}
+          MBTIResultArray={MBTIResultArray}
+          setMBTIResultArray={setMBTIResultArray}
+        />
+        <MBTIButton
+          mbtiCategory={MBTIPJ}
+          MBTIResultArray={MBTIResultArray}
+          setMBTIResultArray={setMBTIResultArray}
+        />
       </StyledLableDiv>
       <StyledLableDiv>
         <Button
