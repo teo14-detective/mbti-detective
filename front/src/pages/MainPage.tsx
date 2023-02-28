@@ -63,17 +63,19 @@ export default function MainPage() {
   }
 
   return (
-    <StyledContainer>
+    <>
       <Header />
       <ImageSlide />
       <StyledLable>이름을 입력해주세요</StyledLable>
-      <StyledNameInput
-        type="text"
-        value={name}
-        onChange={changeName}
-        placeholder="10자 이하로 입력해주세요."
-        maxLength={10}
-      />
+      <StyledContainer>
+        <StyledNameInput
+          type="text"
+          value={name}
+          onChange={changeName}
+          placeholder="10자 이하로 입력해주세요."
+          maxLength={10}
+        />
+      </StyledContainer>
       <StyledLable>MBTI는 무엇인가요?</StyledLable>
       <StyledLableDiv>
         <MBTIButton
@@ -105,7 +107,7 @@ export default function MainPage() {
         />
       </StyledLableDiv>
       <Footer />
-    </StyledContainer>
+    </>
   );
 }
 

@@ -49,6 +49,8 @@ export default function MBTIButton(props: any) {
       // 클릭시
       document.getElementById(MBTIAlphabet)!.style.background = "#9E2311";
       document.getElementById(MBTIAlphabet)!.style.boxShadow = "none";
+      document.getElementById(MBTIAlphabet)!.style.boxShadow =
+        "inset 2px 2px 0px #760F00";
       document.getElementById(MBTIAlphabet)!.style.transform =
         "translateX(3%) translateY(3%)";
       document.getElementById(MBTIAlphabet)!.style.color = "#FFEDCB";
@@ -61,6 +63,7 @@ export default function MBTIButton(props: any) {
         document.getElementById(item.mbti)!.style.transform = "none";
         document.getElementById(item.mbti)!.style.color = "#AEAEAE";
         document.getElementById(item.mbti)!.style.borderColor = "#AEAEAE";
+        // box-shadow: inset 2px 2px 0px #3a3a3a;
 
         return null;
       });
@@ -69,12 +72,13 @@ export default function MBTIButton(props: any) {
 
   return (
     <Container>
-      {mbtiCategory.map((mbtiObject: MbtiCategoryObjectType) => (
+      {mbtiCategory.map((mbtiObject: MbtiCategoryObjectType, index: number) => (
         <StyledMBTIButton
           onClick={clickMBTIButton}
           id={mbtiObject.mbti}
           value={mbtiObject.mbti}
           name={mbtiObject.id}
+          key={index}
         >
           {mbtiObject.mbti}
         </StyledMBTIButton>
@@ -105,7 +109,7 @@ const StyledMBTIButton = styled.button`
   &:hover {
     /* background-color: #9e2311; */
     transform: translateX(3%) translateY(3%);
-    box-shadow: none;
+    box-shadow: inset 2px 2px 0px #3a3a3a;
   }
 
   box-shadow: 4px 4px #333;
