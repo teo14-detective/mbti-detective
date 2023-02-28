@@ -1,4 +1,4 @@
-import { supabase } from '@plugins/supabaseClient';
+import supabase from '@/plugins/supabase';
 
 export default async function userHandler(req, res) {
   const { query, method } = req;
