@@ -203,7 +203,7 @@ const Result = () => {
       <StyledResultContainer>
         <StyledResultSideContainer>
           <StyledResultStrong>
-            친구들이 본<br /> 나의 MBTI
+            친구들이 본<br /> {`${user.name || "아무개"}`}의 MBTI
           </StyledResultStrong>
           <StyledResultImage src={surveyData[1]} alt="mbti oooo 캐릭터" />
           <StyledResultList>
@@ -215,7 +215,7 @@ const Result = () => {
         <StyledResultSideContainer>
           <StyledResultStrong>
             실제
-            <br /> 나의 MBTI
+            <br /> {`${user.name || "아무개"}`}의 MBTI
           </StyledResultStrong>
           <StyledResultImage src={MBTIData.image} alt="mbti oooo 캐릭터" />
           <StyledResultList>
