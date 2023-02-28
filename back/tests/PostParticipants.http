@@ -1,8 +1,0 @@
-POST https://mbti-detective-back.vercel.app/api/participants HTTP/1.1
-content-type: application/json
-
-{
-    "name": "아무개5",
-    "user_key": "f3BVUBUIen",
-    "mbti": "estp"
-}
