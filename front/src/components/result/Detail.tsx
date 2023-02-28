@@ -197,25 +197,31 @@ const Result = () => {
 
   return (
     <>
-      <StyledResultTitle>메이님의 결과</StyledResultTitle>
+      <StyledResultTitle>{`${
+        user.name || "아무개"
+      }님의 결과`}</StyledResultTitle>
       <StyledResultContainer>
         <StyledResultSideContainer>
           <StyledResultStrong>
-            친구들이 본<br /> 나의 MBTI
+            친구들이 본<br /> {`${user.name || "아무개"}`}의 MBTI
           </StyledResultStrong>
           <StyledResultImage src={surveyData[1]} alt="mbti oooo 캐릭터" />
           <StyledResultList>
-            <StyledResultItem>{surveyData[2]}</StyledResultItem>
+            {surveyData[2]?.split(".").map((text: string, i: number) => (
+              <StyledResultItem key={i}>{text}</StyledResultItem>
+            ))}
           </StyledResultList>
         </StyledResultSideContainer>
         <StyledResultSideContainer>
           <StyledResultStrong>
             실제
-            <br /> 나의 MBTI
+            <br /> {`${user.name || "아무개"}`}의 MBTI
           </StyledResultStrong>
           <StyledResultImage src={MBTIData.image} alt="mbti oooo 캐릭터" />
           <StyledResultList>
-            <StyledResultItem>{MBTIData.description}</StyledResultItem>
+            {MBTIData?.description?.split(".").map((text: string, i) => (
+              <StyledResultItem key={i}>{text}</StyledResultItem>
+            ))}
           </StyledResultList>
         </StyledResultSideContainer>
       </StyledResultContainer>
@@ -237,9 +243,11 @@ const StyledResultTitle = styled.h3`
   line-height: 38px;
 `;
 const StyledResultContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-bottom: 34px;
+  text-align: center;
 `;
 
 const StyledResultSideContainer = styled.div`
@@ -247,7 +255,7 @@ const StyledResultSideContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 35px;
+  gap: 15px;
 `;
 
 const StyledResultStrong = styled.strong`
@@ -265,9 +273,11 @@ const StyledResultImage = styled.img`
 
 const StyledResultList = styled.ul`
   display: flex;
+  box-sizing: border-box;
   flex-direction: column;
-  padding: 10px;
-  gap: 10px;
+  padding: 15px 30px;
+  width: 100%;
+  text-align: center;
   border-radius: 10px;
   background: #fcedce;
   list-style-type: initial;
