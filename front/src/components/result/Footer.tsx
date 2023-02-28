@@ -8,6 +8,7 @@ import handleCopyClipBoard from "@utils/copyToClipboard";
 import { ResponseFetchUsageLogs } from "@pages/ResultPage";
 import useResultStore from "@store/resultStore";
 import { ogMBTIImage } from "@assets/data/mbti";
+const s3Url = import.meta.env.VITE_S3_URL as string;
 
 type Props = {
   handleCapture: () => void;
@@ -56,7 +57,7 @@ const KakaoShareButton = (props: any) => {
   });
   useEffect(() => {
     let imageUrl =
-      "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/resultOG.png?raw=true";
+      `${s3Url}/share-kakao/resultOG.png`;
     let mbti = "잉프피";
     if (sortedSurveyList.length) {
       mbti = sortedSurveyList[0][0]["user_mbti"].toUpperCase();

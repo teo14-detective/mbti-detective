@@ -7,6 +7,7 @@ import { Header } from "@components/common/Header";
 import { Button } from "@components/common/Button2";
 import { useNavigate } from "react-router-dom";
 import { MBTIImage } from "@assets/data/mbti";
+const s3Url = import.meta.env.VITE_S3_URL as string;
 
 function ParticipantResult() {
   type participantsArrayType = {
@@ -70,7 +71,7 @@ function ParticipantResult() {
                   {localStorage.getItem("participantName")}의 생각
                 </StyledParagraphBox>
                 <StyledImage
-                  src={`/mbti-text/${localStorage.getItem(
+                  src={`${s3Url}/mbti-text/${localStorage.getItem(
                     "participantAnswer",
                   )}.png`}
                   alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
@@ -79,7 +80,7 @@ function ParticipantResult() {
               <StyledImageBox>
                 <StyledParagraphBox>{user}의 MBTI</StyledParagraphBox>
                 <StyledImage
-                  src={`/mbti-text/${userMbti}.png`}
+                  src={`${s3Url}/mbti-text/${userMbti}.png`}
                   alt="친구의 실제 mbti 캐릭터 이미지"
                 />
               </StyledImageBox>
