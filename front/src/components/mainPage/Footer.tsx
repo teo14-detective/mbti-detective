@@ -6,6 +6,7 @@ import {
 } from "@components/common/Container";
 import ShareToKakao from "./ShareToKakao";
 import ShareToLink from "./ShareToLink";
+import ShareToTwitter from "./ShareToTwitter";
 import useCounterFetch from "@hooks/useCounterFetch";
 
 export const Footer = () => {
@@ -23,6 +24,9 @@ export const Footer = () => {
         <StyledSnsContainerCircleBox>
           <ShareToKakao />
         </StyledSnsContainerCircleBox>
+        {/* <StyledSnsContainerCircleBox>
+          <ShareToTwitter />
+        </StyledSnsContainerCircleBox> */}
         <StyledSnsContainerCircleBox>
           <ShareToLink />
         </StyledSnsContainerCircleBox>
@@ -31,27 +35,24 @@ export const Footer = () => {
   );
 };
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-
-  margin-bottom: 10px;
-`;
-
 const StyledLableDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin: 10px;
+  margin: 20px 0px 10px 0px;
 `;
 
 const StyledBoldLable = styled.label`
   display: flex;
   width: 60px;
   font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
 `;
 
 const StyledCountLable = styled.div`
   width: auto;
   text-align: center;
+  font-size: 16px;
+  line-height: 18px;
 `;

@@ -10,17 +10,14 @@ type Image = {
 export default function ImageSlide() {
   return (
     <Container>
-      <StyledThirdAnimation url={sprite} />
-      <StyledSecondAnimation url={sprite} />
-      <StyledFirstAnimation url={sprite} />
+      <StyledImageSlide>
+        <StyledThirdAnimation url={sprite} />
+        <StyledSecondAnimation url={sprite} />
+        <StyledFirstAnimation url={sprite} />
+      </StyledImageSlide>
     </Container>
   );
 }
-const Container = styled.div`
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-`;
 
 const firstAnimation = keyframes`
   0% {transform: translateX(0%);}
@@ -37,10 +34,21 @@ const thirdAnimation = keyframes`
   100% {transform: translateX(-200%);}
 `;
 
+const Container = styled.div`
+  overflow: hidden;
+`;
+
+const StyledImageSlide = styled.div`
+  position: relative;
+  width: 400%;
+  height: 160px;
+`;
+
 const StyledFirstAnimation = styled.div<Image>`
-  margin: 40px;
-  width: 700%;
-  height: 150px;
+  margin: 40px 0;
+  position: absolute;
+  width: 100%;
+  height: 90px;
   animation: ${firstAnimation} 60s 1s infinite linear;
   background-image: url(${(props) => `${props.url}`});
   background-repeat: repeat-x;
@@ -49,11 +57,10 @@ const StyledFirstAnimation = styled.div<Image>`
 `;
 
 const StyledSecondAnimation = styled.div<Image>`
-  margin: 40px;
+  margin: 40px 0;
   position: absolute;
-  top: 0px;
-  width: 700%;
-  height: 150px;
+  width: 100%;
+  height: 90px;
   animation: ${secondAnimation} 60s 1s infinite linear;
   background-image: url(${(props) => `${props.url}`});
   background-repeat: repeat-x;
@@ -62,11 +69,10 @@ const StyledSecondAnimation = styled.div<Image>`
 `;
 
 const StyledThirdAnimation = styled.div<Image>`
-  margin: 40px;
+  margin: 40px 0;
   position: absolute;
-  top: 0px;
-  width: 700%;
-  height: 150px;
+  width: 100%;
+  height: 90px;
   animation: ${thirdAnimation} 60s 1s infinite linear;
   background-image: url(${(props) => `${props.url}`});
   background-repeat: repeat-x;

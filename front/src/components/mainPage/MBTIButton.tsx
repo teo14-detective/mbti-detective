@@ -41,27 +41,34 @@ export default function MBTIButton(props: any) {
 
   useEffect(() => {
     if (MBTIAlphabet === "") {
-      document.querySelector("button")!.style.background = "#b7b7b7";
+      document.querySelector("button")!.style.background = "#EAEAEA";
     } else {
       const nonTargetedButtonArr = mbtiCategory.filter(
         (item: MbtiCategoryObjectType) => item.mbti != MBTIAlphabet,
       );
-      document.getElementById(MBTIAlphabet)!.style.background = "#b89960";
+      // 클릭시
+      document.getElementById(MBTIAlphabet)!.style.background = "#9E2311";
       document.getElementById(MBTIAlphabet)!.style.boxShadow = "none";
       document.getElementById(MBTIAlphabet)!.style.transform =
         "translateX(3%) translateY(3%)";
+      document.getElementById(MBTIAlphabet)!.style.color = "#FFEDCB";
+      document.getElementById(MBTIAlphabet)!.style.borderColor = "#000000";
 
+      // 클릭되지 않은 버튼
       nonTargetedButtonArr.map((item: MbtiCategoryObjectType) => {
-        document.getElementById(item.mbti)!.style.background = "#b7b7b7";
-        document.getElementById(item.mbti)!.style.boxShadow = "4px 4px #333";
+        document.getElementById(item.mbti)!.style.background = "#EAEAEA";
+        document.getElementById(item.mbti)!.style.boxShadow = "4px 4px #AEAEAE";
         document.getElementById(item.mbti)!.style.transform = "none";
+        document.getElementById(item.mbti)!.style.color = "#AEAEAE";
+        document.getElementById(item.mbti)!.style.borderColor = "#AEAEAE";
+
         return null;
       });
     }
   }, [MBTIAlphabet]);
 
   return (
-    <div>
+    <Container>
       {mbtiCategory.map((mbtiObject: MbtiCategoryObjectType) => (
         <StyledMBTIButton
           onClick={clickMBTIButton}
@@ -72,35 +79,38 @@ export default function MBTIButton(props: any) {
           {mbtiObject.mbti}
         </StyledMBTIButton>
       ))}
-    </div>
+    </Container>
   );
 }
 
+const Container = styled.div`
+  margin-bottom: 10px;
+`;
+
 const StyledMBTIButton = styled.button`
   display: flex;
-  margin: 4px;
-  width: 65px;
-  height: 65px;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 6px 16px;
+  gap: 10px;
 
-  font-size: 40px;
+  width: 44px;
+  height: 44px;
+
   border-radius: 6px;
-
-  background: #b7b7b7;
+  border: 2px solid #000000;
+  background: #eaeaea;
   &:hover {
-    background-color: #b89960;
+    /* background-color: #9e2311; */
     transform: translateX(3%) translateY(3%);
     box-shadow: none;
   }
 
   box-shadow: 4px 4px #333;
 
-  font-family: "theJamsil";
-  font-style: normal;
-  font-weight: 800;
-  font-size: 35px;
+  font-weight: 500;
+  font-size: 24px;
   line-height: 26px;
-
-  color: #554128;
 `;
