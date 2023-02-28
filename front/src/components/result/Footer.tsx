@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import kakaoIcon from "@assets/images/icon/icon-kakao.png";
 import linkIcon from "@assets/images/icon/icon-link.png";
@@ -6,7 +7,6 @@ import saveIcon from "@assets/images/icon/icon-save.png";
 import handleCopyClipBoard from "@utils/copyToClipboard";
 import { ResponseFetchUsageLogs } from "@pages/ResultPage";
 import useResultStore from "@store/resultStore";
-import questionCharactor from "@assets/images/questionCharactor.png";
 import { ogMBTIImage } from "@assets/data/mbti";
 
 type Props = {
@@ -16,9 +16,10 @@ type Props = {
 
 const Footer = ({ handleCapture, usageLog }: Props) => {
   const onCopyClipBoard = () => {
-    const baseUrl = "https://mbti-detective.netlify.app";
-    handleCopyClipBoard(baseUrl + window.location.pathname);
+    handleCopyClipBoard(window.location.origin + window.location.pathname);
   };
+
+  const { userKey } = useParams();
 
   return (
     <StyledFooter>
@@ -33,7 +34,7 @@ const Footer = ({ handleCapture, usageLog }: Props) => {
         </StyledDataList>
       </StyledContainer>
       <StyledButtonContainer>
-        <KakaoShareButton />
+        <KakaoShareButton userKey={userKey} />
         <StyledButton type="button" onClick={onCopyClipBoard}>
           <StyledImage src={linkIcon} alt="링크" />
         </StyledButton>
@@ -49,12 +50,12 @@ export default Footer;
 
 /* 카카오톡 공유 버튼 */
 
-const KakaoShareButton = () => {
+const KakaoShareButton = (props: any) => {
   const sortedSurveyList = useResultStore((state) => {
     return state.sortedSurveyList;
   });
   useEffect(() => {
-    let url =
+    let imageUrl =
       "https://github.com/Jxxunnn/mbti-detective-data/blob/main/share-kakao/resultOG.png?raw=true";
     let mbti = "잉프피";
     if (sortedSurveyList.length) {
@@ -62,10 +63,10 @@ const KakaoShareButton = () => {
 
       console.log(ogMBTIImage[mbti]);
     }
-    createKakaoButton(url, mbti);
+    createKakaoButton(imageUrl, mbti, props.userKey);
   }, []);
 
-  const createKakaoButton = (url: string, mbti: string) => {
+  const createKakaoButton = (imageUrl: string, mbti: string, userKey?: string) => {
     // kakao sdk script이 정상적으로 불러와졌으면 window.Kakao로 접근이 가능합니다
     if (window.Kakao) {
       const kakao = window.Kakao;
@@ -76,6 +77,10 @@ const KakaoShareButton = () => {
         kakao.init(import.meta.env.VITE_KAKAO_KEY);
       }
 
+      const url = userKey ? `${window.location.origin}/${userKey}` : window.location.origin;
+      console.log(url);
+      console.log(userKey);
+
       kakao.Link.createDefaultButton({
         // Render 부분 id=kakao-link-btn 을 찾아 그부분에 렌더링을 합니다
         container: "#kakao-link-btn",
@@ -83,18 +88,18 @@ const KakaoShareButton = () => {
         content: {
           title: `내 이름은 ${mbti}, 탐정이죠`,
           description: "#진실은 #언제나 #하나",
-          imageUrl: url, // i.e. process.env.FETCH_URL + '/logo.png'
+          imageUrl: imageUrl, // i.e. process.env.FETCH_URL + '/logo.png'
           link: {
-            mobileWebUrl: window.location.href,
-            webUrl: window.location.href,
+            mobileWebUrl: url,
+            webUrl: url,
           },
         },
         buttons: [
           {
             title: "탐정이 되어보기",
             link: {
-              mobileWebUrl: window.location.href,
-              webUrl: window.location.href,
+              mobileWebUrl: url,
+              webUrl: url,
             },
           },
         ],

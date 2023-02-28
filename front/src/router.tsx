@@ -14,14 +14,14 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/:id" element={<QuizMainPage />} />
-        <Route path="/share" element={<ShareLink />} />
-        <Route path="/result" element={<ResultPage />} />
-        <Route path="/result/chart" element={<ChartResultPage />} />
-        <Route path="/result/compare" element={<CompareResultPage />} />
-        <Route path="/participant/quiz" element={<QuizForm />} />
+        <Route path="/:userKey" element={<QuizMainPage />} />
+        <Route path="/:userKey/share" element={<ShareLink />} />
+        <Route path="/:userKey/result" element={<ResultPage />} />
+        <Route path="/:userKey/result/chart" element={<ChartResultPage />} />
+        <Route path="/:userKey/result/compare" element={<CompareResultPage />} />
+        <Route path="/:userKey/participant/quiz" element={<QuizForm />} />
         <Route
-          path="/participant-result/:userkey"
+          path="/:userKey/participant/result"
           element={<ParticipantResult />}
         />
       </Routes>

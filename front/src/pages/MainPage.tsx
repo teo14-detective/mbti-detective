@@ -56,9 +56,7 @@ export default function MainPage() {
     })
       .then(async (res) => await res.json())
       .then(async (data) => {
-        await localStorage.clear();
-        await localStorage.setItem("userKey", `${data.key}`);
-        await navigate("/share");
+        await navigate(`${data.key}/share`);
       });
   }
 
