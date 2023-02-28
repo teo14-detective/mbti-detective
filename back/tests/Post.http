@@ -1,4 +1,7 @@
-POST {{$host}}/api/participants HTTP/1.1
+@host = http://localhost:3000
+// @host = https://mbti-detective-api.netlify.app
+
+POST {{host}}/api/participants HTTP/1.1
 content-type: application/json
 
 {
@@ -9,12 +12,12 @@ content-type: application/json
 
 ###
 
-POST {{$host}}/api/share/plus HTTP/1.1
+POST {{host}}/api/share/plus HTTP/1.1
 content-type: application/json
 
 ###
 
-POST {{$host}}/api/users HTTP/1.1
+POST {{host}}/api/users HTTP/1.1
 content-type: application/json
 
 {

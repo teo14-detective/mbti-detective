@@ -6,7 +6,7 @@ export default async function userHandler(req, res) {
 
   switch (method) {
     case 'GET':
-      let { data, error, count, status, statusText } = await supabase
+      let { data, error, status, statusText } = await supabase
         .from('users')
         .select(
           `
@@ -24,7 +24,8 @@ export default async function userHandler(req, res) {
         `
         )
         .eq('key', key)
-        .range(0, 1);
+        .limit(1)
+        .single();
 
       if (error) {
         console.log(error);
@@ -32,14 +33,12 @@ export default async function userHandler(req, res) {
         break;
       }
 
-      if (count === 0) {
+      if (!data) {
         res.status(404).json({ message: 'User not found' });
         break;
       }
 
-      const user = data[0];
-
-      res.status(status).json(user);
+      res.status(status).json(data);
       break;
     default:
       res.setHeader('Allow', ['GET', 'PUT']);
