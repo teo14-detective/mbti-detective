@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "@components/result/Header";
 import Result from "@components/result";
 import Footer from "@components/result/Footer";
-import Detail from "@components/result/Detail";
 import onCapture from "@utils/captureScreen";
 import useResultStore from "@store/resultStore";
 
@@ -37,11 +37,11 @@ export type ResponseFetchUsageLogs = {
 };
 
 const ResultPage = () => {
+  const { userKey } = useParams();
   const [usageLog, setUsageLog] = useState<ResponseFetchUsageLogs>({
     hit: 0,
     share: 0,
   });
-  const BASE_URL = "https://mbti-detective-api.netlify.app";
   const { user, setUser, storeSurveyList } = useResultStore((state) => ({
     ...state,
   }));
@@ -52,9 +52,9 @@ const ResultPage = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const KEY = localStorage.getItem("userKey");
+      const KEY = userKey;
       try {
-        const res = await fetch(BASE_URL + "/api/users/" + KEY);
+        const res = await fetch(`/api/users/${KEY}`);
         const json = await res.json();
         setUser(json);
       } catch (err) {
@@ -64,7 +64,7 @@ const ResultPage = () => {
     fetchUser();
 
     const fetchUsageLogs = async () => {
-      const res = await fetch(BASE_URL + "/api/usageLogs");
+      const res = await fetch("/api/usageLogs");
       const json = await res.json();
       setUsageLog(json);
     };

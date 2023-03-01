@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Loading from "./common/Loading";
@@ -6,6 +7,7 @@ import { Header } from "@components/common/Header";
 import { Button } from "@components/common/Button2";
 import { useNavigate } from "react-router-dom";
 import { MBTIImage } from "@assets/data/mbti";
+const s3Url = import.meta.env.VITE_S3_URL as string;
 
 function ParticipantResult() {
   type participantsArrayType = {
@@ -23,10 +25,12 @@ function ParticipantResult() {
   };
 
   const [fetchData, setFetchData] = useState<fetchDataType>();
-  const [isLoading, setisLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const { userKey } = useParams();
+
   const navigate = useNavigate();
   useEffect(() => {
-    fetch(`/api/users/${localStorage.getItem("userKey")}`, {
+    fetch(`/api/users/${userKey}`, {
       method: "GET",
     })
       .then((response) => {
@@ -36,11 +40,11 @@ function ParticipantResult() {
       })
       .then((data) => {
         setFetchData(data);
-        setisLoading(false);
+        setIsLoading(false);
       })
       .catch((error) => {
         alert("데이터를 불러오는데 실패했습니다!");
-        setisLoading(false);
+        setIsLoading(false);
       });
   }, []);
   const userMbti = fetchData?.mbti;
@@ -67,7 +71,7 @@ function ParticipantResult() {
                   {localStorage.getItem("participantName")}의 생각
                 </StyledParagraphBox>
                 <StyledImage
-                  src={`/mbti-text/${localStorage.getItem(
+                  src={`${s3Url}/mbti-text/${localStorage.getItem(
                     "participantAnswer",
                   )}.png`}
                   alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
@@ -76,7 +80,7 @@ function ParticipantResult() {
               <StyledImageBox>
                 <StyledParagraphBox>{user}의 MBTI</StyledParagraphBox>
                 <StyledImage
-                  src={`/mbti-text/${userMbti}.png`}
+                  src={`${s3Url}/mbti-text/${userMbti}.png`}
                   alt="친구의 실제 mbti 캐릭터 이미지"
                 />
               </StyledImageBox>
@@ -96,7 +100,7 @@ function ParticipantResult() {
             </StyledResultContainerBox>
 
             <StyledAnchorBox>
-              <Link to="/result">{user ?? ""}님의 결과 보기</Link>
+              <Link to={`/${userKey}/result`}>{user ?? ""}님의 결과 보기</Link>
             </StyledAnchorBox>
             <StyledButtonBox>
               <Button

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { ReactComponent as PasteButton } from "/src/assets/svgs/paste-button.svg";
 import { Header } from "@components/common/Header";
@@ -6,12 +7,14 @@ import { Button } from "@components/common/Button2";
 import Loading from "./common/Loading";
 import { useNavigate } from "react-router";
 
+const s3Url = import.meta.env.VITE_S3_URL as string;
+
 export const ShareLink = () => {
   const navigate = useNavigate();
-  const key = localStorage.getItem("userKey");
+  const { userKey } = useParams();
 
   useEffect(() => {
-    fetch(`/api/users/${key}`, {
+    fetch(`/api/users/${userKey}`, {
       method: "GET",
     })
       .then((response: any) => response.json())
@@ -33,7 +36,7 @@ export const ShareLink = () => {
 
   // 복사링크 div
   const [url, setUrl] = useState<string>(
-    `https://mbti-detective.netlify.app/${key}`,
+    `https://mbti-detective.netlify.app/${userKey}`,
   );
   //복사링크 핸들러
   const copyTextUrl = () => {
@@ -49,7 +52,7 @@ export const ShareLink = () => {
       <StyledContainer>
         <Header />
         <StyledAvatarImage
-          src={`mbti-hat/${mbti}.png`}
+          src={`${s3Url}/mbti-hat/${mbti}.png`}
           alt="MBTI AVATAR"
         />
         <StyledDoneSpan>응답 링크가 생성되었습니다.</StyledDoneSpan>
@@ -64,7 +67,7 @@ export const ShareLink = () => {
         <Button
           text={"답변 보러가기"}
           className={"bottom"}
-          onclick={() => navigate("/result")}
+          onclick={() => navigate(`/${userKey}/result`)}
         />
       </StyledContainer>
     );

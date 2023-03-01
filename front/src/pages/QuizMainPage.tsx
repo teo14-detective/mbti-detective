@@ -13,13 +13,13 @@ import ImageSlide from "@components/mainPage/ImageSlide";
 import { Footer } from "@components/mainPage/Footer";
 
 export default function QuizMainPage() {
-  const { id } = useParams();
+  const { userKey } = useParams();
   const navigate = useNavigate();
 
   const [serverName, setServerName] = useState("");
 
   useEffect(() => {
-    fetch(`/api/users/${id}`)
+    fetch(`/api/users/${userKey}`)
       .then((response) => response.json())
       .then((data) => {
         setServerName(data.name);
@@ -40,7 +40,7 @@ export default function QuizMainPage() {
     }
     localStorage.setItem("participantName", name.trim());
 
-    navigate("/participant/quiz");
+    navigate(`/${userKey}/participant/quiz`);
   }
 
   return (

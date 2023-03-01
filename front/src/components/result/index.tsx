@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import charactor from "@assets/images/mbti-text/ENFJ.png";
 import goldMedal from "@assets/images/gold-medal.png";
 import Chart from "./Chart";
 import useResultStore from "@store/resultStore";
 import mbtiData from "@assets/data/mbti";
-import questionCharactor from "@assets/images/questionCharactor.png";
+const s3Url = import.meta.env.VITE_S3_URL as string;
+const questionCharacter = `${s3Url}/mbti-hat/questionCharacter.png`;
 
 type MBTI = {
   type: string;
@@ -16,6 +17,7 @@ type MBTI = {
 
 const Result = () => {
   const user = useResultStore((state) => state.user);
+  const { userKey } = useParams();
   const { setUser, MBTIData, setMBTIData, sortedSurveyList } = useResultStore(
     (state) => ({
       ...state,
@@ -53,7 +55,7 @@ const Result = () => {
         ) : (
           <>
             <StyledStateImage
-              src={questionCharactor}
+              src={questionCharacter}
               alt="고개를 갸웃거리는 탐정 이미지"
             />
             <StyledStateMessage>
@@ -66,11 +68,11 @@ const Result = () => {
         <>
           <Link
             style={{ width: "100%", marginBottom: "10px" }}
-            to="/result/chart"
+            to={`/${userKey}/result/chart`}
           >
             <StyledButton>통계 보러가기</StyledButton>
           </Link>
-          <Link to="/result/compare">
+          <Link to="/${userKey}/result/compare">
             <StyledButton>실제 MBTI랑 비교하기</StyledButton>
           </Link>
         </>
