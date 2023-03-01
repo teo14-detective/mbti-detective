@@ -1,11 +1,11 @@
-import supabase from '@/plugins/supabase';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import supabase from 'plugins/supabase';
 
-export default async function userHandler(req, res) {
+export default async function userHandler(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req;
 
   switch (method) {
     case 'GET':
-      // 조회수 1 추가
       await supabase.from('usage_logs').insert([{ type: 1, url: req.url }]);
 
       const hitCountResult = await supabase.from('usage_logs').select('*', { count: 'exact', head: true }).eq('type', 1);
