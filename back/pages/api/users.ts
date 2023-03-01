@@ -1,9 +1,10 @@
-import supabase from '@/plugins/supabase';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import supabase from 'plugins/supabase';
 
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'POST':
-      const { method, body } = req;
+      const { body } = req;
 
       if (!body.name || !body.mbti) {
         let message = 'Bad Request';
@@ -31,12 +32,12 @@ export default async function handler(req, res) {
     // handle other HTTP methods
     default:
       res.setHeader('Allow', ['GET']);
-      res.status(405).end(`Method ${method} Not Allowed`);
+      res.status(405).end(`Method ${req.method} Not Allowed`);
       break;
   }
 }
 
-function generateRandomString(length) {
+function generateRandomString(length: number): string {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
 

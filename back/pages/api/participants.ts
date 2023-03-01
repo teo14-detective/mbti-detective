@@ -1,9 +1,16 @@
-import supabase from '@/plugins/supabase';
+import { NextApiRequest, NextApiResponse } from 'next';
+import supabase from 'plugins/supabase';
 
-export default async function userHandler(req, res) {
+interface CreateParticipantRequest {
+  name?: string;
+  mbti?: string;
+  user_key?: string;
+}
+
+export default async function userHandler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'POST':
-      const { method, body } = req;
+      const body = req.body as CreateParticipantRequest;
 
       if (!body.name || !body.mbti || !body.user_key) {
         let message = 'Bad Request';
@@ -15,7 +22,7 @@ export default async function userHandler(req, res) {
           message += '| MBTI is invalid';
         }
 
-        if (body.mbti.key > 10) {
+        if (body.user_key.length > 10) {
           message += '| User key is invalid';
         }
 
@@ -27,9 +34,9 @@ export default async function userHandler(req, res) {
         .from('users')
         .select(
           `
-                uid,
-                key
-            `
+            uid,
+            key
+          `
         )
         .eq('key', body.user_key)
         .range(0, 1);
@@ -53,6 +60,6 @@ export default async function userHandler(req, res) {
       break;
     default:
       res.setHeader('Allow', ['GET']);
-      res.status(405).end(`Method ${method} Not Allowed`);
+      res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
