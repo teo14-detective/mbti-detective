@@ -35,9 +35,7 @@ export default function QuizMainPage() {
     if (!name.trim()) return alert("이름를 입력해주세요!");
 
     localStorage.clear();
-    if (id !== undefined) {
-      localStorage.setItem("userKey", id);
-    }
+
     localStorage.setItem("participantName", name.trim());
 
     navigate(`/${userKey}/participant/quiz`);
