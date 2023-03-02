@@ -39,5 +39,4 @@ const StyledContainer = styled.section`
   background-color: #ffcd5d;
   border: 1px solid black;
   box-shadow: 3px 3px 0px 0px black;
-  border: 1px solid black;
 `;
