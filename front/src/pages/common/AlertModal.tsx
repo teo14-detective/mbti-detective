@@ -8,7 +8,7 @@ export const AlertModal = ({
   text: string;
   setAlert: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  // 알럿 3초 후, 사라짐
+  // 알럿 2초 후, 사라짐
   useEffect(() => {
     const disAppearModal = setTimeout(() => {
       setAlert(false);
