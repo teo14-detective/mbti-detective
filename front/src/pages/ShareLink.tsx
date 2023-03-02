@@ -64,9 +64,9 @@ export const ShareLink = () => {
           alt="MBTI AVATAR"
         />
         <StyledDoneSpan>응답 링크가 생성되었습니다.</StyledDoneSpan>
-        <StyledPasteContainer>
+        <StyledPasteContainer onClick={copyTextUrl}>
           <StyledPasteUrlDiv>{url}</StyledPasteUrlDiv>
-          <PasteButton onClick={copyTextUrl} />
+          <PasteButton />
         </StyledPasteContainer>
         <StyledReplySpan>
           현재 <StyledCountSpan>{count}</StyledCountSpan> 명에게 <br />
@@ -117,6 +117,9 @@ const StyledPasteContainer = styled.div`
   font-weight: 400;
   font-size: 20px;
   background-color: #ffffff;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const StyledPasteUrlDiv = styled.div`
