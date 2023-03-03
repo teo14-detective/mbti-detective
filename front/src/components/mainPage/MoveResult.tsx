@@ -7,7 +7,6 @@ type UserKey = {
 };
 
 export default function MoveResult({ userKey }: UserKey) {
-  console.log(userKey);
   return (
     <Link to={`/${userKey}/result`}>
       <div>결과 보러가기</div>

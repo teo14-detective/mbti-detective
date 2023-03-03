@@ -30,6 +30,7 @@ export default function ShareToKakao() {
     </>
   );
 }
+
 const StyledButton = styled.button`
   padding: 8px;
   border-radius: 50%;
