@@ -36,6 +36,8 @@ const thirdAnimation = keyframes`
 
 const Container = styled.div`
   overflow: hidden;
+  margin-top: 4vh;
+  margin-bottom: 6vh;
 `;
 
 const StyledImageSlide = styled.div`
