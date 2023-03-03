@@ -63,46 +63,48 @@ export default function MainPage() {
   return (
     <StyledContainer>
       <Header />
-      <ImageSlide />
-      <StyledLable>이름을 입력해주세요</StyledLable>
-      <StyledNameInput
-        type="text"
-        value={name}
-        onChange={changeName}
-        placeholder="10자 이하로 입력해주세요."
-        maxLength={10}
-      />
-      <StyledLable>MBTI는 무엇인가요?</StyledLable>
-      <StyledLableDiv>
-        <MBTIButton
-          mbtiCategory={MBTIIE}
-          MBTIResultArray={MBTIResultArray}
-          setMBTIResultArray={setMBTIResultArray}
+      <StyledMain>
+        <ImageSlide />
+        <StyledLable>이름을 입력해주세요</StyledLable>
+        <StyledNameInput
+          type="text"
+          value={name}
+          onChange={changeName}
+          placeholder="10자 이하로 입력해주세요."
+          maxLength={10}
         />
-        <MBTIButton
-          mbtiCategory={MBTINS}
-          MBTIResultArray={MBTIResultArray}
-          setMBTIResultArray={setMBTIResultArray}
-        />
-        <MBTIButton
-          mbtiCategory={MBTIFT}
-          MBTIResultArray={MBTIResultArray}
-          setMBTIResultArray={setMBTIResultArray}
-        />
-        <MBTIButton
-          mbtiCategory={MBTIPJ}
-          MBTIResultArray={MBTIResultArray}
-          setMBTIResultArray={setMBTIResultArray}
-        />
-      </StyledLableDiv>
-      <StyledLableDiv>
-        <Button
-          onclick={() => clickStartButton()}
-          text={"start"}
-          className={"bottom"}
-        />
-      </StyledLableDiv>
-      <Footer />
+        <StyledLable>MBTI는 무엇인가요?</StyledLable>
+        <StyledMBTIButtonBox>
+          <MBTIButton
+            mbtiCategory={MBTIIE}
+            MBTIResultArray={MBTIResultArray}
+            setMBTIResultArray={setMBTIResultArray}
+          />
+          <MBTIButton
+            mbtiCategory={MBTINS}
+            MBTIResultArray={MBTIResultArray}
+            setMBTIResultArray={setMBTIResultArray}
+          />
+          <MBTIButton
+            mbtiCategory={MBTIFT}
+            MBTIResultArray={MBTIResultArray}
+            setMBTIResultArray={setMBTIResultArray}
+          />
+          <MBTIButton
+            mbtiCategory={MBTIPJ}
+            MBTIResultArray={MBTIResultArray}
+            setMBTIResultArray={setMBTIResultArray}
+          />
+        </StyledMBTIButtonBox>
+        <StyledLableDiv>
+          <Button
+            onclick={() => clickStartButton()}
+            text={"start"}
+            className={"bottom"}
+          />
+        </StyledLableDiv>
+        <Footer />
+      </StyledMain>
     </StyledContainer>
   );
 }
@@ -110,35 +112,32 @@ export default function MainPage() {
 const StyledContainer = styled.section`
   margin: 0 auto;
   text-align: center;
+  height: 100%;
 `;
-
+const StyledMain = styled.main`
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+`;
 const StyledLableDiv = styled.div`
   display: flex;
   justify-content: center;
-
-  margin-bottom: 10px;
+`;
+const StyledMBTIButtonBox = styled.div`
+  display: flex;
+  gap: 16px;
+  justify-content: center;
 `;
 
 const StyledLable = styled.label`
   display: flex;
   justify-content: center;
-
-  width: 320px;
-  font-family: "theJamsil";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 22px;
 `;
 
 const StyledNameInput = styled.input`
-  margin: 10px 0 30px 0;
-  padding: 1px 10px;
-
-  width: 269px;
-  height: 40px;
-
-  font-size: 20px;
+  width: 90%;
+  padding: 10px 12px;
   background: #ffffff;
   border: 1px solid #ad9777;
   border-radius: 10px;

@@ -57,16 +57,16 @@ export const GlobalStyle = createGlobalStyle`
     :root {
         font-family: "theJamsil";
         background-color: #DCBC8C;
+        color: black;
     }
 
-    #root {
+    .App {
         max-width: 430px;
         margin: 0 auto;
         padding: 40px 20px;
-        font-size: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        font-size: 18px;
+        /* overflow: hidden; */
+        height: calc(var(--vh, 1vh) * 100);
     }
     a {
         text-decoration: none;
@@ -77,6 +77,9 @@ export const GlobalStyle = createGlobalStyle`
         background-color: transparent;
         border: none;
         outline: none;
+        font-family: "theJamsil";
+        font-weight: 300;
+        font-style: 18px;
     }
 
     button {

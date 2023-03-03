@@ -48,7 +48,8 @@ export default function MBTIButton(props: any) {
       );
       // 클릭시
       document.getElementById(MBTIAlphabet)!.style.background = "#9E2311";
-      document.getElementById(MBTIAlphabet)!.style.boxShadow = "none";
+      document.getElementById(MBTIAlphabet)!.style.boxShadow =
+        "2px 2px 0px #000000, inset 2px 2px 0px #760F00";
       document.getElementById(MBTIAlphabet)!.style.transform =
         "translateX(3%) translateY(3%)";
       document.getElementById(MBTIAlphabet)!.style.color = "#FFEDCB";
@@ -57,7 +58,7 @@ export default function MBTIButton(props: any) {
       // 클릭되지 않은 버튼
       nonTargetedButtonArr.map((item: MbtiCategoryObjectType) => {
         document.getElementById(item.mbti)!.style.background = "#EAEAEA";
-        document.getElementById(item.mbti)!.style.boxShadow = "4px 4px #AEAEAE";
+        document.getElementById(item.mbti)!.style.boxShadow = "2px 2px #AEAEAE";
         document.getElementById(item.mbti)!.style.transform = "none";
         document.getElementById(item.mbti)!.style.color = "#AEAEAE";
         document.getElementById(item.mbti)!.style.borderColor = "#AEAEAE";
@@ -84,33 +85,28 @@ export default function MBTIButton(props: any) {
 }
 
 const Container = styled.div`
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 const StyledMBTIButton = styled.button`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10px;
-  padding: 6px 16px;
-  gap: 10px;
-
-  width: 44px;
-  height: 44px;
-
+  width: 40px;
+  height: 40px;
   border-radius: 6px;
   border: 2px solid #000000;
   background: #eaeaea;
+  box-shadow: 4px 4px #333;
   &:hover {
     /* background-color: #9e2311; */
     transform: translateX(3%) translateY(3%);
     box-shadow: none;
+    box-shadow: 2px 2px #333;
   }
-
-  box-shadow: 4px 4px #333;
 
   font-weight: 500;
   font-size: 24px;
-  line-height: 26px;
 `;
