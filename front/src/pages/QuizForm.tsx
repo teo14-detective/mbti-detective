@@ -52,10 +52,14 @@ export default function QuizForm() {
           </StyledStatusBarBox>
         </StyledStatusBox>
         {status < 4 && questions && answerText ? (
-          <StyledQuestionContainer>
-            <StyledQuestionTitle>Q{status + 1}</StyledQuestionTitle>
-            <StyledStatusSpan>({status + 1}/4)</StyledStatusSpan>
-            <StyledQuestionBox>{questions[status]}</StyledQuestionBox>
+          <>
+            <StyledQuestionContainer>
+              <div>
+                <StyledQuestionTitle>Q{status + 1}</StyledQuestionTitle>
+                <StyledStatusSpan>({status + 1}/4)</StyledStatusSpan>
+              </div>
+              <StyledQuestionBox>{questions[status]}</StyledQuestionBox>
+            </StyledQuestionContainer>
             <StyledButtonsBox>
               <Button
                 className="top"
@@ -72,7 +76,7 @@ export default function QuizForm() {
                 {answerText[status][1]}
               </Button>
             </StyledButtonsBox>
-          </StyledQuestionContainer>
+          </>
         ) : (
           <></>
         )}
@@ -86,10 +90,10 @@ const StyledContainer = styled.section`
 `;
 
 const StyledStatusBox = styled.div`
-  width: 100vw;
+  /* width: 100vw; */
   height: 20px;
   border: 2px solid black;
-  margin: 20px 0 40px;
+  margin: 4vh 0;
 `;
 
 const StyledStatusBarBox = styled.div<{ width: number }>`
@@ -109,50 +113,37 @@ const StyledTargetImage = styled.img`
 `;
 
 const StyledQuestionContainer = styled.section`
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
 `;
 
 const StyledQuestionTitle = styled.h2`
   display: block;
-  font-size: 36px;
+  font-size: 28px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 1vh;
 `;
 
 const StyledStatusSpan = styled.span`
   display: block;
-  font-style: 20px;
+  font-size: 14px;
   color: #554128;
-  margin-bottom: 20px;
+  margin-bottom: 2vh;
 `;
 const StyledQuestionBox = styled.div`
-  font-size: 24px;
+  font-size: 18px;
   width: 80%;
   margin: 0 auto;
 `;
 const StyledButtonsBox = styled.div`
-  max-width: 430px;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 8%;
+  bottom: 20px;
   width: 80%;
-  gap: 40px;
-`;
-
-const StyledButton = styled.button`
-  width: 100%;
-  height: 80px;
-  padding: 20px;
-  font-family: "theJamsil";
-  font-size: 20px;
-  &.top {
-    background-color: #f498b7;
-  }
-  &.bottom {
-    background-color: #01e3e0;
-  }
+  gap: 2vh;
 `;

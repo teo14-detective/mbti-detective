@@ -12,7 +12,7 @@ export const Button = styled.button`
   font-size: 32px;
   background-color: #ffcd5d;
   border: 2px solid black;
-  box-shadow: 3px 3px 0px 0px black;
+  
   margin: 0 auto;
 
   &:hover,
@@ -27,23 +27,27 @@ export const Button = styled.button`
     height: 100%;
     padding: 40px 20px;
     font-family: "theJamsil";
-    font-size: 20px;
+    font-size: 18px;
+    max-width: calc(430px * 0.9);
   }
 
   &.top {
     background-color: #f498b7;
-    &:hover,
-    &:active {
-      background-color: #db81d4;
-      box-shadow: inset 2px 2px 0px #794475;
-    }
   }
   &.bottom {
     background-color: #01e3e0;
-    &:hover,
-    :active {
+  }
+  box-shadow: 3px 3px 0px 0px black;
+  @media (hover: hover) and (pointer: fine) {
+    &.top {
+      background-color: #db81d4;
+      box-shadow: inset 2px 2px 0px #794475;
+    }
+    &.bottom {
       background-color: #76b0db;
       box-shadow: inset 2px 2px 0px #5683a4;
     }
   }
+  
+}
 `;
