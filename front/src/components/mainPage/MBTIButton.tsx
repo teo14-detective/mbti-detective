@@ -48,8 +48,9 @@ export default function MBTIButton(props: any) {
       );
       // 클릭시
       document.getElementById(MBTIAlphabet)!.style.background = "#9E2311";
+      document.getElementById(MBTIAlphabet)!.style.boxShadow = "none";
       document.getElementById(MBTIAlphabet)!.style.boxShadow =
-        "2px 2px 0px #000000, inset 2px 2px 0px #760F00";
+        "inset 2px 2px 0px #760F00";
       document.getElementById(MBTIAlphabet)!.style.transform =
         "translateX(3%) translateY(3%)";
       document.getElementById(MBTIAlphabet)!.style.color = "#FFEDCB";
@@ -104,8 +105,7 @@ const StyledMBTIButton = styled.button`
   &:hover {
     /* background-color: #9e2311; */
     transform: translateX(3%) translateY(3%);
-    box-shadow: none;
-    box-shadow: 2px 2px #333;
+    box-shadow: inset 2px 2px 0px #3a3a3a;
   }
 
   font-weight: 500;

@@ -36,7 +36,7 @@ export default function QuizMainPage() {
 
     localStorage.clear();
 
-    localStorage.setItem("participantName", name);
+    localStorage.setItem("participantName", name.trim());
 
     navigate(`/${userKey}/participant/quiz`);
   }

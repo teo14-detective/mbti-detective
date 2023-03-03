@@ -8,10 +8,12 @@ import ImageSlide from "@components/mainPage/ImageSlide";
 import { Header } from "@components/mainPage/Header";
 import { Footer } from "@components/mainPage/Footer";
 import MBTIButton from "@components/mainPage/MBTIButton";
+import MoveResult from "@components/mainPage/MoveResult";
 
 export default function MainPage() {
   const navigate = useNavigate();
   const { name, changeName } = useMakeName();
+  const USERKEY = localStorage.getItem("userKey");
 
   const MBTIIE = [
     { id: "0", mbti: "I" },
@@ -44,7 +46,7 @@ export default function MainPage() {
     if (MBTIResultArray.includes("") || !name)
       return alert("정보를 입력해주세요!");
 
-    const response = fetch("/api/users", {
+    fetch("/api/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,16 +58,17 @@ export default function MainPage() {
     })
       .then(async (res) => await res.json())
       .then(async (data) => {
+        await localStorage.setItem("userKey", `${data.key}`);
         await navigate(`${data.key}/share`);
       });
   }
-
   return (
     <StyledContainer>
       <Header />
       <ImageSlide />
       <StyledMain>
         <StyledBox>
+          {USERKEY ? <MoveResult userKey={USERKEY} /> : null}
           <StyledLable>이름을 입력해주세요</StyledLable>
           <StyledNameInput
             type="text"

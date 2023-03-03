@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 export default function ShareToTwitter() {
-  function clickLinkButton() {
+  function clickTwitterShareButton() {
     const url = `${window.location.href}`;
     const title = "친구의 MBTI를 맞춰볼까요? MBTI 명탐정이 돼봐요!";
     window.open(
@@ -11,10 +11,14 @@ export default function ShareToTwitter() {
       "트위터로 공유하기",
       "width=700, height=400",
     );
+
+    fetch("/api/share/plus", {
+      method: "POST",
+    }).catch((err) => console.log("Share to twitter count err", err));
   }
 
   return (
-    <button onClick={clickLinkButton}>
+    <button onClick={clickTwitterShareButton}>
       <div>트위터</div>
     </button>
   );
