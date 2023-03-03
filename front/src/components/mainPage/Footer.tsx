@@ -45,10 +45,10 @@ const StyledLableDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  width: 100%;
 `;
 
 const StyledBoldLable = styled.label`
-  display: flex;
   font-weight: 500;
   font-size: 16px;
 `;
