@@ -58,8 +58,8 @@ export const GlobalStyle = createGlobalStyle`
         font-family: "theJamsil";
         background-color: #DCBC8C;
         color: black;
+        /* --vh: 100%; */
     }
-
     .App {
         max-width: 430px;
         margin: 0 auto;
