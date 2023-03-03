@@ -22,6 +22,7 @@ export const ShareLink = () => {
       .then((data: any) => {
         setIsLoading(false);
         setMbti(data.mbti);
+        setUsername(data.name);
         setCount(data.participants.length);
       })
       .catch(() => {
@@ -36,6 +37,8 @@ export const ShareLink = () => {
   const [alert, setAlert] = useState<boolean>(false);
   const [alertText, setAlertText] = useState<string>("");
 
+  // 유저가 설정한 이름
+  const [username, setUsername] = useState<string>("");
   // 유저가 설정한 MBTI
   const [mbti, setMbti] = useState<string>("");
   // 유저에게 답변해준 사람들
@@ -63,11 +66,16 @@ export const ShareLink = () => {
           src={`${s3Url}/mbti-hat/${mbti}.png`}
           alt="MBTI AVATAR"
         />
-        <StyledDoneSpan>응답 링크가 생성되었습니다.</StyledDoneSpan>
-        <StyledPasteContainer onClick={copyTextUrl}>
-          <StyledPasteUrlDiv>{url}</StyledPasteUrlDiv>
-          <PasteButton />
-        </StyledPasteContainer>
+        <StyledLinkBox>
+          <StyledDoneSpan>
+            {username}님의 응답 링크가 <br />
+            생성되었습니다.
+          </StyledDoneSpan>
+          <StyledPasteContainer onClick={copyTextUrl}>
+            <StyledPasteUrlDiv>{url}</StyledPasteUrlDiv>
+            <PasteButton />
+          </StyledPasteContainer>
+        </StyledLinkBox>
         <StyledReplySpan>
           현재 <StyledCountSpan>{count}</StyledCountSpan> 명에게 <br />
           답변을 받았어요!
@@ -85,29 +93,29 @@ export const ShareLink = () => {
 
 const StyledContainer = styled.div`
   position: relative;
-  width: 100%;
-  height: 100vh;
-  background-color: #dcbc8c;
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 `;
 
 const StyledAvatarImage = styled.img`
-  width: 180px;
-  height: 180px;
-  margin-top: 42px;
-  margin-bottom: 20px;
+  width: 120px;
+  height: 120px;
 `;
-
+const StyledLinkBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  align-items: center;
+`;
 const StyledDoneSpan = styled.span`
-  margin: 20px 0px;
-  font-weight: 400;
-  font-size: 20px;
+  text-align: center;
 `;
 
 const StyledPasteContainer = styled.div`
-  width: 247px;
+  width: 90%;
   height: 22px;
   padding: 10px;
   display: flex;
@@ -123,7 +131,10 @@ const StyledPasteContainer = styled.div`
 `;
 
 const StyledPasteUrlDiv = styled.div`
-  width: 200px;
+  width: 90%;
+  font-size: 14px;
+  color: #555;
+  font-weight: 300;
   // 말줄임표 처리
   white-space: nowrap;
   overflow: hidden;
@@ -132,8 +143,10 @@ const StyledPasteUrlDiv = styled.div`
 
 const StyledCountSpan = styled.span`
   color: #9e2311;
+  font-size: 20px;
 `;
 
 const StyledReplySpan = styled.span`
   margin-bottom: 60px;
+  text-align: center;
 `;
