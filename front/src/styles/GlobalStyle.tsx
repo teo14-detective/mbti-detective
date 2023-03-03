@@ -63,7 +63,7 @@ export const GlobalStyle = createGlobalStyle`
     .App {
         max-width: 430px;
         margin: 0 auto;
-        padding: 40px 20px;
+        padding: 20px;
         font-size: 18px;
         /* overflow: hidden; */
         height: calc(var(--vh, 1vh) * 100);
