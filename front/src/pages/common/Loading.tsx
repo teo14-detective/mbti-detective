@@ -21,7 +21,7 @@ const SpriteAnimation = keyframes`
     }
 `;
 const StyledContainter = styled.section`
-  height: calc(100vh - 40px);
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
