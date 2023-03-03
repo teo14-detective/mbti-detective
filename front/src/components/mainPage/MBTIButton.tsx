@@ -73,6 +73,7 @@ export default function MBTIButton(props: any) {
     <Container>
       {mbtiCategory.map((mbtiObject: MbtiCategoryObjectType, index: number) => (
         <StyledMBTIButton
+          key={mbtiObject.mbti}
           onClick={clickMBTIButton}
           id={mbtiObject.mbti}
           value={mbtiObject.mbti}

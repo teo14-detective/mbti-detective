@@ -58,8 +58,8 @@ export const GlobalStyle = createGlobalStyle`
         font-family: "theJamsil";
         background-color: #DCBC8C;
         color: black;
+        /* --vh: 100%; */
     }
-
     .App {
         max-width: 430px;
         margin: 0 auto;
@@ -80,8 +80,11 @@ export const GlobalStyle = createGlobalStyle`
         font-family: "theJamsil";
         font-weight: 300;
         font-style: 18px;
+        color: inherit;
     }
-
+    input {
+        font-size: 18px;
+    }
     button {
         cursor: pointer;
     }
