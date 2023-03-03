@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "serve": "next serve"
+    "serve": "next serve",
+    "test": "jest"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.8.0",
@@ -18,13 +19,19 @@
     "swr": "^2.0.4"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.21.0",
+    "@types/jest": "^29.4.0",
     "@types/node": "18.14.1",
     "@types/react": "18.0.28",
     "babel-eslint": "^10.1.0",
     "eslint": "8.34.0",
     "eslint-config-next": "^13.2.1",
     "eslint-config-prettier": "^8.6.0",
+    "jest": "^29.4.3",
+    "jest-mock-extended": "^3.0.3",
     "prettier": "^2.8.4",
-    "sass": "^1.58.3"
+    "sass": "^1.58.3",
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1"
   }
 }

@@ -20,19 +20,13 @@ export const StyledContainBox = styled.div`
 export const StyledSnsContainerBox = styled.div`
   display: flex;
   justify-content: center;
+  gap: 10px;
 `;
 
 export const StyledSnsContainerCircleBox = styled.div`
   display: flex;
-  position: relative;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 8px;
+  justify-content: center;
   gap: 10px;
-  width: 38px;
-  height: 38px;
-  background: #8f754d;
-  border-radius: 30px;
   margin-left: 9px;
 `;
 
