@@ -4,10 +4,12 @@ import {
   StyledSnsContainerCircleBox,
   StyledSnsContainerBox,
 } from "@components/common/Container";
+import useCounterFetch from "@hooks/useCounterFetch";
+
 import ShareToKakao from "./ShareToKakao";
 import ShareToLink from "./ShareToLink";
 import ShareToTwitter from "./ShareToTwitter";
-import useCounterFetch from "@hooks/useCounterFetch";
+import ShareToFacebook from "./ShareToFacebook";
 
 export const Footer = () => {
   const { hitCount, shareCount } = useCounterFetch();
@@ -21,8 +23,19 @@ export const Footer = () => {
         <StyledCountLable>{shareCount}</StyledCountLable>
       </StyledLableDiv>
       <StyledSnsContainerBox>
-        <ShareToKakao />
-        <ShareToLink />
+        <StyledSnsContainerCircleBox>
+          <ShareToKakao />
+        </StyledSnsContainerCircleBox>
+        {/* <StyledSnsContainerCircleBox>
+          <ShareToTwitter />
+        </StyledSnsContainerCircleBox> 
+        <StyledSnsContainerCircleBox>
+          <ShareToFacebook />
+        </StyledSnsContainerCircleBox>
+        */}
+        <StyledSnsContainerCircleBox>
+          <ShareToLink />
+        </StyledSnsContainerCircleBox>
       </StyledSnsContainerBox>
     </>
   );

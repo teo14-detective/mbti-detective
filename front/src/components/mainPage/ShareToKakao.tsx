@@ -1,8 +1,10 @@
 import React from "react";
 import KakaoIcon from "/src/assets/images/icon/icon-kakao.png";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
 
 export default function ShareToKakao() {
+  const { userKey } = useParams();
   const shareKakao = () => {
     const { VITE_KAKAO_TEMPLATE_ID, VITE_KAKAO_JS_KEY } = import.meta.env;
 
@@ -12,9 +14,22 @@ export default function ShareToKakao() {
         kakao.init(VITE_KAKAO_JS_KEY);
       }
 
-      window.Kakao.Share.sendCustom({
-        templateId: Number(VITE_KAKAO_TEMPLATE_ID), // 템플릿 아이디 넣기
-      });
+      // 처음 메인과 퀴즈를 풀러 왔을 때의 메인의 카카오톡 공유 url
+      if (userKey) {
+        window.Kakao.Share.sendCustom({
+          templateId: Number(VITE_KAKAO_TEMPLATE_ID), // 템플릿 아이디 넣기
+          templateArgs: {
+            url: `${userKey}`,
+          },
+        });
+      } else {
+        window.Kakao.Share.sendCustom({
+          templateId: Number(VITE_KAKAO_TEMPLATE_ID), // 템플릿 아이디 넣기
+          templateArgs: {
+            url: ``,
+          },
+        });
+      }
     }
 
     fetch("/api/share/plus", {
@@ -30,6 +45,7 @@ export default function ShareToKakao() {
     </>
   );
 }
+
 const StyledButton = styled.button`
   padding: 8px;
   border-radius: 50%;
