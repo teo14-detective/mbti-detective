@@ -80,8 +80,11 @@ export const GlobalStyle = createGlobalStyle`
         font-family: "theJamsil";
         font-weight: 300;
         font-style: 18px;
+        color: inherit;
     }
-
+    input {
+        font-size: 18px;
+    }
     button {
         cursor: pointer;
     }
