@@ -45,22 +45,32 @@ export default function QuizMainPage() {
     <StyledContainer>
       <Header />
       <ImageSlide />
-      <StyledLable>
-        <StyledBoldLable>{serverName} </StyledBoldLable>님의 MBTI를 <br />
-        맞추러 오셨군요!
-      </StyledLable>
-      <StyledNameLable>이름을 입력해주세요.</StyledNameLable>
-      <StyledNameInput
-        type="text"
-        value={name}
-        onChange={changeName}
-        placeholder="10자 이하로 입력해주세요."
-        maxLength={10}
-      />
-      <StyledNameLable>
-        <Button onclick={clickStartButton} text={"start"} className="button" />
-      </StyledNameLable>
-      <Footer />
+      <StyledMain>
+        <StyledLable>
+          <StyledBoldLable>{serverName} </StyledBoldLable>님의 MBTI를 <br />
+          맞추러 오셨군요!
+        </StyledLable>
+        <StyledBox>
+          <StyledNameLable>이름을 입력해주세요.</StyledNameLable>
+          <StyledNameInput
+            type="text"
+            value={name}
+            onChange={changeName}
+            placeholder="10자 이하로 입력해주세요."
+            maxLength={10}
+          />
+        </StyledBox>
+        <StyledBox>
+          <Button
+            onclick={clickStartButton}
+            text={"start"}
+            className="button"
+          />
+        </StyledBox>
+        <StyledBox>
+          <Footer />
+        </StyledBox>
+      </StyledMain>
     </StyledContainer>
   );
 }
@@ -68,38 +78,22 @@ export default function QuizMainPage() {
 const StyledContainer = styled.section`
   margin: 0 auto;
   text-align: center;
+  height: 100%;
 `;
-
-const StyledNameLable = styled.label`
+const StyledMain = styled.main`
   display: flex;
-  justify-content: center;
-
-  margin: 10px;
-  margin-top: 20px;
-  width: 320px;
-  font-family: "theJamsil";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 22px;
+  height: calc(100% - 100px - 80px - 90px);
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `;
+const StyledNameLable = styled.label``;
 
-const StyledLable = styled.label`
-  margin: 10px 0;
-  width: 320px;
-  text-align: center;
-  font-size: large;
-  line-height: 120%;
-`;
+const StyledLable = styled.label``;
 
 const StyledNameInput = styled.input`
-  margin-bottom: 10px;
-  padding: 1px 10px;
-
-  width: 269px;
-  height: 40px;
-
-  font-size: 20px;
+  width: 90%;
+  padding: 10px 12px;
   background: #ffffff;
   border: 1px solid #ad9777;
   border-radius: 10px;
@@ -108,4 +102,11 @@ const StyledNameInput = styled.input`
 const StyledBoldLable = styled.label`
   font-size: larger;
   font-weight: 500;
+`;
+const StyledBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  align-items: center;
+  width: 100%;
 `;
