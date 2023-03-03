@@ -8,12 +8,10 @@ import ImageSlide from "@components/mainPage/ImageSlide";
 import { Header } from "@components/mainPage/Header";
 import { Footer } from "@components/mainPage/Footer";
 import MBTIButton from "@components/mainPage/MBTIButton";
-import MoveResult from "@components/mainPage/MoveResult";
 
 export default function MainPage() {
   const navigate = useNavigate();
   const { name, changeName } = useMakeName();
-  const USERKEY = localStorage.getItem("userKey");
 
   const MBTIIE = [
     { id: "0", mbti: "I" },
@@ -68,7 +66,6 @@ export default function MainPage() {
       <ImageSlide />
       <StyledMain>
         <StyledBox>
-          {USERKEY ? <MoveResult userKey={USERKEY} /> : null}
           <StyledLable>이름을 입력해주세요</StyledLable>
           <StyledNameInput
             type="text"
