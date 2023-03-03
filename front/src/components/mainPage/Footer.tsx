@@ -45,20 +45,16 @@ const StyledLableDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin: 20px 0px 10px 0px;
 `;
 
 const StyledBoldLable = styled.label`
   display: flex;
-  width: 60px;
   font-weight: 500;
   font-size: 16px;
-  line-height: 18px;
 `;
 
 const StyledCountLable = styled.div`
   width: auto;
   text-align: center;
   font-size: 16px;
-  line-height: 18px;
 `;

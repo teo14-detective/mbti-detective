@@ -6,6 +6,7 @@ import { Header } from "@components/common/Header";
 import { Button } from "@components/common/Button2";
 import Loading from "./common/Loading";
 import { useNavigate } from "react-router";
+import { AlertModal } from "./common/AlertModal";
 
 const s3Url = import.meta.env.VITE_S3_URL as string;
 
@@ -23,11 +24,17 @@ export const ShareLink = () => {
         setMbti(data.mbti);
         setCount(data.participants.length);
       })
-      .catch((error) => alert("데이터를 불러오는데 실패했습니다!"));
+      .catch(() => {
+        setAlert(true);
+        setAlertText("데이터를 불러오는데 실패했습니다!");
+      });
   }, []);
 
   //로딩
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  //알럿모달 상태값
+  const [alert, setAlert] = useState<boolean>(false);
+  const [alertText, setAlertText] = useState<string>("");
 
   // 유저가 설정한 MBTI
   const [mbti, setMbti] = useState<string>("");
@@ -41,7 +48,8 @@ export const ShareLink = () => {
   //복사링크 핸들러
   const copyTextUrl = () => {
     navigator.clipboard.writeText(url).then(() => {
-      alert("링크 복사 성공");
+      setAlert(true);
+      setAlertText("복사되었습니다.");
     });
   };
 
@@ -56,9 +64,9 @@ export const ShareLink = () => {
           alt="MBTI AVATAR"
         />
         <StyledDoneSpan>응답 링크가 생성되었습니다.</StyledDoneSpan>
-        <StyledPasteContainer>
+        <StyledPasteContainer onClick={copyTextUrl}>
           <StyledPasteUrlDiv>{url}</StyledPasteUrlDiv>
-          <PasteButton onClick={copyTextUrl} />
+          <PasteButton />
         </StyledPasteContainer>
         <StyledReplySpan>
           현재 <StyledCountSpan>{count}</StyledCountSpan> 명에게 <br />
@@ -69,12 +77,14 @@ export const ShareLink = () => {
           className={"bottom"}
           onclick={() => navigate(`/${userKey}/result`)}
         />
+        {alert && <AlertModal text={alertText} setAlert={setAlert} />}
       </StyledContainer>
     );
   }
 };
 
 const StyledContainer = styled.div`
+  position: relative;
   width: 100%;
   height: 100vh;
   background-color: #dcbc8c;
@@ -107,6 +117,9 @@ const StyledPasteContainer = styled.div`
   font-weight: 400;
   font-size: 20px;
   background-color: #ffffff;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const StyledPasteUrlDiv = styled.div`

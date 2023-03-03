@@ -1,6 +1,7 @@
-import supabase from '@/plugins/supabase';
+import { NextApiRequest, NextApiResponse } from 'next';
+import supabase from 'plugins/supabase';
 
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req.method) {
     case 'POST':
       const { status, error, statusText } = await supabase.from('usage_logs').insert([{ type: 2, url: req.url }]);
@@ -15,7 +16,7 @@ export default async function handler(req, res) {
     // handle other HTTP methods
     default:
       res.setHeader('Allow', ['GET']);
-      res.status(405).end(`Method ${method} Not Allowed`);
+      res.status(405).end(`Method ${req.method} Not Allowed`);
       break;
   }
 }

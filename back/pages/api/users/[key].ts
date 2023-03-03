@@ -1,12 +1,13 @@
-import supabase from '@/plugins/supabase';
+import { NextApiRequest, NextApiResponse } from 'next';
+import supabase from 'plugins/supabase';
 
-export default async function userHandler(req, res) {
+export default async function userHandler(req: NextApiRequest, res: NextApiResponse) {
   const { query, method } = req;
-  const key = query.key;
+  const key = query.key as string;
 
   switch (method) {
     case 'GET':
-      let { data, error, status, statusText } = await supabase
+      const { data, error, status, statusText } = await supabase
         .from('users')
         .select(
           `
