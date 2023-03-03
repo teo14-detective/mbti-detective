@@ -13,8 +13,7 @@ export const Button = ({
 };
 
 const Container = styled.button`
-  width: 289px;
-  height: 56px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,8 +22,9 @@ const Container = styled.button`
   font-weight: 400;
   font-size: 32px;
   background-color: #ffcd5d;
-  border: 1px solid black;
-  box-shadow: 3px 3px 0px 0px black;
+  border: 2px solid black;
+  box-shadow: 2px 2px 0px 0px black;
+  filter: drop-shadow(2px 2px 0px #000000);
   &:hover,
   :active {
     background-color: #ff9c4f;

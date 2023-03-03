@@ -14,16 +14,21 @@ export default function ShareToLink() {
   };
 
   return (
-    <button onClick={clickLinkButton}>
+    <StyledButton onClick={clickLinkButton}>
       <IconImage src={LinkIcon} alt="링크 공유 버튼" />
-    </button>
+    </StyledButton>
   );
 }
 
+const StyledButton = styled.button`
+  padding: 8px;
+  border-radius: 50%;
+  background: #8f754d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 const IconImage = styled.img`
-  position: absolute;
-  top: 11px;
-  left: 11px;
-  width: 32px;
-  height: 32px;
+  width: 20px;
+  height: 20px;
 `;

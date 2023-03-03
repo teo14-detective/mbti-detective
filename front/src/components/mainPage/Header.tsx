@@ -7,6 +7,5 @@ export const Header = () => {
 };
 
 const Container = styled.img`
-  width: 233px;
-  height: 116px;
+  width: 200px;
 `;

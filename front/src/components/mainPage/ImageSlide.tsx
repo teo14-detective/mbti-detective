@@ -41,11 +41,10 @@ const Container = styled.div`
 const StyledImageSlide = styled.div`
   position: relative;
   width: 400%;
-  height: 160px;
+  height: 90px;
 `;
 
 const StyledFirstAnimation = styled.div<Image>`
-  margin: 40px 0;
   position: absolute;
   width: 100%;
   height: 90px;
@@ -57,7 +56,6 @@ const StyledFirstAnimation = styled.div<Image>`
 `;
 
 const StyledSecondAnimation = styled.div<Image>`
-  margin: 40px 0;
   position: absolute;
   width: 100%;
   height: 90px;
@@ -69,7 +67,6 @@ const StyledSecondAnimation = styled.div<Image>`
 `;
 
 const StyledThirdAnimation = styled.div<Image>`
-  margin: 40px 0;
   position: absolute;
   width: 100%;
   height: 90px;
