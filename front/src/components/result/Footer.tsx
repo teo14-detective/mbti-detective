@@ -56,8 +56,7 @@ const KakaoShareButton = (props: any) => {
     return state.sortedSurveyList;
   });
   useEffect(() => {
-    let imageUrl =
-      `${s3Url}/share-kakao/resultOG.png`;
+    let imageUrl = `${s3Url}/share-kakao/resultOG.png`;
     let mbti = "잉프피";
     if (sortedSurveyList.length) {
       mbti = sortedSurveyList[0][0]["user_mbti"].toUpperCase();
@@ -67,7 +66,11 @@ const KakaoShareButton = (props: any) => {
     createKakaoButton(imageUrl, mbti, props.userKey);
   }, []);
 
-  const createKakaoButton = (imageUrl: string, mbti: string, userKey?: string) => {
+  const createKakaoButton = (
+    imageUrl: string,
+    mbti: string,
+    userKey?: string,
+  ) => {
     // kakao sdk script이 정상적으로 불러와졌으면 window.Kakao로 접근이 가능합니다
     if (window.Kakao) {
       const kakao = window.Kakao;
@@ -78,7 +81,9 @@ const KakaoShareButton = (props: any) => {
         kakao.init(import.meta.env.VITE_KAKAO_KEY);
       }
 
-      const url = userKey ? `${window.location.origin}/${userKey}` : window.location.origin;
+      const url = userKey
+        ? `${window.location.origin}/${userKey}`
+        : window.location.origin;
       console.log(url);
       console.log(userKey);
 
@@ -116,7 +121,12 @@ const KakaoShareButton = (props: any) => {
 
 /* Footer Style */
 
-const StyledFooter = styled.footer``;
+const StyledFooter = styled.footer`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 const StyledContainer = styled.div`
   display: flex;

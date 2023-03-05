@@ -6,7 +6,10 @@ import Loading from "./common/Loading";
 import { Header } from "@components/common/Header";
 import { Button } from "@components/common/Button2";
 import { useNavigate } from "react-router-dom";
-import { MBTIImage } from "@assets/data/mbti";
+import onCapture from "@utils/captureScreen";
+import { ResponseFetchUsageLogs } from "./ResultPage";
+import Footer from "@components/result/Footer";
+import { StyledCaptureContainer } from "@components/result";
 const s3Url = import.meta.env.VITE_S3_URL as string;
 
 function ParticipantResult() {
@@ -26,6 +29,10 @@ function ParticipantResult() {
 
   const [fetchData, setFetchData] = useState<fetchDataType>();
   const [isLoading, setIsLoading] = useState(true);
+  const [usageLog, setUsageLog] = useState<ResponseFetchUsageLogs>({
+    hit: 0,
+    share: 0,
+  });
   const { userKey } = useParams();
 
   const navigate = useNavigate();
@@ -46,17 +53,21 @@ function ParticipantResult() {
         alert("데이터를 불러오는데 실패했습니다!");
         setIsLoading(false);
       });
+
+    const fetchUsageLogs = async () => {
+      const res = await fetch("/api/usageLogs");
+      const json = await res.json();
+      setUsageLog(json);
+    };
+    fetchUsageLogs();
   }, []);
   const userMbti = fetchData?.mbti;
   const user = fetchData?.name;
-  // const participantMbti = MBTIImage.filter(
-  //   (elem) =>
-  //     elem.substring(29, 33) === localStorage.getItem("participantAnswer"),
-  // );
-  // const userAnswerMbti = MBTIImage.filter(
-  //   (elem) => elem.substring(29, 33) === userMbti,
-  // );
   const isEqualMbti = localStorage.getItem("participantAnswer") === userMbti;
+
+  const handleCapture = () => {
+    onCapture("capture");
+  };
   return (
     <>
       {isLoading ? (
@@ -65,40 +76,41 @@ function ParticipantResult() {
         <>
           <Header />
           <StyledContainer>
-            <StyledImagesBox>
-              <StyledImageBox>
-                <StyledParagraphBox>
-                  {localStorage.getItem("participantName")}의 생각
-                </StyledParagraphBox>
-                <StyledImage
-                  src={`${s3Url}/mbti-text/${localStorage.getItem(
-                    "participantAnswer",
-                  )}.png`}
-                  alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
-                />
-              </StyledImageBox>
-              <StyledImageBox>
-                <StyledParagraphBox>{user}의 MBTI</StyledParagraphBox>
-                <StyledImage
-                  src={`${s3Url}/mbti-text/${userMbti}.png`}
-                  alt="친구의 실제 mbti 캐릭터 이미지"
-                />
-              </StyledImageBox>
-            </StyledImagesBox>
+            <StyledCaptureContainer id="capture">
+              <StyledImagesBox>
+                <StyledImageBox>
+                  <StyledParagraphBox>
+                    {localStorage.getItem("participantName")}의 생각
+                  </StyledParagraphBox>
+                  <StyledImage
+                    src={`${s3Url}/mbti-text/${localStorage.getItem(
+                      "participantAnswer",
+                    )}.png`}
+                    alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
+                  />
+                </StyledImageBox>
+                <StyledImageBox>
+                  <StyledParagraphBox>{user}의 MBTI</StyledParagraphBox>
+                  <StyledImage
+                    src={`${s3Url}/mbti-text/${userMbti}.png`}
+                    alt="친구의 실제 mbti 캐릭터 이미지"
+                  />
+                </StyledImageBox>
+              </StyledImagesBox>
 
-            <StyledResultContainerBox>
-              <StyledResultTextBox isEqual={isEqualMbti}>
-                {isEqualMbti ? "정답!" : "땡!"}
-              </StyledResultTextBox>
-              <StyledResultSentenceParagraph>
-                {`${user ?? ""}님의 MBTI는 ${userMbti ?? ""}입니다.\n
+              <StyledResultContainerBox>
+                <StyledResultTextBox isEqual={isEqualMbti}>
+                  {isEqualMbti ? "정답!" : "땡!"}
+                </StyledResultTextBox>
+                <StyledResultSentenceParagraph>
+                  {`${user ?? ""}님의 MBTI는 ${userMbti ?? ""}입니다.\n
                   ${
                     localStorage.getItem("participantName") ?? ""
                   }님의 응답 결과가
                   ${user ?? ""}님에게 전송되었습니다.`}
-              </StyledResultSentenceParagraph>
-            </StyledResultContainerBox>
-
+                </StyledResultSentenceParagraph>
+              </StyledResultContainerBox>
+            </StyledCaptureContainer>
             <StyledAnchorBox>
               <Link to={`/${userKey}/result`}>{user ?? ""}님의 결과 보기</Link>
             </StyledAnchorBox>
@@ -109,6 +121,7 @@ function ParticipantResult() {
                 className={"bottom"}
               />
             </StyledButtonBox>
+            <Footer handleCapture={handleCapture} usageLog={usageLog} />
           </StyledContainer>
         </>
       )}

@@ -106,7 +106,7 @@ const StyledMedalImage = styled.img`
   right: -20px;
 `;
 
-const StyledCaptureContainer = styled.div`
+export const StyledCaptureContainer = styled.div`
   width: 100%;
   margin-bottom: 45px;
   padding: 10px;
