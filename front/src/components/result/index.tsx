@@ -107,9 +107,9 @@ const StyledMedalImage = styled.img`
 `;
 
 export const StyledCaptureContainer = styled.div`
-  width: 100%;
-  margin-bottom: 45px;
-  padding: 10px;
+  /* width: 100%; */
+  /* padding: 10px; */
+  padding: 4vh;
   background-color: #dcbc8c;
   text-align: center;
 `;
