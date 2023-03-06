@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import Header from "@components/result/Header";
+// import Header from "@components/result/Header";
 import Result from "@components/result";
 import Footer from "@components/result/Footer";
 import onCapture from "@utils/captureScreen";
 import useResultStore from "@store/resultStore";
+import { Header } from "@components/common/Header";
 
 export type UserType = {
   uid: number;
@@ -109,10 +110,7 @@ export default ResultPage;
 const StyledContainer = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  width: 390px;
   margin: 0 auto;
-  padding: 60px 0px 50px;
-  background-color: #dcbc8c;
 `;

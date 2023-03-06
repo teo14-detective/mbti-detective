@@ -138,7 +138,7 @@ const StyledContainer = styled.section`
 `;
 const StyledMain = styled.main`
   display: flex;
-  height: calc(100% - 90px - 20px);
+  height: calc(100% - 100px - 80px - 90px);
   flex-direction: column;
   justify-content: space-between;
 `;

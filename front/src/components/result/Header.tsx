@@ -15,7 +15,6 @@ export default Header;
 const StyledTitle = styled.h1`
   width: 180px;
   aspect-ratio: 2/1;
-  margin-bottom: 36px;
 `;
 
 const StyledImage = styled.img`
