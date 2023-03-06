@@ -101,17 +101,21 @@ const StyledStateMessage = styled.strong`
 `;
 
 const StyledMedalImage = styled.img`
+  width: 40%;
   position: absolute;
   top: 0;
   right: -20px;
 `;
 
 export const StyledCaptureContainer = styled.div`
-  width: 100%;
-  margin-bottom: 45px;
-  padding: 10px;
+  /* width: 100%; */
+  /* padding: 10px; */
+  padding: 4vh;
   background-color: #dcbc8c;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const StyledContainer = styled.section`
@@ -119,14 +123,12 @@ const StyledContainer = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
 `;
 
 const StyledTitle = styled.h2`
   font-family: "blackHanSans";
   font-size: 30px;
   font-weight: 400;
-  line-height: 38px;
   text-align: center;
 `;
 
@@ -143,7 +145,7 @@ const StyledResultContainer = styled.div`
 const StyledImage = styled.img`
   width: 128px;
   aspect-ratio: 1/1;
-  margin-left: -10px;
+  margin-left: -16px;
 `;
 
 const StyledList = styled.ul`
@@ -156,9 +158,7 @@ const StyledList = styled.ul`
 
 const StyledItem = styled.li`
   line-height: 21px;
-  font-family: "theJamsil";
   font-size: 16px;
-  font-weight: bold;
 `;
 
 const StyledButton = styled.button`
@@ -170,4 +170,5 @@ const StyledButton = styled.button`
   background: #ffcd5d;
   font-family: "blackHanSans";
   font-size: 32px;
+  margin-bottom: 2vh;
 `;

@@ -126,12 +126,12 @@ const StyledFooter = styled.footer`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 2vh;
 `;
 
 const StyledContainer = styled.div`
   display: flex;
   gap: 20px;
-  margin-bottom: 12px;
 `;
 
 const StyledDataList = styled.dl`
@@ -140,19 +140,13 @@ const StyledDataList = styled.dl`
 `;
 
 const StyledDataTerm = styled.dt`
-  font-family: "theJamsil";
-  font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  line-height: 18px;
 `;
 
 const StyledDataDesc = styled.dd`
-  font-family: "theJamsil";
-  font-style: normal;
   font-weight: 300;
   font-size: 16px;
-  line-height: 18px;
 `;
 
 const StyledButtonContainer = styled.div`
@@ -161,14 +155,15 @@ const StyledButtonContainer = styled.div`
   gap: 10px;
 `;
 const StyledButton = styled.button`
-  width: 38px;
-  height: 38px;
   padding: 8px;
+  border-radius: 50%;
   background: #8f754d;
-  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const StyledImage = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 20px;
+  height: 20px;
 `;
