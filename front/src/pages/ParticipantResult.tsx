@@ -74,54 +74,56 @@ function ParticipantResult() {
         <Loading />
       ) : (
         <>
-          <Header />
           <StyledContainer>
-            <StyledCaptureContainer id="capture">
-              <StyledImagesBox>
-                <StyledImageBox>
-                  <StyledParagraphBox>
-                    {localStorage.getItem("participantName")}의 생각
-                  </StyledParagraphBox>
-                  <StyledImage
-                    src={`${s3Url}/mbti-text/${localStorage.getItem(
-                      "participantAnswer",
-                    )}.png`}
-                    alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
-                  />
-                </StyledImageBox>
-                <StyledImageBox>
-                  <StyledParagraphBox>{user}의 MBTI</StyledParagraphBox>
-                  <StyledImage
-                    src={`${s3Url}/mbti-text/${userMbti}.png`}
-                    alt="친구의 실제 mbti 캐릭터 이미지"
-                  />
-                </StyledImageBox>
-              </StyledImagesBox>
+            <Header />
+            <StyledMain>
+              <StyledCaptureContainer id="capture">
+                <StyledImagesBox>
+                  <StyledImageBox>
+                    <StyledParagraphBox>
+                      {localStorage.getItem("participantName")}의 생각
+                    </StyledParagraphBox>
+                    <StyledImage
+                      src={`${s3Url}/mbti-text/${localStorage.getItem(
+                        "participantAnswer",
+                      )}.png`}
+                      alt="내가 생각하는 친구의 mbti 캐릭터 이미지"
+                    />
+                  </StyledImageBox>
+                  <StyledImageBox>
+                    <StyledParagraphBox>{user}의 MBTI</StyledParagraphBox>
+                    <StyledImage
+                      src={`${s3Url}/mbti-text/${userMbti}.png`}
+                      alt="친구의 실제 mbti 캐릭터 이미지"
+                    />
+                  </StyledImageBox>
+                </StyledImagesBox>
 
-              <StyledResultContainerBox>
-                <StyledResultTextBox isEqual={isEqualMbti}>
-                  {isEqualMbti ? "정답!" : "땡!"}
-                </StyledResultTextBox>
-                <StyledResultSentenceParagraph>
-                  {`${user ?? ""}님의 MBTI는 ${userMbti ?? ""}입니다.\n
+                <StyledResultContainerBox>
+                  <StyledResultTextBox isEqual={isEqualMbti}>
+                    {isEqualMbti ? "정답!" : "땡!"}
+                  </StyledResultTextBox>
+                  <StyledResultSentenceParagraph>
+                    {`${user ?? ""}님의 MBTI는 ${userMbti ?? ""}입니다.\n
                   ${
                     localStorage.getItem("participantName") ?? ""
                   }님의 응답 결과가
                   ${user ?? ""}님에게 전송되었습니다.`}
-                </StyledResultSentenceParagraph>
-              </StyledResultContainerBox>
-            </StyledCaptureContainer>
-            <StyledAnchorBox>
-              <Link to={`/${userKey}/result`}>{user ?? ""}님의 결과 보기</Link>
-            </StyledAnchorBox>
-            <StyledButtonBox>
+                  </StyledResultSentenceParagraph>
+                </StyledResultContainerBox>
+              </StyledCaptureContainer>
+              <StyledAnchorBox>
+                <Link to={`/${userKey}/result`}>
+                  {user ?? ""}님의 결과 보기
+                </Link>
+              </StyledAnchorBox>
               <Button
                 onclick={() => navigate("/")}
                 text={"내 MBTI 물어보기"}
                 className={"bottom"}
               />
-            </StyledButtonBox>
-            <Footer handleCapture={handleCapture} usageLog={usageLog} />
+              <Footer handleCapture={handleCapture} usageLog={usageLog} />
+            </StyledMain>
           </StyledContainer>
         </>
       )}
@@ -132,30 +134,33 @@ function ParticipantResult() {
 const StyledContainer = styled.section`
   margin: 0 auto;
   text-align: center;
+  height: 100%;
+`;
+const StyledMain = styled.main`
+  display: flex;
+  height: calc(100% - 90px - 20px);
+  flex-direction: column;
+  justify-content: space-between;
 `;
 const StyledImagesBox = styled.div`
   display: flex;
-  justify-content: space-between;
-  margin-top: 3em;
-  margin-bottom: 2em;
+  justify-content: center;
+  gap: 10vw;
+  margin-bottom: 2vh;
 `;
 const StyledImageBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 1em;
+  gap: 1vh;
 `;
 
 const StyledImage = styled.img`
-  width: 138px;
-  height: 138px;
+  width: 120px;
+  height: 120px;
 `;
 const StyledParagraphBox = styled.div`
-  width: 125px;
   font-weight: 500;
-  text-align: center;
-  white-space: normal;
 `;
 type StyledResultTextType = {
   isEqual: boolean;
@@ -167,7 +172,7 @@ const StyledResultTextBox = styled.div<StyledResultTextType>`
 
 const StyledResultSentenceParagraph = styled.p`
   white-space: pre-line;
-  line-height: 20px; //줄높이가 안맞아서 임의 수정함
+  /* line-height: 20px; //줄높이가 안맞아서 임의 수정함 */
 `;
 
 const StyledResultContainerBox = styled.div`
@@ -175,24 +180,14 @@ const StyledResultContainerBox = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  margin-bottom: 2em;
 `;
 
 const StyledAnchorBox = styled.div`
   font-weight: 400;
-  font-size: 18px;
 
   text-align: center;
   text-decoration-line: underline;
   color: #666666;
-  margin-bottom: 16%;
-`;
-
-const StyledButtonBox = styled.div`
-  display: flex;
-  justify-content: center;
-
-  margin-bottom: 10px;
 `;
 
 export default ParticipantResult;
