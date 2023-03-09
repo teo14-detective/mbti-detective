@@ -46,7 +46,7 @@ export const ShareLink = () => {
 
   // 복사링크 div
   const [url, setUrl] = useState<string>(
-    `https://mbti-detective.netlify.app/${userKey}`,
+    `${window.location.href}/${userKey}`,
   );
   //복사링크 핸들러
   const copyTextUrl = () => {
