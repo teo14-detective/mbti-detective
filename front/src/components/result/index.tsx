@@ -31,6 +31,30 @@ const Result = () => {
       ...state,
     }),
   );
+  const surveyList = useResultStore((state) => state.sortedSurveyList);
+  const [surveyMBTI, setSurveyMBTI] = useState<any[]>([]);
+  const [surveyData, setSurveyData] = useState<any[]>([]);
+
+  const extractFromObj = () => {
+    const list = [];
+    for (const key in surveyMBTI[0]) {
+      const { type, image, description } = surveyMBTI[0][key];
+      list.push(type, image, description);
+    }
+    return list;
+  };
+
+  useEffect(() => {
+    if (surveyList.length) {
+      setSurveyMBTI(
+        mbtiData.filter((el) => el[surveyList[0][0].user_mbti.toUpperCase()]),
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    setSurveyData(extractFromObj());
+  }, [surveyMBTI]);
 
   useEffect(() => {
     if (user.mbti) {
@@ -48,14 +72,11 @@ const Result = () => {
         {user.participants.length ? (
           <>
             <StyledResultContainer>
-              <StyledImage
-                src={MBTIData?.image}
-                alt={MBTIData?.type + `캐릭터`}
-              />
+              <StyledImage src={surveyData[1]} alt={surveyData[0] + `캐릭터`} />
               <StyledMedalImage src={goldMedal} alt="캐릭터" />
             </StyledResultContainer>
             <StyledList>
-              {MBTIData?.description.split(".").map((text, i) => (
+              {surveyData[2].split(".").map((text: string, i: number) => (
                 <StyledItem key={i}>{text}</StyledItem>
               ))}
             </StyledList>
@@ -68,6 +89,8 @@ const Result = () => {
             />
             <StyledStateMessage>
               "앗! 아직 아무도 추리를 안했어요!"
+              <br />
+              친구에게 링크를 공유해보세요!
             </StyledStateMessage>
           </>
         )}
