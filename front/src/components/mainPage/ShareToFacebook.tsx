@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 export default function ShareToFacebook() {
   function clickFacebookShareButton() {
-    // const url = "https://mbti-detective.netlify.app/";
     const url = `${window.location.href}`;
     const title = "친구의 MBTI를 맞춰볼까요? MBTI 명탐정이 돼봐요!";
 
