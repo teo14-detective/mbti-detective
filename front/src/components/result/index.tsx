@@ -6,8 +6,16 @@ import goldMedal from "@assets/images/gold-medal.png";
 import Chart from "./Chart";
 import useResultStore from "@store/resultStore";
 import mbtiData from "@assets/data/mbti";
+import { HiCursorClick } from "react-icons/hi";
 const s3Url = import.meta.env.VITE_S3_URL as string;
 const questionCharacter = `${s3Url}/mbti-hat/questionCharacter.png`;
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from "@chakra-ui/react";
 
 type MBTI = {
   type: string;
@@ -64,18 +72,67 @@ const Result = () => {
           </>
         )}
       </StyledCaptureContainer>
-      {user.participants.length > 0 && (
+      {user.participants.length > 0 ? (
         <>
-          <Link
-            style={{ width: "100%", marginBottom: "10px" }}
-            to={`/${userKey}/result/chart`}
-          >
-            <StyledButton>통계 보러가기</StyledButton>
-          </Link>
-          <Link to="/${userKey}/result/compare">
-            <StyledButton>실제 MBTI랑 비교하기</StyledButton>
-          </Link>
+          <Accordion>
+            <AccordionItem>
+              <h2>
+                <AccordionButton>
+                  분석 결과 보러가기&nbsp;(Click!)&nbsp;
+                  <HiCursorClick />
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <Link
+                  style={{ width: "100%", marginBottom: "10px" }}
+                  to={`/${userKey}/result/chart`}
+                >
+                  <StyledButton>통계 보러가기</StyledButton>
+                </Link>
+                <Link to="/${userKey}/result/compare">
+                  <StyledButton>실제 MBTI랑 비교하기</StyledButton>
+                </Link>
+              </AccordionPanel>
+            </AccordionItem>
+            <AccordionItem>
+              <h2>
+                <AccordionButton>
+                  내 MBTI 물어보기&nbsp;(Click!)&nbsp;
+                  <HiCursorClick />
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <Link style={{ width: "100%", marginBottom: "10px" }} to={"/"}>
+                  <StyledButton>처음이신가요?</StyledButton>
+                </Link>
+                <Link to={`/${userKey}/share`}>
+                  <StyledButton>{user.name}님이신가요?</StyledButton>
+                </Link>
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
         </>
+      ) : (
+        <Accordion defaultIndex={[0]}>
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
+                내 MBTI 물어보기&nbsp;(Click!)&nbsp; <HiCursorClick />
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>
+              <Link style={{ width: "100%", marginBottom: "10px" }} to={"/"}>
+                <StyledButton>처음이신가요?</StyledButton>
+              </Link>
+              <Link to={`/${userKey}/share`}>
+                <StyledButton>{user.name}님이신가요?</StyledButton>
+              </Link>
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
       )}
     </StyledContainer>
   );
