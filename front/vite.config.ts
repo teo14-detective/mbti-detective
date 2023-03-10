@@ -5,23 +5,26 @@ import svgr from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), tsconfigPaths(), svgr()],
-  resolve: {
-    alias: [
-      { find: "@components", replacement: "/src/components" },
-      { find: "@", replacement: "/src" },
-    ],
-  },
-  define: {
-    "process.env": {},
-  },
-  server: {
-    proxy: {
-      "/api": {
-        target: "https://mbti-detective-api.netlify.app",
-        changeOrigin: true,
-        secure: false,
-      },
+    plugins: [react(), tsconfigPaths(), svgr()],
+    resolve: {
+        alias: [
+            { find: "@components", replacement: "/src/components" },
+            { find: "@", replacement: "/src" },
+        ],
     },
-  },
+    define: {
+        "process.env": {},
+    },
+    server: {
+        watch: {
+            usePolling: true,
+        },
+        proxy: {
+            "/api": {
+                target: "https://mbti-detective-api.netlify.app",
+                changeOrigin: true,
+                secure: false,
+            },
+        },
+    },
 });
