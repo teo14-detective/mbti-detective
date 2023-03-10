@@ -8,6 +8,7 @@ import CompareResultPage from "@pages/CompareResultPage";
 import MainPage from "./pages/MainPage";
 import QuizMainPage from "@pages/QuizMainPage";
 import QuizForm from "@pages/QuizForm";
+import NotFound from "@pages/common/NotFound";
 
 const Router = () => {
   return (
@@ -18,12 +19,17 @@ const Router = () => {
         <Route path="/:userKey/share" element={<ShareLink />} />
         <Route path="/:userKey/result" element={<ResultPage />} />
         <Route path="/:userKey/result/chart" element={<ChartResultPage />} />
-        <Route path="/:userKey/result/compare" element={<CompareResultPage />} />
+        <Route
+          path="/:userKey/result/compare"
+          element={<CompareResultPage />}
+        />
         <Route path="/:userKey/participant/quiz" element={<QuizForm />} />
         <Route
           path="/:userKey/participant/result"
           element={<ParticipantResult />}
         />
+        <Route path="/404" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

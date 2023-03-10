@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-// import Header from "@components/result/Header";
 import Result from "@components/result";
 import Footer from "@components/result/Footer";
 import onCapture from "@utils/captureScreen";
 import useResultStore from "@store/resultStore";
 import { Header } from "@components/common/Header";
-
+import Loading from "@pages/common/Loading";
 export type UserType = {
   uid: number;
   key: string;
@@ -47,6 +46,8 @@ const ResultPage = () => {
     ...state,
   }));
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const handleCapture = () => {
     onCapture("capture");
   };
@@ -60,6 +61,8 @@ const ResultPage = () => {
         setUser(json);
       } catch (err) {
         throw new Error("유저 정보가 없습니다.");
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchUser();
@@ -95,11 +98,17 @@ const ResultPage = () => {
   }, [user]);
 
   return (
-    <StyledContainer>
-      <Header />
-      <Result />
-      <Footer handleCapture={handleCapture} usageLog={usageLog} />
-    </StyledContainer>
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <StyledContainer>
+          <Header />
+          <Result />
+          <Footer handleCapture={handleCapture} usageLog={usageLog} />
+        </StyledContainer>
+      )}
+    </>
   );
 };
 

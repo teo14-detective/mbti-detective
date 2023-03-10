@@ -6,7 +6,6 @@ import spriteImg from "@assets/images/sprite.png";
 export default function Loading() {
   return (
     <>
-      <Header />
       <StyledContainter>
         <StyledAmimationBox />
         <StyledParagraph>LOADING . . .</StyledParagraph>
@@ -21,7 +20,7 @@ const SpriteAnimation = keyframes`
     }
 `;
 const StyledContainter = styled.section`
-  margin-top: 150px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

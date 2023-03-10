@@ -45,9 +45,15 @@ export const ShareLink = () => {
   const [count, setCount] = useState<number>();
 
   // 복사링크 div
-  const [url, setUrl] = useState<string>(
-    `${window.location.href}/${userKey}`,
-  );
+
+  const [url, setUrl] = useState(() => {
+    const path = window.location.href.split("/");
+    if (path[path.length - 1] === "share") {
+      return `${window.location.origin}/${userKey}`;
+    } else {
+      return `${window.location.href}/${userKey}`;
+    }
+  });
   //복사링크 핸들러
   const copyTextUrl = () => {
     navigator.clipboard.writeText(url).then(() => {
