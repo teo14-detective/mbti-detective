@@ -65,8 +65,6 @@ const Result = () => {
     }
   }, [user]);
 
-  console.log(surveyData[2]);
-
   return (
     <StyledContainer>
       <StyledCaptureContainer id="capture">
