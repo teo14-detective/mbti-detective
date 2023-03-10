@@ -65,6 +65,8 @@ const Result = () => {
     }
   }, [user]);
 
+  console.log(surveyData[2]);
+
   return (
     <StyledContainer>
       <StyledCaptureContainer id="capture">
@@ -76,7 +78,7 @@ const Result = () => {
               <StyledMedalImage src={goldMedal} alt="캐릭터" />
             </StyledResultContainer>
             <StyledList>
-              {surveyData[2].split(".").map((text: string, i: number) => (
+              {surveyData[2]?.split(".").map((text: string, i: number) => (
                 <StyledItem key={i}>{text}</StyledItem>
               ))}
             </StyledList>
