@@ -3,7 +3,7 @@ import {
   StyledBackgroundBox,
   StyledContainBox,
 } from "@components/common/Container";
-
+import { Link } from "react-router-dom";
 import useMakeName from "@hooks/useMakeName";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
@@ -20,13 +20,15 @@ export default function QuizMainPage() {
 
   useEffect(() => {
     fetch(`/api/users/${userKey}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.ok) {
-          setServerName(data.name);
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
         } else {
           navigate("/404");
         }
+      })
+      .then((data) => {
+        setServerName(data.name);
       })
       .catch((err) =>
         alert(`사용자를 불러오는데 문제가 생겼습니다. \n에러내용 ${err}`),
@@ -54,6 +56,7 @@ export default function QuizMainPage() {
           <StyledBoldLable>{serverName} </StyledBoldLable>님의 MBTI를 <br />
           맞추러 오셨군요!
         </StyledLable>
+
         <StyledBox>
           <StyledNameLable>이름을 입력해주세요.</StyledNameLable>
           <StyledNameInput
@@ -71,6 +74,7 @@ export default function QuizMainPage() {
             className="button"
           />
         </StyledBox>
+        <StyledLink to="./share">{serverName}님이신가요?</StyledLink>
         <StyledBox>
           <Footer />
         </StyledBox>
@@ -113,4 +117,10 @@ const StyledBox = styled.div`
   gap: 2vh;
   align-items: center;
   width: 100%;
+`;
+
+const StyledLink = styled(Link)`
+  text-align: center;
+  text-decoration-line: underline;
+  color: #666666;
 `;
