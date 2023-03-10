@@ -1,22 +1,26 @@
 import React from "react";
 import MainLogo from "/src/assets/images/logo.png";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const Header = () => {
   const navigate = useNavigate();
+  const { userKey } = useParams();
+
   return (
     <StyledHeader>
       <StyledLogoImage
         src={MainLogo}
         alt="MBTI 명탐정"
-        onClick={() => navigate("/")}
+        onClick={() => navigate(`/${userKey}`)}
       />
     </StyledHeader>
   );
 };
 
-const StyledHeader = styled.h1``;
+const StyledHeader = styled.h1`
+  cursor: pointer;
+`;
 const StyledLogoImage = styled.img`
   width: 180px;
   height: 90px;
