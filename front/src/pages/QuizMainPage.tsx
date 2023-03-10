@@ -22,7 +22,11 @@ export default function QuizMainPage() {
     fetch(`/api/users/${userKey}`)
       .then((response) => response.json())
       .then((data) => {
-        setServerName(data.name);
+        if (data.ok) {
+          setServerName(data.name);
+        } else {
+          navigate("/404");
+        }
       })
       .catch((err) =>
         alert(`사용자를 불러오는데 문제가 생겼습니다. \n에러내용 ${err}`),
