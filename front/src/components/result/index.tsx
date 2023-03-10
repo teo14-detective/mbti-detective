@@ -77,7 +77,7 @@ const Result = () => {
           <Accordion>
             <AccordionItem>
               <h2>
-                <AccordionButton>
+                <AccordionButton ml="auto" mr="auto" display="block">
                   분석 결과 보러가기&nbsp;(Click!)&nbsp;
                   <HiCursorClick />
                   <AccordionIcon />
@@ -97,7 +97,7 @@ const Result = () => {
             </AccordionItem>
             <AccordionItem>
               <h2>
-                <AccordionButton>
+                <AccordionButton ml="auto" mr="auto" display="block">
                   내 MBTI 물어보기&nbsp;(Click!)&nbsp;
                   <HiCursorClick />
                   <AccordionIcon />
@@ -118,8 +118,10 @@ const Result = () => {
         <Accordion defaultIndex={[0]}>
           <AccordionItem>
             <h2>
-              <AccordionButton>
-                내 MBTI 물어보기&nbsp;(Click!)&nbsp; <HiCursorClick />
+              <AccordionButton ml="auto" mr="auto" display="block">
+                내 MBTI 물어보기&nbsp;
+                <HiCursorClick />
+                (Click!)&nbsp;
                 <AccordionIcon />
               </AccordionButton>
             </h2>
