@@ -66,7 +66,6 @@ export const GlobalStyle = createGlobalStyle`
         padding: 20px;
         font-size: 18px;
         height: calc(var(--vh, 1vh) * 100);
-        overflow-y: hidden;
     }
     a {
         text-decoration: none;
