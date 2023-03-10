@@ -138,13 +138,32 @@ const Result = () => {
           </Accordion>
         </>
       ) : (
-        <Accordion defaultIndex={[0]}>
+        <Accordion defaultIndex={[1]}>
           <AccordionItem>
             <h2>
               <AccordionButton ml="auto" mr="auto" display="block">
-                내 MBTI 물어보기&nbsp;
+                분석 결과 보러가기&nbsp;(Click!)&nbsp;
                 <HiCursorClick />
-                (Click!)&nbsp;
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>
+              <Link
+                style={{ width: "100%", marginBottom: "10px" }}
+                to={`/${userKey}/result/chart`}
+              >
+                <StyledButton disabled>통계 보러가기</StyledButton>
+              </Link>
+              <Link to="/${userKey}/result/compare">
+                <StyledButton disabled>실제 MBTI랑 비교하기</StyledButton>
+              </Link>
+            </AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <h2>
+              <AccordionButton ml="auto" mr="auto" display="block">
+                내 MBTI 물어보기&nbsp;(Click!)&nbsp;
+                <HiCursorClick />
                 <AccordionIcon />
               </AccordionButton>
             </h2>
@@ -254,4 +273,8 @@ const StyledButton = styled.button`
   font-family: "blackHanSans";
   font-size: 32px;
   margin-bottom: 2vh;
+  &:disabled {
+    cursor: default;
+    opacity: 0.4;
+  }
 `;
