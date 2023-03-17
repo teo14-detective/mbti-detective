@@ -55,18 +55,17 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     :root {
-        font-family: "theJamsil";
         background-color: #DCBC8C;
         color: black;
         /* --vh: 100%; */
     }
     .App {
         max-width: 430px;
+        font-family: "theJamsil";
         margin: 0 auto;
         padding: 20px;
         font-size: 18px;
         height: calc(var(--vh, 1vh) * 100);
-        overflow-y: hidden;
     }
     a {
         text-decoration: none;

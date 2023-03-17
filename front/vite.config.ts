@@ -16,6 +16,9 @@ export default defineConfig({
     'process.env': {},
   },
   server: {
+    watch: {
+      usePolling: true,
+    },
     proxy: {
       '/api': {
         target: 'https://mbti-detective-api.fly.dev/',

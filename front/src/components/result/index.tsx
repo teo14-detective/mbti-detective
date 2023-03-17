@@ -6,8 +6,16 @@ import goldMedal from "@assets/images/gold-medal.png";
 import Chart from "./Chart";
 import useResultStore from "@store/resultStore";
 import mbtiData from "@assets/data/mbti";
+import { HiCursorClick } from "react-icons/hi";
 const s3Url = import.meta.env.VITE_S3_URL as string;
 const questionCharacter = `${s3Url}/mbti-hat/questionCharacter.png`;
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from "@chakra-ui/react";
 
 type MBTI = {
   type: string;
@@ -23,6 +31,30 @@ const Result = () => {
       ...state,
     }),
   );
+  const surveyList = useResultStore((state) => state.sortedSurveyList);
+  const [surveyMBTI, setSurveyMBTI] = useState<any[]>([]);
+  const [surveyData, setSurveyData] = useState<any[]>([]);
+
+  const extractFromObj = () => {
+    const list = [];
+    for (const key in surveyMBTI[0]) {
+      const { type, image, description } = surveyMBTI[0][key];
+      list.push(type, image, description);
+    }
+    return list;
+  };
+
+  useEffect(() => {
+    if (surveyList.length) {
+      setSurveyMBTI(
+        mbtiData.filter((el) => el[surveyList[0][0].user_mbti.toUpperCase()]),
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    setSurveyData(extractFromObj());
+  }, [surveyMBTI]);
 
   useEffect(() => {
     if (user.mbti) {
@@ -33,6 +65,8 @@ const Result = () => {
     }
   }, [user]);
 
+  console.log(surveyData[2]);
+
   return (
     <StyledContainer>
       <StyledCaptureContainer id="capture">
@@ -40,14 +74,11 @@ const Result = () => {
         {user.participants.length ? (
           <>
             <StyledResultContainer>
-              <StyledImage
-                src={MBTIData?.image}
-                alt={MBTIData?.type + `캐릭터`}
-              />
+              <StyledImage src={surveyData[1]} alt={surveyData[0] + `캐릭터`} />
               <StyledMedalImage src={goldMedal} alt="캐릭터" />
             </StyledResultContainer>
             <StyledList>
-              {MBTIData?.description.split(".").map((text, i) => (
+              {surveyData[2]?.split(".").map((text: string, i: number) => (
                 <StyledItem key={i}>{text}</StyledItem>
               ))}
             </StyledList>
@@ -60,22 +91,94 @@ const Result = () => {
             />
             <StyledStateMessage>
               "앗! 아직 아무도 추리를 안했어요!"
+              <br />
+              친구에게 링크를 공유해보세요!
             </StyledStateMessage>
           </>
         )}
       </StyledCaptureContainer>
-      {user.participants.length > 0 && (
+      {user.participants.length > 0 ? (
         <>
-          <Link
-            style={{ width: "100%", marginBottom: "10px" }}
-            to={`/${userKey}/result/chart`}
-          >
-            <StyledButton>통계 보러가기</StyledButton>
-          </Link>
-          <Link to="/${userKey}/result/compare">
-            <StyledButton>실제 MBTI랑 비교하기</StyledButton>
-          </Link>
+          <Accordion>
+            <AccordionItem>
+              <h2>
+                <AccordionButton ml="auto" mr="auto" display="block">
+                  분석 결과 보러가기&nbsp;(Click!)&nbsp;
+                  <HiCursorClick />
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <Link
+                  style={{ width: "100%", marginBottom: "10px" }}
+                  to={`/${userKey}/result/chart`}
+                >
+                  <StyledButton>통계 보러가기</StyledButton>
+                </Link>
+                <Link to="/${userKey}/result/compare">
+                  <StyledButton>실제 MBTI랑 비교하기</StyledButton>
+                </Link>
+              </AccordionPanel>
+            </AccordionItem>
+            <AccordionItem>
+              <h2>
+                <AccordionButton ml="auto" mr="auto" display="block">
+                  내 MBTI 물어보기&nbsp;(Click!)&nbsp;
+                  <HiCursorClick />
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <Link style={{ width: "100%", marginBottom: "10px" }} to={"/"}>
+                  <StyledButton>처음이신가요?</StyledButton>
+                </Link>
+                <Link to={`/${userKey}/share`}>
+                  <StyledButton>{user.name}님이신가요?</StyledButton>
+                </Link>
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
         </>
+      ) : (
+        <Accordion defaultIndex={[1]}>
+          <AccordionItem>
+            <h2>
+              <AccordionButton ml="auto" mr="auto" display="block">
+                분석 결과 보러가기&nbsp;(Click!)&nbsp;
+                <HiCursorClick />
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>
+              <Link
+                style={{ width: "100%", marginBottom: "10px" }}
+                to={`/${userKey}/result/chart`}
+              >
+                <StyledButton disabled>통계 보러가기</StyledButton>
+              </Link>
+              <Link to="/${userKey}/result/compare">
+                <StyledButton disabled>실제 MBTI랑 비교하기</StyledButton>
+              </Link>
+            </AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <h2>
+              <AccordionButton ml="auto" mr="auto" display="block">
+                내 MBTI 물어보기&nbsp;(Click!)&nbsp;
+                <HiCursorClick />
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>
+              <Link style={{ width: "100%", marginBottom: "10px" }} to={"/"}>
+                <StyledButton>처음이신가요?</StyledButton>
+              </Link>
+              <Link to={`/${userKey}/share`}>
+                <StyledButton>{user.name}님이신가요?</StyledButton>
+              </Link>
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
       )}
     </StyledContainer>
   );
@@ -172,4 +275,8 @@ const StyledButton = styled.button`
   font-family: "blackHanSans";
   font-size: 32px;
   margin-bottom: 2vh;
+  &:disabled {
+    cursor: default;
+    opacity: 0.4;
+  }
 `;

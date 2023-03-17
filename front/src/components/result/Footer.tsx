@@ -17,11 +17,10 @@ type Props = {
 
 const Footer = ({ handleCapture, usageLog }: Props) => {
   const onCopyClipBoard = () => {
-    handleCopyClipBoard(window.location.origin + window.location.pathname);
+    handleCopyClipBoard(window.location.origin + "/" + userKey);
   };
 
   const { userKey } = useParams();
-
   return (
     <StyledFooter>
       <StyledContainer>
