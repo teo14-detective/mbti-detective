@@ -47,7 +47,7 @@
   },
   "proxy": {
     "/api": {
-      "target": "https://mbti-detective-api.netlify.app",
+      "target": "https://mbti-detective-api.fly.dev/",
       "changeOrigin": true,
       "secure": false
     }
