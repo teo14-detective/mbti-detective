@@ -1,4 +1,4 @@
 [[redirects]]
   from = "/api/*"
-  to = "https://mbti-detective-api.netlify.app/api/:splat"
+  to = "https://mbti-detective-api.fly.dev/api/:splat"
   status = 200
