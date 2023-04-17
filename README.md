@@ -16,6 +16,8 @@
 🕵️우리는 MBTI 탐정단!🕵️<br>
 친구들의 MBTI를 맞춰보고, 친구들은 내 성격을 어떻게 생각하는지 들어봅시다!
 
+[서비스 바로가기](https://mbti-detective.netlify.app/) <br />
+
 <br/>
  <p align="right"><a href="#top">(⬆️ Top)</a></p>
 
