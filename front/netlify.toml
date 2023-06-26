@@ -1,4 +1,4 @@
 [[redirects]]
-  from = "/api/*"
-  to = "https://mbti-detective-api.fly.dev/api/:splat"
+  from = "/*"
+  to = "/index.html"
   status = 200
